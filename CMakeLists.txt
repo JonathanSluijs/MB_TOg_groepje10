@@ -4,4 +4,4 @@ project(MB_TOg_groepje10)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(MB_TOg_groepje10
-        Main.cpp)
+        Main.cpp Tape.cpp MultiTapeTuringMachine.cpp MultiTapeTuringMachine.h TransitionFunction.cpp TransitionFunction.h Utils.h)
