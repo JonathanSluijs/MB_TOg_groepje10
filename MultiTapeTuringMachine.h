@@ -27,15 +27,38 @@ private:
     TransitionFunction transitionFunction;
 
 public:
-    // Constructor
+    // Constructor for the MultiTapeTuringMachine class
+    // Initializes the machine with the specified number of tapes and states
+    // Parameters:
+    // - tapesCount: The number of tapes for this Turing machine
+    // - startState: The initial state of the machine
+    // - accept: The accept state of the machine
+    // - reject: The reject state of the machine
     MultiTapeTuringMachine(int tapesCount, const std::string& startState,const std::string& accept, const std::string& reject);
 
+
+    // Sets the transition function for the Turing machine
+    // Parameters:
+    // - tf: A TransitionFunction object containing the transition rules for this machine
     void setTransitionFunction(const TransitionFunction& tf);
 
+    // Executes the Turing machine from the current state until it reaches an accept or reject state
+    // Returns:
+    // - true if the machine reaches the accept state
+    // - false if the machine reaches the reject state or has no valid transition
     bool run();
 
+    // Prints the contents of all tapes and their head positions
+    // Used for debugging
     void printTapes() const;
 
+    // Retrieves a reference to the specified tape in the machine
+    // Parameters:
+    // - index: The index of the tape to retrieve
+    // Returns:
+    // - A reference to the requested Tape object
+    // Throws:
+    // - std::out_of_range if the index is not within the valid range
     Tape& getTape(int index);
 
 
