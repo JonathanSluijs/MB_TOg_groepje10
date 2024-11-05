@@ -30,7 +30,7 @@ void Tape::setContent(const std::string& content) {
         tape.push_back(c);  // Add each character to the tape
     }
 
-    // Set the head to the end of the tape (least significant bit) if there is content,
-    // otherwise, set it to 0 (beginning of the tape).
-    headPosition = tape.empty() ? 0 : tape.size() - 1;
+//    // Set the head to the end of the tape (least significant bit) if there is content,
+//    // otherwise, set it to 0 (beginning of the tape).
+//    headPosition = tape.empty() ? 0 : tape.size() - 1;
 }
