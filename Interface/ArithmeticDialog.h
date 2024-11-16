@@ -1,7 +1,8 @@
-//
-// Created by emir on 11/16/24.
-//
-
+/*****************************************************************************************
+* @file ArithmeticDialog.h
+* @brief This file contains the declaration of the ArithmeticDialog class
+* which is responsible for submitting, validating and calling the calculator.
+*****************************************************************************************/
 #ifndef ARITHMETICDIALOG_H
 #define ARITHMETICDIALOG_H
 
