@@ -9,7 +9,6 @@
 
 #include <QMainWindow>
 #include <QPushButton>
-#include <memory>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -18,12 +17,12 @@ private:
     /**
      * @brief Button to go to the math calculator window
      */
-    std::unique_ptr<QPushButton> math_calculator;
+    QPushButton* math_calculator;
 
     /**
      * @brief Button to go to the turing machine simulator window
      */
-    std::unique_ptr<QPushButton> turing_simulator;
+    QPushButton* turing_simulator;
 
 public:
     /**
@@ -36,7 +35,7 @@ public:
     /**
     * @brief Destructor for the MainWindow class.
 *   */
-    ~MainWindow() override;
+    ~MainWindow() override = default;
 
 private:
     /**
@@ -54,12 +53,12 @@ private slots:
     /**
      * @brief Goes to the window for math calculation
      */
-    void toElementaryStudent();
+    void toCalculator();
 
     /**
     * @brief Goes to the window for turing machine visualization
     */
-    void toCSStudent();
+    void toTMSimulator();
 };
 
 #endif //MAINWINDOW_H

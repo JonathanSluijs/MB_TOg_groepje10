@@ -17,7 +17,8 @@ SET(SOURCES
 
 SET(SOURCES_GUI
         Interface/MainWindow.cpp
-        Interface/MainWindow.h)
+        Interface/TuringSimulationDialog.cpp
+        Interface/ArithmeticDialog.cpp)
 
 ADD_EXECUTABLE(TuringTutor ${SOURCES} ${SOURCES_GUI})
 
