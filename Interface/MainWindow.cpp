@@ -33,7 +33,7 @@ void MainWindow::createGraphics() {
     if (pixmapMath.isNull()) {
         qWarning("Can not load image math.png!");
     } else {
-        mathLabel->setPixmap(pixmapMath.scaled(360, 360, Qt::KeepAspectRatio));
+        mathLabel->setPixmap(pixmapMath.scaled(480, 360, Qt::KeepAspectRatio));
     }
     leftLayout->addWidget(mathLabel, 0, Qt::AlignCenter);
     mainLayout->addLayout(leftLayout);

@@ -15,9 +15,6 @@ ArithmeticDialog::ArithmeticDialog(QWidget *parent) {
     createEvents();
 }
 
-ArithmeticDialog::~ArithmeticDialog() {
-}
-
 void ArithmeticDialog::createGraphics() {
     setStyleSheet("background-color: #B2DFDB;");
 
@@ -55,9 +52,9 @@ void ArithmeticDialog::notValidated() {
 }
 
 void ArithmeticDialog::limitCharacters() {
-    if(expression_input) {
+    if (expression_input) {
         const QRegularExpression regex("^[0-9+\\-*/^()]*$"); // Choose the characters that are allowed
-        QValidator* validator = new QRegularExpressionValidator(regex, expression_input);
+        QValidator *validator = new QRegularExpressionValidator(regex, expression_input);
         expression_input->setValidator(validator);
     }
 }
@@ -66,7 +63,7 @@ void ArithmeticDialog::limitCharacters() {
 void ArithmeticDialog::submitExpression() {
     bool valid = true;
 
-    if(valid) {
+    if (valid) {
         // Calculate the expression
         // Display the result
     } else {
