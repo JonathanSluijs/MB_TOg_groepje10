@@ -1,6 +1,9 @@
-//
-// Created by emir on 11/16/24.
-//
+/*****************************************************************************************
+* @file TuringSimulationDialog
+* @brief This file contains the declaration of the TuringSimulationDialog class
+* which is responsible for submitting, validating expressions with parsing algorithms 
+* and turing simulation of the calculation.
+*****************************************************************************************/
 
 #ifndef TURINGSIMULATIONDIALOG_H
 #define TURINGSIMULATIONDIALOG_H
