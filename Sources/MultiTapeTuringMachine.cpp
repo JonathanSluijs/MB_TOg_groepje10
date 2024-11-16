@@ -2,7 +2,7 @@
 // Created by Jonat on 01/11/2024.
 //
 
-#include "MultiTapeTuringMachine.h"
+#include "../Headers/MultiTapeTuringMachine.h"
 
 MultiTapeTuringMachine::MultiTapeTuringMachine(int tapesCount, const std::string &startState, const std::string &accept,
                                                const std::string &reject)   : numTapes(tapesCount), tapes(tapesCount),
