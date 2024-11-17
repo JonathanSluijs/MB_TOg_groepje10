@@ -19,7 +19,7 @@ TuringSimulationDialog::TuringSimulationDialog(QWidget *parent) {
 void TuringSimulationDialog::createGraphics() {
     setStyleSheet("background-color: #B2DFDB;");
 
-    QGridLayout *layout = new QGridLayout(this);
+    layout = new QGridLayout(this);
 
     // Create the input field for the expression
     // Create a regular expression to only allow numbers 1-9 and certain operators
@@ -39,8 +39,8 @@ void TuringSimulationDialog::createGraphics() {
     cyk_algorithm->setChecked(true);
 
     // Create text field for information
-    QLabel* parser_info = new QLabel("Choose the parsing algorithm you want to use to validate the expressions.", this);
-    QLabel* input_info = new QLabel(
+    parser_info = new QLabel("Choose the parsing algorithm you want to use to validate the expressions.", this);
+    input_info = new QLabel(
         "Insert your math expression in the box below. You can only use the following operators: +, -, *, /, ^, (, )."
         , this);
 
@@ -54,10 +54,10 @@ void TuringSimulationDialog::createGraphics() {
 }
 
 void TuringSimulationDialog::createEvents() const {
-    QObject::connect(submit_button, SIGNAL(clicked()), this,  SLOT(submitExpression()));
+    QObject::connect(submit_button, SIGNAL(clicked()), this,  SLOT(submitExpression())); // NOLINT(*-unused-return-value)
 }
 
-void TuringSimulationDialog::limitCharacters() {
+void TuringSimulationDialog::limitCharacters() const {
     if (expression_input) {
         const QRegularExpression regex("^[0-9+\\-*/^()]*$"); // Choose the characters that are allowed
         QValidator *validator = new QRegularExpressionValidator(regex, expression_input);

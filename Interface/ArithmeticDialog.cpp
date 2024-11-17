@@ -7,6 +7,8 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QRegularExpressionValidator>
+#include "../Headers/CYKParser.h"
+#include "../Headers/CFG.h"
 
 ArithmeticDialog::ArithmeticDialog(QWidget *parent) {
     setMinimumSize(QSize(720, 720));
@@ -18,7 +20,7 @@ ArithmeticDialog::ArithmeticDialog(QWidget *parent) {
 void ArithmeticDialog::createGraphics() {
     setStyleSheet("background-color: #B2DFDB;");
 
-    QGridLayout *layout = new QGridLayout(this);
+    layout = new QGridLayout(this);
 
     // Create the input field for the expression
     // Create a regular expression to only allow numbers 1-9 and certain operators
@@ -32,12 +34,12 @@ void ArithmeticDialog::createGraphics() {
     submit_button->setStyleSheet("background-color: blue; color: white;");
 
     // Create text field for
-    QLabel *info = new QLabel(
+    input_info = new QLabel(
         "Insert your math expression in the box below. You can only use the following operators: +, -, *, /, ^, (, )."
         , this);
 
     layout->setAlignment(Qt::AlignCenter);
-    layout->addWidget(info, 0, 0);
+    layout->addWidget(input_info, 0, 0);
     layout->addWidget(expression_input, 2, 0);
     layout->addWidget(submit_button, 3, 0);
 }
@@ -51,7 +53,7 @@ void ArithmeticDialog::notValidated() {
     QMessageBox::warning(this, "Invalid Expression", "The expression you entered is not valid. Please try again.");
 }
 
-void ArithmeticDialog::limitCharacters() {
+void ArithmeticDialog::limitCharacters() const {
     if (expression_input) {
         const QRegularExpression regex("^[0-9+\\-*/^()]*$"); // Choose the characters that are allowed
         QValidator *validator = new QRegularExpressionValidator(regex, expression_input);
@@ -59,11 +61,14 @@ void ArithmeticDialog::limitCharacters() {
     }
 }
 
+#include <iostream>
 // TODO: Implement the submitExpression function
+// TODO: CNF and CFG are not right, need to fix them
 void ArithmeticDialog::submitExpression() {
-    bool valid = true;
+    CFG cfg("../InputFiles/expressionCNF.json");
 
-    if (valid) {
+    std::cout << expression_input->text().toStdString() << std::endl;
+    if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), cfg)) {
         // Calculate the expression
         // Display the result
     } else {

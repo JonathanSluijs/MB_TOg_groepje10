@@ -28,140 +28,140 @@
   ],
   "Productions": [
     {
-      "Head": "S",
-      "Body": [
+      "head": "S",
+      "body": [
         "E"
       ]
     },
     {
-      "Head": "E",
-      "Body": [
+      "head": "E",
+      "body": [
         "E",
         "+",
         "T"
       ]
     },
     {
-      "Head": "E",
-      "Body": [
+      "head": "E",
+      "body": [
         "E",
         "-",
         "T"
       ]
     },
     {
-      "Head": "E",
-      "Body": [
+      "head": "E",
+      "body": [
         "T"
       ]
     },
     {
-      "Head": "T",
-      "Body": [
+      "head": "T",
+      "body": [
         "T",
         "*",
         "F"
       ]
     },
     {
-      "Head": "T",
-      "Body": [
+      "head": "T",
+      "body": [
         "T",
         "/",
         "F"
       ]
     },
     {
-      "Head": "T",
-      "Body": [
+      "head": "T",
+      "body": [
         "F"
       ]
     },
     {
-      "Head": "F",
-      "Body": [
+      "head": "F",
+      "body": [
         "(",
         "E",
         ")"
       ]
     },
     {
-      "Head": "F",
-      "Body": [
+      "head": "F",
+      "body": [
         "N"
       ]
     },
     {
-      "Head": "F",
-      "Body": [
+      "head": "F",
+      "body": [
         "F",
         "^",
         "N"
       ]
     },
     {
-      "Head": "N",
-      "Body": [
+      "head": "N",
+      "body": [
         "D"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "0"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "1"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "2"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "3"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "4"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "5"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "6"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "7"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "8"
       ]
     },
     {
-      "Head": "D",
-      "Body": [
+      "head": "D",
+      "body": [
         "9"
       ]
     }

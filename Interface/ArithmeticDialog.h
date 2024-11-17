@@ -9,6 +9,8 @@
 #include <QDialog>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QLabel>
+#include <QGridLayout>
 
 class ArithmeticDialog : public QDialog {
     Q_OBJECT
@@ -17,19 +19,29 @@ private:
     /**
      * @brief Button to submit the expression
      */
-    QPushButton *submit_button;
+    QPushButton *submit_button = nullptr;
 
     /**
      * @brief Input field for the expression
      */
-    QLineEdit *expression_input;
+    QLineEdit *expression_input = nullptr;
+
+    /**
+     * @brief Lablel with information about the input
+     */
+    QLabel *input_info = nullptr;
+
+    /**
+     * @brief Layout of the dialog
+     */
+    QGridLayout *layout = nullptr;
 
 public:
     /**
      * @brief Constructor for the ArithmeticDialog class.
      * @param parent parent widget
      */
-    ArithmeticDialog(QWidget *parent = 0);
+    explicit ArithmeticDialog(QWidget *parent = 0);
 
     /**
      * @brief Destructor for the ArithmeticDialog class.
@@ -56,7 +68,7 @@ private:
     * @brief Function that limits the characters
     * that can be entered in the expression input field.
     */
-    void limitCharacters();
+    void limitCharacters() const;
 
 
 signals:

@@ -12,6 +12,8 @@
 #include <QLineEdit>
 #include <QRadioButton>
 #include <QPushButton>
+#include <QLabel>
+#include <QGridLayout>
 
 class TuringSimulationDialog: public QDialog {
     Q_OBJECT
@@ -21,22 +23,37 @@ private:
     /**
      * @brief Button to submit the expression
      */
-    QPushButton* submit_button;
+    QPushButton* submit_button = nullptr;
 
     /**
      * @brief Input field for the expression
      */
-    QLineEdit* expression_input;
+    QLineEdit* expression_input = nullptr;
 
     /**
      * @brief Radio button to select cyk algorithm
      */
-    QRadioButton* cyk_algorithm;
+    QRadioButton* cyk_algorithm = nullptr;
 
     /**
      * @brief Radio button to select earley algorithm
      */
-    QRadioButton* earley_algorithm;
+    QRadioButton* earley_algorithm = nullptr;
+
+   /**
+    * @brief A label with information about the parsing algorithm
+    */
+    QLabel* parser_info = nullptr;
+
+   /**
+    *@brief A label with information about the input
+    */
+    QLabel* input_info = nullptr;
+
+   /**
+    * @brief Layout of the dialog
+    */
+    QGridLayout* layout = nullptr;
 
 public:
 
@@ -44,7 +61,7 @@ public:
      * @brief Constructor for the TuringSimulationDialog class.
      * @param parent parent widget
      */
-    TuringSimulationDialog(QWidget* parent = 0);
+    explicit TuringSimulationDialog(QWidget* parent = 0);
 
     /**
      * @brief Destructor for the TuringSimulationDialog class.
@@ -67,8 +84,10 @@ private:
     * @brief Function that limits the characters
     * that can be entered in the expression input field.
     */
-    void limitCharacters();
+    void limitCharacters() const;
 
+signals:
+private slots:
     /**
     * @brief Submits the expression to be calculated.
     * @brief This function will call the appropriate function to calculate the expression

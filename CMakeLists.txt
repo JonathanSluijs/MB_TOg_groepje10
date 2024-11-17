@@ -23,8 +23,8 @@ SET(SOURCES
         Sources/TransitionFunction.cpp
         Sources/EarleyParser.cpp
         Sources/CFG.cpp
-        Sources/PDA.cpp
-        Sources/Logger.cpp)
+        Sources/Logger.cpp
+        Sources/CYKParser.cpp)
 
 SET(SOURCES_GUI
         Interface/MainWindow.cpp
