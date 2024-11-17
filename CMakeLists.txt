@@ -7,6 +7,13 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 # Works for Linux, not sure for MacOS
+
+if(APPLE)
+    # Voeg de locatie toe waar Qt5 via Homebrew is geïnstalleerd
+    set(CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt@5")
+endif()
+
+
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 SET(SOURCES
@@ -23,6 +30,10 @@ SET(SOURCES_GUI
 ADD_EXECUTABLE(TuringTutor ${SOURCES} ${SOURCES_GUI})
 
 target_link_libraries(TuringTutor Qt5::Core Qt5::Gui Qt5::Widgets)
+
+
+
+
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(DEBUG_SUFFIX)
