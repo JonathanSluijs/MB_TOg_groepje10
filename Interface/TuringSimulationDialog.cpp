@@ -3,16 +3,24 @@
 //
 
 #include "TuringSimulationDialog.h"
+#include "../Headers/CFG.h"
+#include "../Headers/CYKParser.h"
 #include <QGridLayout>
 #include <QLabel>
-#include <QMessageBox>
 #include <QRegularExpressionValidator>
+#include <QMessageBox>
 
-TuringSimulationDialog::TuringSimulationDialog(QWidget *parent) {
+
+TuringSimulationDialog::TuringSimulationDialog(const std::string& grammar_file, QWidget *parent) {
     setMinimumSize(QSize(720, 720));
     setWindowTitle("Turing Machine Simulator");
     createGraphics();
     createEvents();
+    cfg = new CFG{grammar_file};
+}
+
+TuringSimulationDialog::~TuringSimulationDialog() {
+    delete cfg;
 }
 
 
@@ -65,13 +73,20 @@ void TuringSimulationDialog::limitCharacters() const {
     }
 }
 
+void TuringSimulationDialog::notValidated(){
+    QMessageBox::warning(this, "Invalid Expression", "The expression you entered is not valid. Please try again.");
+}
+
 //TODO: Implement the submitExpression function
 void TuringSimulationDialog::submitExpression() {
-    bool valid = true;
 
     // Check which parsing algorithm is selected
     if(cyk_algorithm->isChecked()){
-        //Do something
+        if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
+            // Do something
+        }else {
+
+        }
     }else if(earley_algorithm->isChecked()){
         //Do something else
     }

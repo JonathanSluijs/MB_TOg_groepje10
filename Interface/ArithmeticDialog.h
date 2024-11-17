@@ -11,6 +11,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QGridLayout>
+#include "../Headers/CFG.h"
 
 class ArithmeticDialog : public QDialog {
     Q_OBJECT
@@ -36,17 +37,23 @@ private:
      */
     QGridLayout *layout = nullptr;
 
+  /**
+    * @brief CFG object that defines the grammar for the arithmetic expressions
+    */
+    CFG* cfg = nullptr;
+
 public:
     /**
      * @brief Constructor for the ArithmeticDialog class.
      * @param parent parent widget
+     * @param grammar_file path to the grammar file
      */
-    explicit ArithmeticDialog(QWidget *parent = 0);
+    explicit ArithmeticDialog(const std::string& grammar_file, QWidget *parent = nullptr);
 
     /**
      * @brief Destructor for the ArithmeticDialog class.
      */
-    ~ArithmeticDialog() override = default;
+    ~ArithmeticDialog() override;
 
 private:
     /**

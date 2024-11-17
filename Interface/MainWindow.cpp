@@ -74,11 +74,11 @@ void MainWindow::createEvents() const {
 }
 
 void MainWindow::toCalculator() {
-    ArithmeticDialog arithmetic_dialog(this);
+    ArithmeticDialog arithmetic_dialog("../InputFiles/expressionCNF.json", this);
     arithmetic_dialog.exec();
 }
 
 void MainWindow::toTMSimulator() {
-    TuringSimulationDialog simulation_dialog(this);
+    TuringSimulationDialog simulation_dialog("../InputFiles/expressionCNF.json", this);
     simulation_dialog.exec();
 }

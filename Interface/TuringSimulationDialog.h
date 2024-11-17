@@ -15,6 +15,8 @@
 #include <QLabel>
 #include <QGridLayout>
 
+class CFG;
+
 class TuringSimulationDialog: public QDialog {
     Q_OBJECT
 
@@ -55,18 +57,24 @@ private:
     */
     QGridLayout* layout = nullptr;
 
+   /**
+    * @brief CFG object that defines the grammar for the arithmetic expressions
+    */
+    CFG* cfg = nullptr;
+
 public:
 
     /**
      * @brief Constructor for the TuringSimulationDialog class.
+     * @param grammar_file path to the grammar file
      * @param parent parent widget
      */
-    explicit TuringSimulationDialog(QWidget* parent = 0);
+    explicit TuringSimulationDialog(const std::string& grammar_file, QWidget* parent = 0);
 
     /**
      * @brief Destructor for the TuringSimulationDialog class.
      */
-    ~TuringSimulationDialog() override = default;
+    ~TuringSimulationDialog() override;
 
 private:
 
@@ -85,6 +93,11 @@ private:
     * that can be entered in the expression input field.
     */
     void limitCharacters() const;
+
+   /**
+    * @brief Function that displays a message if the expression is not valid.
+    */
+    void notValidated();
 
 signals:
 private slots:

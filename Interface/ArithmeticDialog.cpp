@@ -10,11 +10,16 @@
 #include "../Headers/CYKParser.h"
 #include "../Headers/CFG.h"
 
-ArithmeticDialog::ArithmeticDialog(QWidget *parent) {
+ArithmeticDialog::ArithmeticDialog( const std::string& grammar_file, QWidget *parent) {
     setMinimumSize(QSize(720, 720));
     setWindowTitle("Math Expression Calculator");
     createGraphics();
     createEvents();
+    cfg = new CFG{grammar_file};
+}
+
+ArithmeticDialog::~ArithmeticDialog() {
+    delete cfg;
 }
 
 void ArithmeticDialog::createGraphics() {
@@ -65,10 +70,8 @@ void ArithmeticDialog::limitCharacters() const {
 // TODO: Implement the submitExpression function
 // TODO: CNF and CFG are not right, need to fix them
 void ArithmeticDialog::submitExpression() {
-    CFG cfg("../InputFiles/expressionCNF.json");
 
-    std::cout << expression_input->text().toStdString() << std::endl;
-    if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), cfg)) {
+    if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
         // Calculate the expression
         // Display the result
     } else {
