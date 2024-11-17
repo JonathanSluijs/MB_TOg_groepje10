@@ -1,4 +1,4 @@
-# Multi-Tape Turing Machine Project
+# Turing Tutor
 
 Dit project is ontwikkeld als onderdeel van de cursus Machines en Berekenbaarheid. Het doel is een geavanceerde multi-tape Turing Machine (MTM) te bouwen die rekenkundige bewerkingen kan uitvoeren, inclusief optellen, aftrekken, vermenigvuldigen, machtsverheffen, en het verwerken van expressies met haakjes. Het systeem combineert theoretische kennis over automaten met praktische toepassingen en biedt zowel functionele als educatieve waarde.
 
