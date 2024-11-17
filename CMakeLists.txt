@@ -13,7 +13,11 @@ SET(SOURCES
         main.cpp
         Sources/Tape.cpp
         Sources/MultiTapeTuringMachine.cpp
-        Sources/TransitionFunction.cpp)
+        Sources/TransitionFunction.cpp
+        Sources/EarleyParser.cpp
+        Sources/CFG.cpp
+        Sources/PDA.cpp
+        Sources/Logger.cpp)
 
 SET(SOURCES_GUI
         Interface/MainWindow.cpp
