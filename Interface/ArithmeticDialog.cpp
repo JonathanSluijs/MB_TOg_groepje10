@@ -66,10 +66,14 @@ void ArithmeticDialog::limitCharacters() const {
     }
 }
 
-#include <iostream>
 // TODO: Implement the submitExpression function
-// TODO: CNF and CFG are not right, need to fix them
 void ArithmeticDialog::submitExpression() {
+
+    // If there is no input
+    if(expression_input->text().isEmpty()) {
+        QMessageBox::warning(this, "Empty Expression", "Please enter an expression.");
+        return;
+    }
 
     if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
         // Calculate the expression
