@@ -9,7 +9,7 @@
 #include <QPixmap>
 #include <QHBoxLayout>
 
-MainWindow::MainWindow(QWidget *parent, int width, int height) {
+MainWindow::MainWindow(const int width, const int height, QWidget *parent) {
     setFixedSize(width, height);
     setWindowTitle("Turing Tutor");
     createGraphics();

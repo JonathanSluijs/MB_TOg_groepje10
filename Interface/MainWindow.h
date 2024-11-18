@@ -17,20 +17,21 @@ private:
     /**
      * @brief Button to go to the math calculator window
      */
-    QPushButton* math_calculator;
+    QPushButton* math_calculator = nullptr;
 
     /**
      * @brief Button to go to the turing machine simulator window
      */
-    QPushButton* turing_simulator;
+    QPushButton* turing_simulator = nullptr;
 
 public:
     /**
     * @brief Constructor for the MainWindow class.
     * @param width width of the main window (default 1920)
     * @param height height of the main window (default 1080)
+    * @param parent parent widget (default nullptr)
      */
-    explicit MainWindow(QWidget *parent = 0, int width = 1920, int height = 1080);
+    explicit MainWindow(int width = 1920, int height = 1080, QWidget* parent = nullptr);
 
     /**
     * @brief Destructor for the MainWindow class.

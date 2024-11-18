@@ -1,6 +1,11 @@
-//
-// Created by Jonat on 01/11/2024.
-//
+/***********************************************************************************************
+ * @file main.cpp
+ * @brief This file contains the main function which is the entry point of the program
+ * @brief You can change the resolution of the MainWindow by adding width and height to the constructor
+ * @warning DO NOT CHANGE THIS FILE BESIDES THE RESOLUTION
+ * @version 1.0
+ * @date 2024-11-17
+ **********************************************************************************************/
 
 #include "Headers/MultiTapeTuringMachine.h"
 #include <QApplication>
