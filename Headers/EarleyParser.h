@@ -69,7 +69,7 @@ namespace parser {
    * @param input The string to be parsed
    * @param cfg The CFG object to be used for parsing
    */
-  static bool parse(const std::string &input, const CFG &cfg);
+  bool parse(const std::string &input, const CFG &cfg);
  };
 
 
