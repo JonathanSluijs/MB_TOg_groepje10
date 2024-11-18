@@ -85,9 +85,10 @@ void TuringSimulationDialog::submitExpression() {
         if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
             // Do something
         }else {
-
+            notValidated();
         }
     }else if(earley_algorithm->isChecked()){
-        //Do something else
+        //TODO: Implement Earley parsing
+        QMessageBox::warning(this, "Not implemented", "Earley parsing is not implemented yet.");
     }
 }

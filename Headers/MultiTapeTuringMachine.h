@@ -61,7 +61,8 @@ public:
     // - std::out_of_range if the index is not within the valid range
     Tape& getTape(int index);
 
-
+    //TODO: Add function copy from tape to tape
+    void copyTapeSymbol(int from, int to);
 };
 
 
