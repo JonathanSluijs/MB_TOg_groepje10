@@ -80,6 +80,12 @@ void TuringSimulationDialog::notValidated(){
 //TODO: Implement the submitExpression function
 void TuringSimulationDialog::submitExpression() {
 
+    // If there is no input
+    if(expression_input->text().isEmpty()) {
+        QMessageBox::warning(this, "Empty Expression", "Please enter an expression.");
+        return;
+    }
+
     // Check which parsing algorithm is selected
     if(cyk_algorithm->isChecked()){
         if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
