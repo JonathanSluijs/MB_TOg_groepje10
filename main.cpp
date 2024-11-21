@@ -10,6 +10,8 @@
 #include "Headers/MultiTapeTuringMachine.h"
 #include <QApplication>
 #include "Interface/MainWindow.h"
+#include "Headers/EarleyParser.h"
+#include "Headers/CFG.h"
 
 int main(int argc, char *argv[]) {
     // MultiTapeTuringMachine machine(3, "q0", "q_accept", "q_reject");
@@ -45,8 +47,14 @@ int main(int argc, char *argv[]) {
     // }
     //
     // machine.printTapes();
-    QApplication app(argc, argv);
-    MainWindow turing_tutor;
-    turing_tutor.show();
-    return app.exec();
+    /**
+     * Application
+     */
+    // QApplication app(argc, argv);
+    // MainWindow turing_tutor;
+    // turing_tutor.show();
+    // return app.exec();
+    CFG cfg{"InputFiles/expressionCFG.json"};
+    std::cout << std::boolalpha << parser::EarleyParser::getInstance().parse("4+5", cfg) << std::endl;
+    return 0;
 }

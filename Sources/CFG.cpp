@@ -98,6 +98,14 @@ bool CFG::compareProductions(const std::vector<std::string> &prod1, const std::v
     return prod1.size() > prod2.size();  // Longer production comes first
 }
 
+bool CFG::isTerminal(const std::string &str) const {
+    return std::find(terminals.begin(), terminals.end(), str) != terminals.end();
+}
+
+bool CFG::isVariable(const std::string &str) const {
+    return std::find(variables.begin(), variables.end(), str) != variables.end();
+}
+
 
 std::vector<std::string> CFG::getVariables() const {
     return variables;
@@ -111,6 +119,6 @@ std::map<std::string, std::vector<std::vector<std::string>>> CFG::getProductions
     return productions;
 }
 
-std::string CFG::getStartSymbol() const {
+const std::string& CFG::getStartSymbol() const {
     return start;
 }

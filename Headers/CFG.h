@@ -57,6 +57,16 @@ public:
     bool compareProductions(const std::vector<std::string> &prod1, const std::vector<std::string> &prod2);
 
     /**
+     * @brief Function that checks if a given string is a terminal
+     */
+    [[nodiscard]] bool isTerminal(const std::string &str) const;
+
+    /**
+     * @brief Function that checks if a given string is a variable
+     */
+    [[nodiscard]] bool isVariable(const std::string &str) const;
+
+    /**
     * @brief Getter for the variables
     */
     [[nodiscard]] std::vector<std::string> getVariables() const;
@@ -74,7 +84,7 @@ public:
     /**
     * @brief Getter for the start symbol
     */
-    [[nodiscard]] std::string getStartSymbol() const;
+    [[nodiscard]] const std::string& getStartSymbol() const;
 };
 
 
