@@ -14,47 +14,38 @@
 #include "Headers/CFG.h"
 
 int main(int argc, char *argv[]) {
-    // MultiTapeTuringMachine machine(3, "q0", "q_accept", "q_reject");
+    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
+
+    TransitionFunction tf;
+
+    tf.addTransition("q0", {'1', '_'}, "q0", {'_', '1'}, {LEFT, RIGHT});  // Verwerk het eerste getal
+    tf.addTransition("q0", {'+', '_'}, "q1", {'+', '_'}, {LEFT, STAY});   // Ga naar q1 bij de '+'
+    tf.addTransition("q1", {'1', '_'}, "q1", {'_', '1'}, {LEFT, RIGHT});  // Verwerk het tweede getal
+    tf.addTransition("q1", {'_', '_'}, "q_accept", {'_', '_'}, {STAY, STAY});  // Ga naar accept als alles verwerkt is
+
+    machine.setTransitionFunction(tf);
+    machine.getTape(0).setContent("11+11"); // 2 + 2
+    machine.getTape(1).setContent("_");
+
+     std::cout << "Initial Tapes:\n";
+     machine.printTapes();
+    
+     if (machine.run()) {
+         std::cout << "Machine accepted the input. Result:\n";
+     } else {
+         std::cout << "Machine rejected the input.\n";
+     }
+    
+     machine.printTapes();
+    // /**
+    //  * Application
+    //  */
+    //  QApplication app(argc, argv);
+    //  MainWindow turing_tutor;
+    //  turing_tutor.show();
     //
-    // TransitionFunction tf;
-    //
-    // // Add all transitions for binary addition
-    // tf.addTransition("q0", {'0', '0', '_'}, "q0", {'0', '0', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'0', '1', '_'}, "q0", {'0', '1', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'1', '0', '_'}, "q0", {'1', '0', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'1', '1', '_'}, "q1", {'1', '1', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'0', '0', '_'}, "q0", {'0', '0', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'0', '1', '_'}, "q1", {'0', '1', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'1', '0', '_'}, "q1", {'1', '0', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'1', '1', '_'}, "q1", {'1', '1', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'_', '_', '_'}, "q_accept", {'_', '_', '_'}, {STAY, STAY, STAY});
-    // tf.addTransition("q1", {'_', '_', '_'}, "q_accept", {'_', '_', '1'}, {STAY, STAY, STAY});
-    //
-    // machine.setTransitionFunction(tf);
-    //
-    // // Initialize tapes with binary numbers
-    // machine.getTape(0).setContent("1101");      // Binary for 13
-    // machine.getTape(1).setContent("1010");      // Binary for 10
-    // machine.getTape(2).setContent("_");         // Result tape starts empty
-    //
-    // std::cout << "Initial Tapes:\n";
-    // machine.printTapes();
-    //
-    // if (machine.run()) {
-    //     std::cout << "Machine accepted the input. Result:\n";
-    // } else {
-    //     std::cout << "Machine rejected the input.\n";
-    // }
-    //
-    // machine.printTapes();
-    /**
-     * Application
-     */
-    // QApplication app(argc, argv);
-    // MainWindow turing_tutor;
-    // turing_tutor.show();
-    // return app.exec();
-    CFG cfg{"InputFiles/expressionCFG.json"};
-    std::cout << std::boolalpha << parser::EarleyParser::getInstance().parse("4+5", cfg) << std::endl;
+    // CFG cfg{"InputFiles/expressionCFG.json"};
+    // std::cout << std::boolalpha << parser::EarleyParser::getInstance().parse("4+5", cfg) << std::endl;
+
     return 0;
 }
