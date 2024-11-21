@@ -13,15 +13,97 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <algorithm>
 
 class CFG;
-class EarlyItem;
-
-typedef std::vector<std::set<EarlyItem > > StateSets;
 
 namespace parser {
+ class EarlyItem {
+  /**
+   * @brief The position of the dot in the production
+   */
+  unsigned int dot = 0;
+
+  /**
+   * @brief The head of the production rule
+   */
+  std::string head;
+
+  /**
+   * @brief The production rule of the item
+   */
+  std::vector<std::string> body = {};
+
+  /**
+   * @brief The starting point of the item
+   */
+  unsigned int starting_point = 0;
+
+ public:
+  /**
+   * @brief Default constructor for EarlyItem class
+   */
+  EarlyItem() = default;
+
+  /**
+   * @brief Parameterized constructor for EarlyItem class
+   * @param dot The position of the dot in the production
+   * @param head The head of the production rule
+   * @param body The production rule of the item
+   * @param starting_point The prediction point of the item
+   */
+  EarlyItem(unsigned int dot, const std::string &head, const std::vector<std::string> &body,
+            unsigned int starting_point);
+
+  /**
+   * @brief Copu constructor for the EarlyItem class
+   */
+
+  EarlyItem(const EarlyItem &other);
+
+  /**
+   * @brief Default destructor for EarlyItem class
+   */
+  ~EarlyItem() = default;
+
+  /**
+   * @brief Function for comparing two EarlyItem objects
+   */
+  bool operator==(const EarlyItem &other) const;
+
+  /**
+   * @brief Returns the position of the dot in the production
+   */
+  [[nodiscard]] unsigned int Dot() const;
+
+  /**
+   * @brief Returns head of production rule in the item
+   */
+  [[nodiscard]] const std::string &Head() const;
+
+  /**
+   * @brief Returns the production rule of the item
+   */
+  [[nodiscard]] const std::vector<std::string> &Body() const;
+
+  /**
+   * @brief Returns the current symbol of the production body
+   */
+  [[nodiscard]] const std::string &Current() const;
+
+  /**
+   * @brief Returns the starting point of the item
+   */
+  [[nodiscard]] unsigned int StartPoint() const;
+
+  /**
+   * @brief Confirmed success when dot >= body.size()
+   */
+  [[nodiscard]] bool confirmedSuccess() const;
+ };
+
+
  class EarleyParser {
- private:
   /**
    * @brief Default constructor for EarleyParser class
    */
@@ -31,21 +113,6 @@ namespace parser {
    * @brief Default destructor for EarleyParser class
    */
   ~EarleyParser() = default;
-
-  /**
-   * @brief Predicts the next set of states based on the current set of states
-   */
-  void predict(StateSets &state_sets, const CFG &cfg, unsigned int set_number);
-
-  /**
-   * @brief Scans the current character and adds the next state to the state set
-   */
-  void scan(StateSets &state_sets, const CFG &cfg, unsigned int set_number, const char &cur_char);
-
-  /**
-   * @brief Completes the current set of states
-   */
-  void complete(StateSets &state_sets, const CFG &cfg, unsigned int set_number);
 
  public:
   /**
@@ -72,66 +139,18 @@ namespace parser {
   bool parse(const std::string &input, const CFG &cfg);
  };
 
+ /**
+ * @brief Function to add an EarlyItem to a vector if it does not already exist
+ */
+ inline bool addUnique(std::vector<EarlyItem> &vec, const EarlyItem &item) {
+  // Controleer of het item al in de vector staat
+  if (std::find(vec.begin(), vec.end(), item) == vec.end()) {
+   vec.push_back(item); // Voeg toe als het niet bestaat
+   return true;
+  }
+  return false;
+ }
 
- class EarlyItem {
- private:
-
-  /**
-   * @brief The position of the dot in the production
-   */
-  int dot_position = 0;
-
-  /**
-   * @brief The production rule of the item
-   */
-  std::vector<std::string> production = {};
-
-  /**
-   * @brief The starting point of the item
-   */
-  int starting_point = 0;
-
- public:
-  /**
-   * @brief Default constructor for EarlyItem class
-   */
-  EarlyItem() = default;
-
-  /**
-   * @brief Default destructor for EarlyItem class
-   */
-  ~EarlyItem() = default;
-
-  /**
-   * @brief Returns the position of the dot in the production
-   */
-  [[nodiscard]] int getDotPosition() const;
-
-  /**
-   * @brief Sets the position of the dot in the production
-   */
-  void setDotPosition(int dot_position);
-
-  /**
-   * @brief Returns the production rule of the item
-   */
-  [[nodiscard]] const std::vector<std::string> & getProduction() const;
-
-  /**
-  * @brief Sets the production rule of the item
-  */
-  void setProduction(const std::vector<std::string> &production);
-
-  /**
-   * @brief Returns the starting point of the item
-   */
-  [[nodiscard]] int getStartingPoint() const;
-
-  /**
-   * @brief Sets the starting point of the item
-   */
-  void setStartingPoint(int starting_point);
- };
 }
 
 

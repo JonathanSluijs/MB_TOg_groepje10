@@ -76,6 +76,7 @@ void ArithmeticDialog::submitExpression() {
     }
 
     if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
+        QMessageBox::information(this, "Valid expression", "Expression is valid!");
         // Calculate the expression
         // Display the result
     } else {

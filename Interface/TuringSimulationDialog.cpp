@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QRegularExpressionValidator>
 #include <QMessageBox>
+#include "../Headers/EarleyParser.h"
 
 
 TuringSimulationDialog::TuringSimulationDialog(const std::string& grammar_file, QWidget *parent) {
@@ -89,12 +90,17 @@ void TuringSimulationDialog::submitExpression() {
     // Check which parsing algorithm is selected
     if(cyk_algorithm->isChecked()){
         if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
-            // Do something
+            // TODO: Do something
+            QMessageBox::information(this, "Valid expression", "Expression is valid!");
         }else {
             notValidated();
         }
     }else if(earley_algorithm->isChecked()){
-        //TODO: Implement Earley parsing
-        QMessageBox::warning(this, "Not implemented", "Earley parsing is not implemented yet.");
+        if(parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
+            QMessageBox::information(this, "Valid expression", "Expression is valid!");
+            // TODO: Do something
+        }else {
+            notValidated();
+        }
     }
 }
