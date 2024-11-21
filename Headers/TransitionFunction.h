@@ -14,6 +14,14 @@
 #include <deque>
 #include <map>
 #include <tuple>
+#include "../libs/nlohmann/json.hpp"
+#include <fstream>
+
+
+using json = nlohmann::json;
+
+
+
 
 class TransitionFunction {
 private:
@@ -63,7 +71,11 @@ public:
     // - true if a transition exists for the given state and symbols; false otherwise.
     bool hasTransition(const std::string& currentState, const std::vector<char>& readSymbols);
 
+
 };
+
+TransitionFunction parseTransitionFile(const std::string &filename);
+
 
 
 #endif //MB_TOG_GROEPJE10_TRANSITIONFUNCTION_H

@@ -32,3 +32,6 @@
 /cmake-build-debug/
 .idea/
 .idea/workspace.xml
+
+#user specific files
+*.a

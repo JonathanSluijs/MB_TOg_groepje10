@@ -14,39 +14,39 @@ void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction& tf)
 
 bool MultiTapeTuringMachine::run() {
     while (currentState != acceptState && currentState != rejectState) {
-        std::cout << "Current State: " << currentState << std::endl;
+        // std::cout << "Current State: " << currentState << std::endl;
 
         std::vector<char> readSymbols;
         for (auto &tape: tapes) {
             readSymbols.push_back(tape.read());
         }
 
-        std::cout << "Read Symbols: ";
-        for (char symbol: readSymbols) {
-            std::cout << symbol << ' ';
-        }
-        std::cout << std::endl;
+        // std::cout << "Read Symbols: ";
+        // for (char symbol: readSymbols) {
+        //     std::cout << symbol << ' ';
+        // }
+        // std::cout << std::endl;
 
         if (!transitionFunction.hasTransition(currentState, readSymbols)) {
             currentState = rejectState; // No valid transition, reject
-            std::cout << "No valid transition. Rejecting..." << std::endl;
+            // std::cout << "No valid transition. Rejecting..." << std::endl;
             break;
         }
 
         auto [newState, writeSymbols, movements] = transitionFunction.getTransition(currentState, readSymbols);
 
-        std::cout << "New State: " << newState << std::endl;
-        std::cout << "Write Symbols: ";
-        for (char symbol: writeSymbols) {
-            std::cout << symbol << ' ';
-        }
-        std::cout << std::endl;
+        // std::cout << "New State: " << newState << std::endl;
+        // std::cout << "Write Symbols: ";
+        // for (char symbol: writeSymbols) {
+        //     std::cout << symbol << ' ';
+        // }
+        // std::cout << std::endl;
 
-        std::cout << "Movements: ";
-        for (auto move: movements) {
-            std::cout << (move == LEFT ? "LEFT" : (move == RIGHT ? "RIGHT" : "STAY")) << ' ';
-        }
-        std::cout << std::endl;
+        // std::cout << "Movements: ";
+        // for (auto move: movements) {
+        //     std::cout << (move == LEFT ? "LEFT" : (move == RIGHT ? "RIGHT" : "STAY")) << ' ';
+        // }
+        // std::cout << std::endl;
 
         currentState = newState;
         for (int i = 0; i < numTapes; i++) {
@@ -55,7 +55,7 @@ bool MultiTapeTuringMachine::run() {
         }
     }
 
-    std::cout << "Final State: " << currentState << std::endl;
+    // std::cout << "Final State: " << currentState << std::endl;
     return currentState == acceptState; // Accept if reached accept state
 }
 

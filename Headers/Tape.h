@@ -32,6 +32,9 @@ public:
     // - The character at the current head position in the tape.
     char read();
 
+    std::string readAll();
+
+
     // Writes a symbol under the tape head, replacing any existing symbol in that position.
     // Parameters:
     // - symbol: The character to write at the current head position on the tape.
