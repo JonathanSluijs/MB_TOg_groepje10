@@ -4,6 +4,7 @@
 
 #ifndef MB_TOG_GROEPJE10_TAPE_H
 #define MB_TOG_GROEPJE10_TAPE_H
+
 // Project files
 #include "Utils.h"
 
@@ -14,53 +15,61 @@
 #include <map>
 #include <tuple>
 
-
+/**
+ * @brief Represents a tape in a Turing Machine.
+ *
+ * A tape is essentially an infinite sequence of cells that can store symbols. The tape head can read from and write to
+ * the cells, and it can move left or right. This class provides methods to manipulate the tape, including reading, writing,
+ * and moving the head.
+ */
 class Tape {
 private:
-    // Tape content
-    // using deque for constant-time access and efficient insertions at both ends
-    std::deque<char> tape;
-    int headPosition;
+    std::deque<char> tape;  ///< Content of the tape using a deque for efficient insertion at both ends
+    int headPosition;  ///< Current position of the tape head
 
 public:
-    // Default constructor for the Tape class
-    // Initializes the tape with a single blank symbol ('_') and sets the head position to 0.
+    /**
+     * @brief Default constructor for Tape.
+     * Initializes the tape with a single blank symbol ('_') and sets the head position to 0.
+     */
     Tape();
 
-    // Reads and returns the symbol under the tape head
-    // Returns:
-    // - The character at the current head position in the tape.
+    /**
+     * @brief Reads the symbol under the tape head.
+     * @return The character at the current head position.
+     */
     char read();
 
+    /**
+     * @brief Reads the entire content of the tape.
+     * @return The current content of the tape as a string.
+     */
     std::string readAll();
 
-
-    // Writes a symbol under the tape head, replacing any existing symbol in that position.
-    // Parameters:
-    // - symbol: The character to write at the current head position on the tape.
+    /**
+     * @brief Writes a symbol under the tape head.
+     * @param symbol The character to write at the current head position.
+     */
     void write(char symbol);
 
-    // Moves the tape head in the specified direction, expanding the tape if necessary.
-    // Parameters:
-    // - dir: The direction to move the head (LEFT, RIGHT, or STAY).
-    //   - If LEFT, moves the head left; if at the beginning of the deque, inserts a blank symbol ('_') at the front.
-    //   - If RIGHT, moves the head right; if at the end of the deque, appends a blank symbol ('_') at the back.
-    void move(Direction dir);               // Move the head in the specified direction
+    /**
+     * @brief Moves the tape head in the specified direction.
+     * Expands the tape if necessary to accommodate the head's movement.
+     * @param dir The direction to move the head (LEFT, RIGHT, or STAY).
+     */
+    void move(Direction dir);
 
-    // Prints the entire tape content and indicates the current head position.
-    // Used mainly for debugging purposes to visualize the tape’s state.
-    void print() const;                     // Print the current tape content
+    /**
+     * @brief Prints the entire content of the tape.
+     * Used mainly for debugging purposes to visualize the tape’s state.
+     */
+    void print() const;
 
-    // Sets the content of the tape to a given string and resets the head position.
-    // Parameters:
-    // - content: A string representing the initial content of the tape.
-    // - The head is positioned at the last character of the content to represent the least significant bit in binary numbers,
-    //   or at 0 if the content is empty.
+    /**
+     * @brief Sets the content of the tape to a given string and resets the head position.
+     * @param content A string representing the initial content of the tape.
+     */
     void setContent(const std::string& content);
-
-
-
 };
-
 
 #endif //MB_TOG_GROEPJE10_TAPE_H

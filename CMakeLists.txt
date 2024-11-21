@@ -39,6 +39,8 @@ target_link_libraries(TuringTutor Qt5::Core Qt5::Gui Qt5::Widgets)
 SET(TEST_SOURCES
         Tests/mainTest.cpp
         Tests/MultiTapeTuringMachineTests.cpp
+        Tests/TransitionFunctionTests.cpp
+        Tests/TapeTests.cpp
 )
 
 # Test executable maken
