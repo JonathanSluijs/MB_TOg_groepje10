@@ -48,3 +48,21 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 3. Clone deze repository naar je lokale machine:
    ```bash
    git clone git@github.com:JonathanSluijs/MB_TOg_groepje10.git
+   
+## To Do
+
+### Fase 1 deadline: 07/12/2024
+- [ ] Emir: expression valdiation met earley
+- [ ] Mathis: addition and substraction
+- [ ] Jonathan, Mathis: modulo operations
+- [ ] Cain: Brackets and precedence of expressions on  MTM
+- [ ] Emir: multiplication
+- [ ] Cain: power operations
+
+### Fase 2
+- [ ] Everyone: logs in HTML
+- [ ] Everyone: finish GUI in Qt
+- [ ] Everyone: MTM to one tape TM
+
+
+
