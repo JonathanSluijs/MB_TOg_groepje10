@@ -62,6 +62,7 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 ### Fase 2
 - [ ] Everyone: logs in HTML
 - [ ] Everyone: finish GUI in Qt
+- [ ] Everyone: MTM to one tape TM
 
 
 
