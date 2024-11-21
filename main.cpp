@@ -47,5 +47,6 @@ int main(int argc, char *argv[]) {
     // CFG cfg{"InputFiles/expressionCFG.json"};
     // std::cout << std::boolalpha << parser::EarleyParser::getInstance().parse("4+5", cfg) << std::endl;
 
+
     return 0;
 }
