@@ -51,7 +51,7 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
    
 ## To Do
 
-### Fase 1
+### Fase 1 deadline: 07/12/2024
 - [ ] Emir: expression valdiation met earley
 - [ ] Mathis: addition and substraction
 - [ ] Jonathan, Mathis: modulo operations
