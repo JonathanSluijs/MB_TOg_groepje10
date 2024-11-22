@@ -14,36 +14,30 @@
 #include "Headers/CFG.h"
 
 int main(int argc, char *argv[]) {
-    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
-
-    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
-
-    machine.setTransitionFunction(tf);
-
-    machine.getTape(0).setContent("11111+1111111+1111"); // TODO: MATHIS Implement multiple + addition
-    machine.getTape(1).setContent("_");
-
-     std::cout << "Initial Tapes:\n";
-     machine.printTapes();
-
-     if (machine.run()) {
-         std::cout << "Machine accepted the input. Result:\n";
-     } else {
-         std::cout << "Machine rejected the input.\n";
-     }
-
-     machine.printTapes();
-    // /**
-    //  * Application
-    //  */
+    // MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
+    //
+    // TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
+    //
+    // machine.setTransitionFunction(tf);
+    //
+    // machine.getTape(0).setContent("11111+1111111+1111"); // TODO: MATHIS Implement multiple + addition
+    // machine.getTape(1).setContent("_");
+    //
+    //  std::cout << "Initial Tapes:\n";
+    //  machine.printTapes();
+    //
+    //  if (machine.run()) {
+    //      std::cout << "Machine accepted the input. Result:\n";
+    //  } else {
+    //      std::cout << "Machine rejected the input.\n";
+    //  }
+    //
+    //  machine.printTapes();
+    /**
+     * Application
+     */
     QApplication app(argc, argv);
     MainWindow turing_tutor;
     turing_tutor.show();
     return app.exec();
-    //
-    // CFG cfg{"InputFiles/expressionCFG.json"};
-    // std::cout << std::boolalpha << parser::EarleyParser::getInstance().parse("4+5", cfg) << std::endl;
-
-
-    return 0;
 }

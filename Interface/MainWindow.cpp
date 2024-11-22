@@ -22,13 +22,13 @@ void MainWindow::createGraphics() {
 
     // Create a central widget
     // A QMainWindow object has already its own layout so this has to be done
-    QWidget* centralWidget = new QWidget(this);
+    QWidget *centralWidget = new QWidget(this);
 
-    QHBoxLayout* mainLayout = new QHBoxLayout;
+    QHBoxLayout *mainLayout = new QHBoxLayout;
 
     // Add the first picture to the layout
-    QVBoxLayout* leftLayout = new QVBoxLayout;
-    QLabel* mathLabel = new QLabel;
+    QVBoxLayout *leftLayout = new QVBoxLayout;
+    QLabel *mathLabel = new QLabel;
     QPixmap pixmapMath("../Images/math.png");
     if (pixmapMath.isNull()) {
         qWarning("Can not load image math.png!");
@@ -45,8 +45,8 @@ void MainWindow::createGraphics() {
     leftLayout->addWidget(math_calculator, 0, Qt::AlignCenter);
 
     // Add the second picture to the layout
-    QVBoxLayout* rightLayout = new QVBoxLayout;
-    QLabel* csLabel = new QLabel;
+    QVBoxLayout *rightLayout = new QVBoxLayout;
+    QLabel *csLabel = new QLabel;
     QPixmap pixmapCS("../Images/cs.png");
     if (pixmapCS.isNull()) {
         qWarning("Can not load image cs.png");
@@ -79,6 +79,7 @@ void MainWindow::toCalculator() {
 }
 
 void MainWindow::toTMSimulator() {
-    TuringSimulationDialog simulation_dialog("../InputFiles/expressionCNF.json", this);
+    TuringSimulationDialog simulation_dialog("../InputFiles/expressionCNF.json", "../InputFiles/expressionCFG.json",
+                                             this);
     simulation_dialog.exec();
 }

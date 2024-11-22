@@ -12,7 +12,6 @@ parser::CYKParser &parser::CYKParser::getInstance() {
     return _instance;
 }
 
-// TODO: Chooose the best implementation among group members
 bool parser::CYKParser::parse(const std::string &input, const CFG &cfg) {
     std::vector<std::vector<std::set<std::string> > > table(input.size());
     for (int i = 0; i < input.size(); i++) {
