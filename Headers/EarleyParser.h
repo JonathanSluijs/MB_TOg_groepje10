@@ -137,20 +137,18 @@ namespace parser {
    * @param cfg The CFG object to be used for parsing
    */
   bool parse(const std::string &input, const CFG &cfg);
+
  };
 
  /**
  * @brief Function to add an EarlyItem to a vector if it does not already exist
  */
- inline bool addUnique(std::vector<EarlyItem> &vec, const EarlyItem &item) {
+ inline void addUnique(std::vector<EarlyItem> &vec, const EarlyItem &item) {
   // Controleer of het item al in de vector staat
   if (std::find(vec.begin(), vec.end(), item) == vec.end()) {
    vec.push_back(item); // Voeg toe als het niet bestaat
-   return true;
   }
-  return false;
  }
-
 }
 
 

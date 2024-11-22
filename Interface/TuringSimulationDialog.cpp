@@ -12,12 +12,13 @@
 #include "../Headers/EarleyParser.h"
 
 
-TuringSimulationDialog::TuringSimulationDialog(const std::string& grammar_file, QWidget *parent) {
+TuringSimulationDialog::TuringSimulationDialog(const std::string& CNF_file, const std::string& CFG_file,  QWidget *parent) {
     setMinimumSize(QSize(720, 720));
     setWindowTitle("Turing Machine Simulator");
     createGraphics();
     createEvents();
-    cfg = new CFG{grammar_file};
+    cnf = new CFG{CNF_file};
+    cfg = new CFG{CFG_file};
 }
 
 TuringSimulationDialog::~TuringSimulationDialog() {
@@ -89,7 +90,7 @@ void TuringSimulationDialog::submitExpression() {
 
     // Check which parsing algorithm is selected
     if(cyk_algorithm->isChecked()){
-        if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
+        if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cnf)) {
             // TODO: Do something
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
         }else {

@@ -58,18 +58,26 @@ private:
     QGridLayout* layout = nullptr;
 
    /**
-    * @brief CFG object that defines the grammar for the arithmetic expressions
+    * @brief CNF object that defines the grammar for the arithmetic expressions in Chomsky Normal Form
     */
+    CFG* cnf = nullptr;
+
+    /**
+     * @brief CFG object that defines the grammar for arithmetic expressions
+     */
     CFG* cfg = nullptr;
+
+
 
 public:
 
     /**
      * @brief Constructor for the TuringSimulationDialog class.
-     * @param grammar_file path to the grammar file
+     * @param CNF_file path to the grammar file in chomsky normal form
+     * @param CFG_file path to the grammar file
      * @param parent parent widget
      */
-    explicit TuringSimulationDialog(const std::string& grammar_file, QWidget* parent = 0);
+    explicit TuringSimulationDialog(const std::string& CNF_file, const std::string& CFG_file, QWidget* parent = 0);
 
     /**
      * @brief Destructor for the TuringSimulationDialog class.
