@@ -29,7 +29,7 @@ void MainWindow::createGraphics() {
     // Add the first picture to the layout
     QVBoxLayout *leftLayout = new QVBoxLayout;
     QLabel *mathLabel = new QLabel;
-    QPixmap pixmapMath("../Images/math.png");
+    QPixmap pixmapMath("../Interface/Images/math.png");
     if (pixmapMath.isNull()) {
         qWarning("Can not load image math.png!");
     } else {
@@ -47,7 +47,7 @@ void MainWindow::createGraphics() {
     // Add the second picture to the layout
     QVBoxLayout *rightLayout = new QVBoxLayout;
     QLabel *csLabel = new QLabel;
-    QPixmap pixmapCS("../Images/cs.png");
+    QPixmap pixmapCS("../Interface/Images/cs.png");
     if (pixmapCS.isNull()) {
         qWarning("Can not load image cs.png");
     } else {

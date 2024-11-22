@@ -2,7 +2,7 @@
 // Created by emir on 11/17/24.
 //
 
-#include "../Headers/CYKParser.h"
+#include "CYKParser.h"
 #include "../Headers/CFG.h"
 #include <algorithm>
 #include <set>

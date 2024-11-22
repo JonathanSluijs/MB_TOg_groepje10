@@ -2,7 +2,7 @@
 // Created by emir on 11/17/24.
 //
 
-#include "../Headers/EarleyParser.h"
+#include "EarleyParser.h"
 #include "../Headers/CFG.h"
 #include <iostream>
 #include "sstream"

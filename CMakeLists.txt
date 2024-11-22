@@ -19,10 +19,11 @@ SET(SOURCES
         Sources/Tape.cpp
         Sources/MultiTapeTuringMachine.cpp
         Sources/TransitionFunction.cpp
-        Sources/EarleyParser.cpp
+        Parsers/EarleyParser.cpp
         Sources/CFG.cpp
         Sources/Logger.cpp
-        Sources/CYKParser.cpp
+        Parsers/CYKParser.cpp
+        Parsers/ParseTree.cpp
 )
 
 SET(SOURCES_GUI

@@ -10,7 +10,7 @@
 #include "Headers/MultiTapeTuringMachine.h"
 #include <QApplication>
 #include "Interface/MainWindow.h"
-#include "Headers/EarleyParser.h"
+#include "Parsers//EarleyParser.h"
 #include "Headers/CFG.h"
 
 int main(int argc, char *argv[]) {

@@ -7,7 +7,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QRegularExpressionValidator>
-#include "../Headers/CYKParser.h"
+#include "../Parsers//CYKParser.h"
 #include "../Headers/CFG.h"
 
 ArithmeticDialog::ArithmeticDialog( const std::string& grammar_file, QWidget *parent) {

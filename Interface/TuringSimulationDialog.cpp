@@ -4,12 +4,12 @@
 
 #include "TuringSimulationDialog.h"
 #include "../Headers/CFG.h"
-#include "../Headers/CYKParser.h"
+#include "../Parsers//CYKParser.h"
 #include <QGridLayout>
 #include <QLabel>
 #include <QRegularExpressionValidator>
 #include <QMessageBox>
-#include "../Headers/EarleyParser.h"
+#include "../Parsers//EarleyParser.h"
 
 
 TuringSimulationDialog::TuringSimulationDialog(const std::string& CNF_file, const std::string& CFG_file,  QWidget *parent) {
