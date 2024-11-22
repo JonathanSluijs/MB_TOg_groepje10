@@ -9,51 +9,41 @@
 
 #include "Headers/MultiTapeTuringMachine.h"
 #include <QApplication>
-#include <regex>
-
 #include "Interface/MainWindow.h"
 #include "Headers/EarleyParser.h"
 #include "Headers/CFG.h"
 
 int main(int argc, char *argv[]) {
-    //
-    // // Add all transitions for binary addition
-    // tf.addTransition("q0", {'0', '0', '_'}, "q0", {'0', '0', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'0', '1', '_'}, "q0", {'0', '1', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'1', '0', '_'}, "q0", {'1', '0', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'1', '1', '_'}, "q1", {'1', '1', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'0', '0', '_'}, "q0", {'0', '0', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'0', '1', '_'}, "q1", {'0', '1', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'1', '0', '_'}, "q1", {'1', '0', '0'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q1", {'1', '1', '_'}, "q1", {'1', '1', '1'}, {LEFT, LEFT, LEFT});
-    // tf.addTransition("q0", {'_', '_', '_'}, "q_accept", {'_', '_', '_'}, {STAY, STAY, STAY});
-    // tf.addTransition("q1", {'_', '_', '_'}, "q_accept", {'_', '_', '1'}, {STAY, STAY, STAY});
-    //
-    // machine.setTransitionFunction(tf);
-    //
-    // // Initialize tapes with binary numbers
-    // machine.getTape(0).setContent("1101");      // Binary for 13
-    // machine.getTape(1).setContent("1010");      // Binary for 10
-    // machine.getTape(2).setContent("_");         // Result tape starts empty
-    //
-    // std::cout << "Initial Tapes:\n";
-    // machine.printTapes();
-    //
-    // if (machine.run()) {
-    //     std::cout << "Machine accepted the input. Result:\n";
-    // } else {
-    //     std::cout << "Machine rejected the input.\n";
-    // }
-    //
-    // machine.printTapes();
+    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
 
-    /**
-     * Application
-     */
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
+
+    machine.setTransitionFunction(tf);
+
+    machine.getTape(0).setContent("11111+1111111+1111"); // TODO: MATHIS Implement multiple + addition
+    machine.getTape(1).setContent("_");
+
+     std::cout << "Initial Tapes:\n";
+     machine.printTapes();
+
+     if (machine.run()) {
+         std::cout << "Machine accepted the input. Result:\n";
+     } else {
+         std::cout << "Machine rejected the input.\n";
+     }
+
+     machine.printTapes();
+    // /**
+    //  * Application
+    //  */
     QApplication app(argc, argv);
     MainWindow turing_tutor;
     turing_tutor.show();
     return app.exec();
+    //
+    // CFG cfg{"InputFiles/expressionCFG.json"};
+    // std::cout << std::boolalpha << parser::EarleyParser::getInstance().parse("4+5", cfg) << std::endl;
+
+
+    return 0;
 }
-
-

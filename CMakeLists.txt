@@ -6,39 +6,53 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-# Works for Linux, not sure for MacOS
-
-if(APPLE)
-    # Voeg de locatie toe waar Qt5 via Homebrew is geïnstalleerd
-    set(CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt@5")
-endif()
-
-
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
+include_directories(./libs/gtest/include)
+
+link_directories(./libs/gtest/lib) #TODO EVERYONE: GENERATE YOUR OWN LIBGTEST.A AND LIBGTEST_MAIN.A (MAKE SURE IT IS THE SAME VERSION AS THE CURRENT GTEST (LATEST: Release 1.15.2: https://github.com/google/googletest.git)
+
+
+
+# Hoofdproject bronnen
 SET(SOURCES
-        main.cpp
         Sources/Tape.cpp
         Sources/MultiTapeTuringMachine.cpp
         Sources/TransitionFunction.cpp
         Sources/EarleyParser.cpp
         Sources/CFG.cpp
         Sources/Logger.cpp
-        Sources/CYKParser.cpp)
+        Sources/CYKParser.cpp
+)
 
 SET(SOURCES_GUI
         Interface/MainWindow.cpp
         Interface/TuringSimulationDialog.cpp
-        Interface/ArithmeticDialog.cpp)
+        Interface/ArithmeticDialog.cpp
+)
 
-ADD_EXECUTABLE(TuringTutor ${SOURCES} ${SOURCES_GUI})
-
+# Hoofdprogramma executable
+ADD_EXECUTABLE(TuringTutor main.cpp ${SOURCES} ${SOURCES_GUI})
 target_link_libraries(TuringTutor Qt5::Core Qt5::Gui Qt5::Widgets)
 
+# Testbronnen
+SET(TEST_SOURCES
+        Tests/mainTest.cpp
+        Tests/MultiTapeTuringMachineTests.cpp
+        Tests/TransitionFunctionTests.cpp
+        Tests/TapeTests.cpp
+)
+
+# Test executable maken
+ADD_EXECUTABLE(TuringTutorTests ${TEST_SOURCES} ${SOURCES})
+
+# Voeg GoogleTest includes toe aan de test target
+target_link_libraries(TuringTutorTests gtest gtest_main)
+
+# Link de test executable met de GoogleTest bibliotheken en Qt
 
 
-
-
+# Windows-specifieke instellingen (indien van toepassing)
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(DEBUG_SUFFIX)
     if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
