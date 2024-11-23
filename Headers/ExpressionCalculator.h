@@ -7,6 +7,8 @@
 
 #include <string>
 #include <utility>
+#include <vector>
+#include <queue>
 
 /**
  * @file ExpressionCalculator.h
@@ -23,6 +25,7 @@ private:
      * The expression to calculate
      */
     std::string expression;
+    std::queue<std::string> postfix;
 public:
     /**
      * Constructor
@@ -32,24 +35,25 @@ public:
     explicit ExpressionCalculator(std::string expression) : expression(std::move(expression)) {};
 
     /**
-     * Convert the expression to infix notation using shunting yard algorithm
-     */
-    void toPostfix();
-
-    /**
      * Calculate the result of the expression using shunting yard algorithm
      * @pre the expression does not contain division by zero
      * @return the result of the expression
      */
     double calculate();
+private:
+    /**
+     * Tokenize the expression
+     * @param expression the expression to tokenize
+     * @return the tokens of the expression
+     */
+    std::vector<std::string> tokenizeExpression(const std::string& expression);
 
     /**
-     * Get the expression
-     * @return the expression
+     * Convert the expression to infix notation using shunting yard algorithm
      */
-    [[nodiscard]] std::string getExpression() const {
-        return expression;
-    }
+    void toPostfix();
+
+    int precedence(const std::string& s);
 
 };
 

@@ -28,58 +28,49 @@ std::unordered_map<char, std::function<double(double, double)>> operations = {{'
                                                                                   return std::pow(a, b);
                                                                               }}};
 
+
 /**
  * Convert the expression to infix notation using shunting yard algorithm
  */
 void ExpressionCalculator::toPostfix() {
-    std::string output;
-    std::stack<char> operators;
+    // Make sure the stack is empty
+    while (!postfix.empty()) {
+        postfix.pop();
+    }
+    std::stack<std::string> operators;
 
     // Loop through the expression
-    for (char c: expression) {
+    for (std::string s: tokenizeExpression(expression)) {
         // If the character is a digit, add it to the output
-        if (isdigit(c)) {
-            output += c;
+        if (isdigit(s[0])) {
+            postfix.push(s);
         } else {
             // If the character is a left parenthesis, add it to the output
-            if (c == '(') {
-                operators.push(c);
-            } else if (c == ')') {
+            if (s == "(") {
+                operators.push(s);
+            } else if (s == ")") {
                 // The character is a right parenthesis
                 // Pop from the stack and add to output until top is left parenthesis or empty stack
-                while (!operators.empty() && operators.top() != '(') {
-                    output += operators.top();
+                while (!operators.empty() && operators.top() != "(") {
+                    postfix.push(operators.top());
                     operators.pop();
                 }
                 operators.pop();
             } else {
                 // The character is an operator
-                if (c == '+' || c == '-') {
-                    // Check if there is an operator at top of the stack with greater precedence
-                    while (!operators.empty() &&
-                           (operators.top() == '*' || operators.top() == '/' || operators.top() == '^')) {
-                        output += operators.top();
-                        operators.pop();
-                    }
-                    operators.push(c);
-                } else if (c == '/' || c == '*') {
-                    // Check if there is an operator at top of the stack with greater precedence
-                    while (!operators.empty() && operators.top() == '^') {
-                        output += operators.top();
-                        operators.pop();
-                    }
-                    operators.push(c);
-                } else {
-                    operators.push(c);
+                while (!operators.empty() && precedence(s) < precedence(operators.top()) ||
+                       !operators.empty() && precedence(s) == precedence(operators.top())) {
+                    postfix.push(operators.top());
+                    operators.pop();
                 }
+                operators.push(s);
             }
         }
     }
     while (!operators.empty()) {
-        output += operators.top();
+        postfix.push(operators.top());
         operators.pop();
     }
-    expression = output;
 }
 
 /**
@@ -94,10 +85,11 @@ double ExpressionCalculator::calculate() {
     toPostfix();
 
     // Loop over characters of the postfix expression
-    for (char c: expression) {
+    while (!postfix.empty()) {
         // If the character is a digit, push it to the stack
-        if (isdigit(c)) {
-            stack.push(c - '0');
+        if (isdigit(postfix.front()[0])) {
+            stack.push(std::stod(postfix.front()));
+            postfix.pop();
         } else {
             // The character is an operator
             // Pop two operands from the stack
@@ -107,10 +99,53 @@ double ExpressionCalculator::calculate() {
             stack.pop();
 
             // Perform the operation and push the result to the stack
-            stack.push(operations[c](operand1, operand2));
+            stack.push(operations[postfix.front()[0]](operand1, operand2));
+            postfix.pop();
         }
     }
     return stack.top();
+}
+
+/**
+ * Tokenize the expression
+ * @param expression the expression to tokenize
+ * @return the tokens of the expression
+ */
+std::vector<std::string> ExpressionCalculator::tokenizeExpression(const std::string &expression) {
+    std::vector<std::string> tokens;
+    std::string currentToken;
+
+    for (char ch : expression) {
+        if (std::isdigit(ch)) {
+            // If the character is a digit, add it to the current token
+            currentToken += ch;
+        } else {
+            // If the character is not a digit, it's likely an operator or a delimiter
+            if (!currentToken.empty()) {
+                tokens.push_back(currentToken); // Add the current number token
+                currentToken.clear();           // Reset the current token
+            }
+            tokens.push_back(std::string(1, ch)); // Add the operator or symbol as a token
+        }
+    }
+
+    // Add the last token if it's a number
+    if (!currentToken.empty()) {
+        tokens.push_back(currentToken);
+    }
+
+    return tokens;
+}
+
+int ExpressionCalculator::precedence(const std::string &s) {
+    if (s == "^")
+        return 3;
+    else if (s == "/" || s == "*")
+        return 2;
+    else if (s == "+" || s == "-")
+        return 1;
+    else
+        return -1; // Return -1 for invalid or unsupported operators
 }
 
 

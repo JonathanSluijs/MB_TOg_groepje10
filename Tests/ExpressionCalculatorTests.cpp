@@ -23,8 +23,8 @@ TEST_F(ExpressionCalculatorTests, CalculateExpression) {
     EXPECT_EQ(expCalc.calculate(), -808);
 
     // Test 2
-    ExpressionCalculator expCalc2 = ExpressionCalculator("2+3*4");
-    EXPECT_EQ(expCalc2.calculate(), 14);
+    ExpressionCalculator expCalc2 = ExpressionCalculator("21+3*4");
+    EXPECT_EQ(expCalc2.calculate(), 33);
 
     // Test 3
     ExpressionCalculator expCalc3 = ExpressionCalculator("2^3");
@@ -35,6 +35,6 @@ TEST_F(ExpressionCalculatorTests, CalculateExpression) {
     EXPECT_EQ(expCalc4.calculate(), 16);
 
     // Test 5
-    ExpressionCalculator expCalc5 = ExpressionCalculator("2^3*2+1");
-    EXPECT_EQ(expCalc5.calculate(), 17);
+    ExpressionCalculator expCalc5 = ExpressionCalculator("2^3*2+10");
+    EXPECT_EQ(expCalc5.calculate(), 26);
 }
