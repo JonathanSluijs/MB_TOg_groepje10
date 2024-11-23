@@ -12,6 +12,7 @@
 #include "Interface/MainWindow.h"
 #include "Parsers//EarleyParser.h"
 #include "Headers/CFG.h"
+#include "Headers/ExpressionCalculator.h"
 
 int main(int argc, char *argv[]) {
     // MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
@@ -33,6 +34,11 @@ int main(int argc, char *argv[]) {
     //  }
     //
     //  machine.printTapes();
+
+    //  ExpressionCalculator calc("2-5*9^2*(3-1)"); // should be -808
+    //  std::cout << calc.calculate() << std::endl;
+
+
     /**
      * Application
      */

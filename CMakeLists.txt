@@ -24,6 +24,7 @@ SET(SOURCES
         Sources/Logger.cpp
         Parsers/CYKParser.cpp
         Parsers/ParseTree.cpp
+        Sources/ExpressionCalculator.cpp
 )
 
 SET(SOURCES_GUI
