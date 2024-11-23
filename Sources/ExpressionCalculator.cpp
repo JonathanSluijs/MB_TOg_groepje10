@@ -56,7 +56,8 @@ void ExpressionCalculator::toPostfix() {
                 // The character is an operator
                 if (c == '+' || c == '-') {
                     // Check if there is an operator at top of the stack with greater precedence
-                    while (!operators.empty() && (operators.top() == '*' || operators.top() == '/' || operators.top() == '^')) {
+                    while (!operators.empty() &&
+                           (operators.top() == '*' || operators.top() == '/' || operators.top() == '^')) {
                         output += operators.top();
                         operators.pop();
                     }

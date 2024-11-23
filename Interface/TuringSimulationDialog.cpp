@@ -10,9 +10,11 @@
 #include <QRegularExpressionValidator>
 #include <QMessageBox>
 #include "../Parsers//EarleyParser.h"
+#include "../Headers/ExpressionCalculator.h"
 
 
-TuringSimulationDialog::TuringSimulationDialog(const std::string& CNF_file, const std::string& CFG_file,  QWidget *parent) {
+TuringSimulationDialog::TuringSimulationDialog(const std::string &CNF_file, const std::string &CFG_file,
+                                               QWidget *parent) {
     setMinimumSize(QSize(720, 720));
     setWindowTitle("Turing Machine Simulator");
     createGraphics();
@@ -51,8 +53,8 @@ void TuringSimulationDialog::createGraphics() {
     // Create text field for information
     parser_info = new QLabel("Choose the parsing algorithm you want to use to validate the expressions.", this);
     input_info = new QLabel(
-        "Insert your math expression in the box below. You can only use the following operators: +, -, *, /, ^, (, )."
-        , this);
+            "Insert your math expression in the box below. You can only use the following operators: +, -, *, /, ^, (, ).",
+            this);
 
     layout->setAlignment(Qt::AlignCenter);
     layout->addWidget(parser_info, 0, 0);
@@ -64,7 +66,7 @@ void TuringSimulationDialog::createGraphics() {
 }
 
 void TuringSimulationDialog::createEvents() const {
-    QObject::connect(submit_button, SIGNAL(clicked()), this,  SLOT(submitExpression())); // NOLINT(*-unused-return-value)
+    QObject::connect(submit_button, SIGNAL(clicked()), this, SLOT(submitExpression())); // NOLINT(*-unused-return-value)
 }
 
 void TuringSimulationDialog::limitCharacters() const {
@@ -75,32 +77,41 @@ void TuringSimulationDialog::limitCharacters() const {
     }
 }
 
-void TuringSimulationDialog::notValidated(){
-    QMessageBox::warning(this, "Invalid Expression", "The expression you entered is not valid. Please try again.");
+void TuringSimulationDialog::notValidated() {
+    QMessageBox::warning(this, "Invalid Expression",
+                         "The expression you entered is not valid. Please try again.\nUnary operators are not supported.\nWrite (1+1)(1+1) as (1+1)*(1+1).");
 }
 
 //TODO: Implement the submitExpression function
 void TuringSimulationDialog::submitExpression() {
 
     // If there is no input
-    if(expression_input->text().isEmpty()) {
+    if (expression_input->text().isEmpty()) {
         QMessageBox::warning(this, "Empty Expression", "Please enter an expression.");
         return;
     }
 
     // Check which parsing algorithm is selected
-    if(cyk_algorithm->isChecked()){
-        if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cnf)) {
+    if (cyk_algorithm->isChecked()) {
+        if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cnf)) {
             // TODO: Do something
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
-        }else {
+            // Calculate the expression
+            ExpressionCalculator calc(expression_input->text().toStdString());
+            // Display the result
+            QMessageBox::information(this, "Result", QString::number(calc.calculate()));
+        } else {
             notValidated();
         }
-    }else if(earley_algorithm->isChecked()){
-        if(parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
+    } else if (earley_algorithm->isChecked()) {
+        if (parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
             // TODO: Do something
-        }else {
+            // Calculate the expression
+            ExpressionCalculator calc(expression_input->text().toStdString());
+            // Display the result
+            QMessageBox::information(this, "Result", QString::number(calc.calculate()));
+        } else {
             notValidated();
         }
     }
