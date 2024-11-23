@@ -4,6 +4,4 @@
 
 #include "ParseTree.h"
 
-parser::ParseTree::ParseTree(std::function<double(double)> func) {
 
-}

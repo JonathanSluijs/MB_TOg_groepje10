@@ -78,6 +78,7 @@ bool parser::EarleyParser::parse(const std::string &input, const CFG &cfg) {
         if (state_sets[input.size()][s].StartPoint() == 0 && state_sets[input.size()][s].
             confirmedSuccess() && state_sets[input.size()][s].Head() == cfg.getStartSymbol()) {
             valid_input = true;
+            break;
         }
     }
     return valid_input;

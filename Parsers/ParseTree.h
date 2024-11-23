@@ -30,7 +30,7 @@ public:
     * @brief Constructor of the ParseTree
     * @param func a function that initializes the parse tree for a specific parser
     */
-    ParseTree(std::function<double (double)> func);
+    ParseTree() = default;
 
     /**
      * @brief Default destructor of the ParseTree

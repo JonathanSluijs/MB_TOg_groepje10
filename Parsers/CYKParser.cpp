@@ -79,7 +79,6 @@ bool parser::CYKParser::parse(const std::string &input, const CFG &cfg) {
         }
         columnWidths.push_back(width);
     }
-
     return std::find(table[0][input.size() - 1].begin(), table[0][input.size() - 1].end(), cfg.getStartSymbol()) !=
            table[0][input.size() - 1].end();
 }

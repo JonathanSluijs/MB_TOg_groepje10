@@ -10,6 +10,8 @@
 #include <QRegularExpressionValidator>
 #include <QMessageBox>
 #include "../Parsers//EarleyParser.h"
+#include <chrono>
+#include <iostream>
 
 
 TuringSimulationDialog::TuringSimulationDialog(const std::string& CNF_file, const std::string& CFG_file,  QWidget *parent) {
@@ -90,14 +92,23 @@ void TuringSimulationDialog::submitExpression() {
 
     // Check which parsing algorithm is selected
     if(cyk_algorithm->isChecked()){
+        auto start = std::chrono::high_resolution_clock::now();
         if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cnf)) {
             // TODO: Do something
+            auto end = std::chrono::high_resolution_clock::now();
+            auto duur = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+            std::cout << "CYK took: " << duur.count() << " milliseconds" << std::endl;
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
         }else {
             notValidated();
         }
     }else if(earley_algorithm->isChecked()){
+        auto start = std::chrono::high_resolution_clock::now();
+
         if(parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
+            auto end = std::chrono::high_resolution_clock::now();
+            auto duur = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+            std::cout << "Early took: " << duur.count() << " milliseconds" << std::endl;
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
             // TODO: Do something
         }else {
