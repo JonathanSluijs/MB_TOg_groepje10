@@ -9,8 +9,9 @@
 #include <QRegularExpressionValidator>
 #include "../Parsers//CYKParser.h"
 #include "../Headers/CFG.h"
+#include "../Headers/ExpressionCalculator.h"
 
-ArithmeticDialog::ArithmeticDialog( const std::string& grammar_file, QWidget *parent) {
+ArithmeticDialog::ArithmeticDialog(const std::string &grammar_file, QWidget *parent) {
     setMinimumSize(QSize(720, 720));
     setWindowTitle("Math Expression Calculator");
     createGraphics();
@@ -40,8 +41,8 @@ void ArithmeticDialog::createGraphics() {
 
     // Create text field for
     input_info = new QLabel(
-        "Insert your math expression in the box below. You can only use the following operators: +, -, *, /, ^, (, )."
-        , this);
+            "Insert your math expression in the box below. You can only use the following operators: +, -, *, /, ^, (, ).",
+            this);
 
     layout->setAlignment(Qt::AlignCenter);
     layout->addWidget(input_info, 0, 0);
@@ -55,7 +56,8 @@ void ArithmeticDialog::createEvents() const {
 
 
 void ArithmeticDialog::notValidated() {
-    QMessageBox::warning(this, "Invalid Expression", "The expression you entered is not valid. Please try again.");
+    QMessageBox::warning(this, "Invalid Expression",
+                         "The expression you entered is not valid. Please try again.\nUnary operators are not supported.\nWrite (1+1)(1+1) as (1+1)*(1+1).");
 }
 
 void ArithmeticDialog::limitCharacters() const {
@@ -70,7 +72,7 @@ void ArithmeticDialog::limitCharacters() const {
 void ArithmeticDialog::submitExpression() {
 
     // If there is no input
-    if(expression_input->text().isEmpty()) {
+    if (expression_input->text().isEmpty()) {
         QMessageBox::warning(this, "Empty Expression", "Please enter an expression.");
         return;
     }
@@ -78,7 +80,9 @@ void ArithmeticDialog::submitExpression() {
     if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
         QMessageBox::information(this, "Valid expression", "Expression is valid!");
         // Calculate the expression
+        ExpressionCalculator calc(expression_input->text().toStdString());
         // Display the result
+        QMessageBox::information(this, "Result", QString::number(calc.calculate()));
     } else {
         notValidated();
     }

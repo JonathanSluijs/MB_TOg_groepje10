@@ -32,7 +32,7 @@ public:
     explicit ExpressionCalculator(std::string expression) : expression(std::move(expression)) {};
 
     /**
-     * Convert the expression to infix notation
+     * Convert the expression to infix notation using shunting yard algorithm
      */
     void toPostfix();
 

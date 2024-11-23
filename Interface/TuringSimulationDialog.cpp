@@ -12,9 +12,11 @@
 #include "../Parsers//EarleyParser.h"
 #include <chrono>
 #include <iostream>
+#include "../Headers/ExpressionCalculator.h"
 
 
-TuringSimulationDialog::TuringSimulationDialog(const std::string& CNF_file, const std::string& CFG_file,  QWidget *parent) {
+TuringSimulationDialog::TuringSimulationDialog(const std::string &CNF_file, const std::string &CFG_file,
+                                               QWidget *parent) {
     setMinimumSize(QSize(720, 720));
     setWindowTitle("Turing Machine Simulator");
     createGraphics();
@@ -111,7 +113,11 @@ void TuringSimulationDialog::submitExpression() {
             std::cout << "Early took: " << duur.count() << " milliseconds" << std::endl;
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
             // TODO: Do something
-        }else {
+            // Calculate the expression
+            ExpressionCalculator calc(expression_input->text().toStdString());
+            // Display the result
+            QMessageBox::information(this, "Result", QString::number(calc.calculate()));
+        } else {
             notValidated();
         }
     }

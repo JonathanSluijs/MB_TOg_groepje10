@@ -43,6 +43,7 @@ SET(TEST_SOURCES
         Tests/MultiTapeTuringMachineTests.cpp
         Tests/TransitionFunctionTests.cpp
         Tests/TapeTests.cpp
+        Tests/ExpressionCalculatorTests.cpp
 )
 
 # Test executable maken
