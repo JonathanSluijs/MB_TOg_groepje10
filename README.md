@@ -55,7 +55,7 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 - [x] Emir: expression valdiation met earley
 - [ ] Mathis: addition and substraction
 - [ ] Jonathan, Mathis: modulo operations
-- [ ] Cain: Brackets and precedence of expressions on  MTM
+- [x] Cain: Brackets and precedence of expressions
 - [ ] Emir: multiplication
 - [ ] Cain: power operations
 
