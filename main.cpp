@@ -15,35 +15,39 @@
 #include "Headers/ExpressionCalculator.h"
 
 int main(int argc, char *argv[]) {
-    // MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
-    //
-    // TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
-    //
-    // machine.setTransitionFunction(tf);
-    //
-    // machine.getTape(0).setContent("11111+1111111+1111"); // TODO: MATHIS Implement multiple + addition
-    // machine.getTape(1).setContent("_");
-    //
-    //  std::cout << "Initial Tapes:\n";
-    //  machine.printTapes();
-    //
-    //  if (machine.run()) {
-    //      std::cout << "Machine accepted the input. Result:\n";
-    //  } else {
-    //      std::cout << "Machine rejected the input.\n";
-    //  }
-    //
-    //  machine.printTapes();
+    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
 
-    //  ExpressionCalculator calc("2-5*9^2*(3-1)"); // should be -808
-    //  std::cout << calc.calculate() << std::endl;
+    // TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/subtractionMTM.json");
+
+
+    machine.setTransitionFunction(tf);
+
+    // machine.getTape(0).setContent("1111111+111111");
+
+    machine.getTape(0).setContent("111-11"); // 11-11 accept, 11-1 accept, 11-111 reject
+    machine.getTape(1).setContent("_");
+
+     std::cout << "Initial Tapes:\n";
+     machine.printTapes();
+
+     if (machine.run()) {
+         std::cout << "Machine accepted the input. Result:\n";
+     } else {
+         std::cout << "Machine rejected the input.\n";
+     }
+
+     machine.printTapes();
+
+     // ExpressionCalculator calc("2-5*9^2*(3-1)"); // should be -808
+     // std::cout << calc.calculate() << std::endl;
 
 
     /**
      * Application
      */
-    QApplication app(argc, argv);
-    MainWindow turing_tutor;
-    turing_tutor.show();
-    return app.exec();
+    // QApplication app(argc, argv);
+    // MainWindow turing_tutor;
+    // turing_tutor.show();
+    // return app.exec();
 }

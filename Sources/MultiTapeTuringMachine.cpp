@@ -29,19 +29,19 @@ bool MultiTapeTuringMachine::run() {
 
         if (!transitionFunction.hasTransition(currentState, readSymbols)) {
             currentState = rejectState; // No valid transition, reject
-            // std::cout << "No valid transition. Rejecting..." << std::endl;
+            std::cout << "No valid transition. Rejecting..." << std::endl;
             break;
         }
 
         auto [newState, writeSymbols, movements] = transitionFunction.getTransition(currentState, readSymbols);
-
+        //
         // std::cout << "New State: " << newState << std::endl;
         // std::cout << "Write Symbols: ";
         // for (char symbol: writeSymbols) {
         //     std::cout << symbol << ' ';
         // }
         // std::cout << std::endl;
-
+        //
         // std::cout << "Movements: ";
         // for (auto move: movements) {
         //     std::cout << (move == LEFT ? "LEFT" : (move == RIGHT ? "RIGHT" : "STAY")) << ' ';
