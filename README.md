@@ -32,12 +32,12 @@ Dit project is ontwikkeld als onderdeel van de cursus Machines en Berekenbaarhei
 ## Teamleden
 Ons team bestaat uit de volgende leden, inclusief hun rollen en contactgegevens:
 
-| Naam                  | Rol                                                        | Contact                                                                                           |
-|-----------------------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| **Cain Hertoghs**     | Validatie van expressies, compatibiliteit tussen code, implementatie van MTM. | [cain.hertoghs@student.uantwerpen.be](mailto:cain.hertoghs@student.uantwerpen.be)                 |
-| **Emir Murat**        | Vermenigvuldigen en machtsverheffen met MTM, logs in HTML.  | [emir.murat@student.uantwerpen.be](mailto:emir.murat@student.uantwerpen.be)                       |
+| Naam                  | Rol                                                        | Contact                                                                                          |
+|-----------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| **Cain Hertoghs**     | Validatie van expressies, compatibiliteit tussen code, implementatie van MTM. | [cain.hertoghs@student.uantwerpen.be](mailto:cain.hertoghs@student.uantwerpen.be)                |
+| **Emir Murat**        | Vermenigvuldigen en machtsverheffen met MTM, logs in HTML.  | [emir.murat@student.uantwerpen.be](mailto:emir.murat@student.uantwerpen.be)                      |
 | **Jonathan van der Sluijs** | Modulo-operaties, validatie met Earley-parser.             | [jonathan.vandersluijs@student.uantwerpen.be](mailto:jonathan.vandersluijs@student.uantwerpen.be) |
-| **Mathis De Herdt**   | GUI in Qt, optellen en aftrekken met MTM, logs in HTML.    | [mathis.de.herdt@student.uantwerpen.be](mailto:mathis.deherdt@student.uantwerpen.be)              |
+| **Mathis De Herdt**   | GUI in Qt, optellen en aftrekken met MTM, logs in HTML.    | [mathis.deherdt@student.uantwerpen.be](mailto:mathis.deherdt@student.uantwerpen.be)              |
 
 
 ## Installatie
