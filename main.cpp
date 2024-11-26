@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
     // machine.getTape(0).setContent("1111111+111111");
 
-    machine.getTape(0).setContent("111-11"); // 11-11 accept, 11-1 accept, 11-111 reject
+    machine.getTape(0).setContent("-"); // 11-11 accept, 11-1 accept, 11-111 reject \\TODO EMIR dit kan toch nooit voorkomen door de earley parser?
     machine.getTape(1).setContent("_");
 
      std::cout << "Initial Tapes:\n";

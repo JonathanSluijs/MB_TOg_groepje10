@@ -89,7 +89,7 @@ TEST_F(MultiTapeTuringMachineTests, AdditionOperation) {
     EXPECT_EQ(machine.getTape(1).readAll(), "11111111111_");
 }
 
-TEST_F(MultiTapeTuringMachineTests, EmptyInputOperation) {
+TEST_F(MultiTapeTuringMachineTests, EmptyInputOperationAddition) {
     MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
 
     TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
@@ -105,4 +105,85 @@ TEST_F(MultiTapeTuringMachineTests, EmptyInputOperation) {
     // Verwacht dat de machine de invoer afwijst
     EXPECT_FALSE(result);
 }
+
+TEST_F(MultiTapeTuringMachineTests, SubtractionSimpleAccept) {
+    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
+
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/subtractionMTM.json");
+    machine.setTransitionFunction(tf);
+
+    // Stel de beginwaarde van de tape in
+    machine.getTape(0).setContent("11-11");
+    machine.getTape(1).setContent("_");
+
+    // Voer de machine uit
+    bool result = machine.run();
+
+    // Controleer of de machine het invoer accepteert
+    EXPECT_TRUE(result);
+
+    // Controleer de eindinhoud van de tweede tape
+    EXPECT_EQ(machine.getTape(1).readAll(), "____");
+}
+
+TEST_F(MultiTapeTuringMachineTests, SubtractionRemainderAccept) {
+    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
+
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/subtractionMTM.json");
+    machine.setTransitionFunction(tf);
+
+    // Stel de beginwaarde van de tape in
+    machine.getTape(0).setContent("11-1");
+    machine.getTape(1).setContent("_");
+
+    // Voer de machine uit
+    bool result = machine.run();
+
+    // Controleer of de machine het invoer accepteert
+    EXPECT_TRUE(result);
+
+    // Controleer de eindinhoud van de tweede tape
+    EXPECT_EQ(machine.getTape(1).readAll(), "1__");
+}
+
+TEST_F(MultiTapeTuringMachineTests, SubtractionRejectTooLargeSecondOperand) {
+    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
+
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/subtractionMTM.json");
+    machine.setTransitionFunction(tf);
+
+    // Stel de beginwaarde van de tape in
+    machine.getTape(0).setContent("11-111");
+    machine.getTape(1).setContent("_");
+
+    // Voer de machine uit
+    bool result = machine.run();
+
+    // Controleer of de machine de invoer afwijst
+    EXPECT_FALSE(result);
+
+    // Controleer de eindinhoud van de tweede tape
+    EXPECT_EQ(machine.getTape(1).readAll(), "1___");
+}
+
+TEST_F(MultiTapeTuringMachineTests, SubtractionEmptyInputReject) {
+    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
+
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/subtractionMTM.json");
+    machine.setTransitionFunction(tf);
+
+    // Stel een lege tape in als invoer
+    machine.getTape(0).setContent("_");
+    machine.getTape(1).setContent("_");
+
+    // Voer de machine uit
+    bool result = machine.run();
+
+    // Controleer of de machine de invoer afwijst
+    EXPECT_FALSE(result);
+}
+
+
+
+
 
