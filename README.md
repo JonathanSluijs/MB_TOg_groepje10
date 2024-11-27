@@ -56,7 +56,7 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 - [x] Mathis: addition and substraction
 - [ ] Jonathan, Mathis: modulo operations
 - [x] Cain: Brackets and precedence of expressions
-- [ ] Emir: multiplication
+- [x] Emir: multiplication
 - [ ] Cain: power operations
 
 ### Fase 2
