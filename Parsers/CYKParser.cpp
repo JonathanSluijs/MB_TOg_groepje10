@@ -13,6 +13,11 @@ parser::CYKParser &parser::CYKParser::getInstance() {
 }
 
 bool parser::CYKParser::parse(const std::string &input, const CFG &cfg) {
+    if (input.empty()) {
+        throw std::invalid_argument("Input string is empty");
+    }
+
+
     std::vector<std::vector<std::set<std::string> > > table(input.size());
     for (int i = 0; i < input.size(); i++) {
         for (int j = 0; j < input.size() - i; j++) {

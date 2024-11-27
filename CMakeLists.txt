@@ -44,6 +44,7 @@ SET(TEST_SOURCES
         Tests/TransitionFunctionTests.cpp
         Tests/TapeTests.cpp
         Tests/ExpressionCalculatorTests.cpp
+        Tests/ParserTests.cpp
 )
 
 # Test executable maken

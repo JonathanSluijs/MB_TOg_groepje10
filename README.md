@@ -52,12 +52,22 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 ## To Do
 
 ### Fase 1 deadline: 07/12/2024
-- [x] Emir: expression valdiation met earley
-- [ ] Mathis: addition and substraction
 - [ ] Jonathan, Mathis: modulo operations
+
+
 - [x] Cain: Brackets and precedence of expressions
-- [ ] Emir: multiplication
 - [ ] Cain: power operations
+
+
+- [x] Emir: expression valdiation met earley
+- [X] Emir: multiplication
+- [ ] Emir: Aanpassen Implementatie MTM naar 7 tuple en dynamisch inlezen (??)
+
+
+- [X] Mathis: addition and substraction
+- [X] Mathis: Implementeren ParserTests met CNFinputTestFiles
+- [ ] Mathis: Implementeren Logger class voor output files (eventueel al HTML)
+
 
 ### Fase 2
 - [ ] Everyone: logs in HTML
