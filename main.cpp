@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
      *MULTIPLICATION
      */
     machine.getTape(0).setContent("_"); // 11-11 accept, 11-1 accept, 11-111 reject
-    machine.getTape(1).setContent("1");
+    machine.getTape(1).setContent("111111");
     machine.getTape(2).setContent("_");
 
      std::cout << "Initial Tapes:\n";
