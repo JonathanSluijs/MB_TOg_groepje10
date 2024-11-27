@@ -15,22 +15,23 @@
 #include "Headers/ExpressionCalculator.h"
 
 int main(int argc, char *argv[]) {
-    MultiTapeTuringMachine machine(2, "q0", "q_accept", "q_reject");
+    MultiTapeTuringMachine machine(3, "q0", "q_accept", "q_reject");
 
     // TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
-    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/subtractionMTM.json");
-
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/multiplicationMTM.json");
 
     machine.setTransitionFunction(tf);
 
     // machine.getTape(0).setContent("1111111+111111");
-
-    machine.getTape(0).setContent("-"); // 11-11 accept, 11-1 accept, 11-111 reject \\TODO EMIR dit kan toch nooit voorkomen door de earley parser?
-    machine.getTape(1).setContent("_");
+    /**
+     *MULTIPLICATION
+     */
+    machine.getTape(0).setContent("_"); // 11-11 accept, 11-1 accept, 11-111 reject
+    machine.getTape(1).setContent("111111");
+    machine.getTape(2).setContent("_");
 
      std::cout << "Initial Tapes:\n";
      machine.printTapes();
-
      if (machine.run()) {
          std::cout << "Machine accepted the input. Result:\n";
      } else {

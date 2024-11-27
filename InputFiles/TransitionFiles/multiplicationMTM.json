@@ -1,0 +1,84 @@
+{
+  "transitions": [
+    {
+      "currentState": "q0",
+      "inputSymbols": ["1", "_", "_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["1", "_", "_"],
+      "directions": ["STAY", "STAY", "STAY"]
+    },
+    {
+      "currentState": "q0",
+      "inputSymbols": ["_", "_", "_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "_", "_"],
+      "directions": ["STAY", "STAY", "STAY"]
+    },
+    {
+      "currentState": "q0",
+      "inputSymbols": ["_", "1", "_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "1", "_"],
+      "directions": ["STAY", "STAY", "STAY"]
+    },
+
+    {
+      "currentState": "q0",
+      "inputSymbols": ["1", "1", "_"],
+      "nextState": "q1",
+      "writeSymbols": ["1", "X", "1"],
+      "directions": ["STAY", "RIGHT", "RIGHT"]
+    },
+    {
+      "currentState": "q0",
+      "inputSymbols": ["_", "X", "_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "X", "_"],
+      "directions": ["STAY", "STAY", "STAY"]
+
+    },
+    {
+      "currentState": "q0",
+      "inputSymbols": ["1", "X", "_"],
+      "nextState": "q1",
+      "writeSymbols": ["1", "X", "1"],
+      "directions": ["STAY", "RIGHT", "RIGHT"]
+
+    },
+    {
+      "currentState": "q1",
+      "inputSymbols": ["1", "1", "_"],
+      "nextState": "q1",
+      "writeSymbols": ["1", "1", "1"],
+      "directions": ["STAY", "RIGHT", "RIGHT"]
+    },
+    {
+      "currentState": "q1",
+      "inputSymbols": ["1", "_", "_"],
+      "nextState": "q2",
+      "writeSymbols": ["1", "_", "_"],
+      "directions": ["RIGHT","LEFT", "STAY"]
+    },
+    {
+      "currentState": "q2",
+      "inputSymbols": ["_", "1", "_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "1", "_"],
+      "directions": ["STAY", "STAY", "STAY"]
+    },
+    {
+      "currentState": "q2",
+      "inputSymbols": ["1", "1", "_"],
+      "nextState": "q2",
+      "writeSymbols": ["1", "1", "1"],
+      "directions": ["STAY", "LEFT", "RIGHT"]
+    },
+    {
+      "currentState": "q2",
+      "inputSymbols": ["1", "X", "_"],
+      "nextState": "q0",
+      "writeSymbols": ["1", "X", "1"],
+      "directions": ["RIGHT", "STAY", "RIGHT"]
+    }
+  ]
+}

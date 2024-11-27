@@ -13,7 +13,7 @@ parser::EarleyParser &parser::EarleyParser::getInstance() {
 }
 
 
-bool parser::EarleyParser::parse(const std::string &input, const CFG &cfg) {
+bool parser::EarleyParser::parse(const std::string &input, const CFG &cfg) { // NOLINT
     bool valid_input = false;
     std::vector<std::vector<EarlyItem> > state_sets;
 

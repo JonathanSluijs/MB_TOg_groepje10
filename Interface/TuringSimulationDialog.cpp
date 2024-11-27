@@ -105,12 +105,12 @@ void TuringSimulationDialog::submitExpression() {
             notValidated();
         }
     }else if(earley_algorithm->isChecked()){
-        auto start = std::chrono::high_resolution_clock::now();
+        // auto start = std::chrono::high_resolution_clock::now();
 
         if(parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
-            auto end = std::chrono::high_resolution_clock::now();
-            auto duur = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-            std::cout << "Early took: " << duur.count() << " milliseconds" << std::endl;
+            // auto end = std::chrono::high_resolution_clock::now();
+            // auto duur = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+            // std::cout << "Early took: " << duur.count() << " milliseconds" << std::endl;
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
             // TODO: Do something
             // Calculate the expression
