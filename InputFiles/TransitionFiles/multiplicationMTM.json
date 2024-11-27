@@ -62,7 +62,7 @@
       "currentState": "q2",
       "inputSymbols": ["_", "1", "_"],
       "nextState": "q_accept",
-      "writeSymbols": ["_", "_", "_"],
+      "writeSymbols": ["_", "1", "_"],
       "directions": ["STAY", "STAY", "STAY"]
     },
     {
