@@ -23,9 +23,11 @@ int main(int argc, char *argv[]) {
     machine.setTransitionFunction(tf);
 
     // machine.getTape(0).setContent("1111111+111111");
-
-    machine.getTape(0).setContent("111"); // 11-11 accept, 11-1 accept, 11-111 reject
-    machine.getTape(1).setContent("11111");
+    /**
+     *MULTIPLICATION
+     */
+    machine.getTape(0).setContent("_"); // 11-11 accept, 11-1 accept, 11-111 reject
+    machine.getTape(1).setContent("1");
     machine.getTape(2).setContent("_");
 
      std::cout << "Initial Tapes:\n";

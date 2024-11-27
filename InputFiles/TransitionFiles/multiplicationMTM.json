@@ -23,6 +23,14 @@
     },
     {
       "currentState": "q0",
+      "inputSymbols": ["_", "1", "_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "_", "_"],
+      "directions": ["STAY", "STAY", "STAY"]
+    },
+
+    {
+      "currentState": "q0",
       "inputSymbols": ["1", "1", "_"],
       "nextState": "q1",
       "writeSymbols": ["1", "X", "1"],
