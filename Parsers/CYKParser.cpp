@@ -6,6 +6,7 @@
 #include "../Headers/CFG.h"
 #include <algorithm>
 #include <set>
+#include <stdexcept>
 
 parser::CYKParser &parser::CYKParser::getInstance() {
     static CYKParser _instance;

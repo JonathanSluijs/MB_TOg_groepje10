@@ -1,0 +1,42 @@
+{
+  "transitions": [
+    {
+      "currentState": "q0",
+      "inputSymbols": ["1", "1", "_", "_"],
+      "nextState": "q0",
+      "writeSymbols": ["_", "_", "1", "_"],
+      "directions": ["RIGHT", "RIGHT", "RIGHT", "STAY"]
+    },
+
+    {
+      "currentState": "q0",
+      "inputSymbols": ["_", "1", "_", "_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "_", "_", "_"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+
+    {
+      "currentState": "q0",
+      "inputSymbols": ["1", "_", "_", "_"],
+      "nextState": "q1",
+      "writeSymbols": ["1", "_", "_", "_"],
+      "directions": ["STAY", "STAY", "LEFT", "STAY"]
+    },
+    {
+      "currentState": "q1",
+      "inputSymbols": ["1", "_", "1", "_"],
+      "nextState": "q1",
+      "writeSymbols": ["1", "1", "_", "_"],
+      "directions": ["STAY", "LEFT", "LEFT", "STAY"]
+    },
+    {
+      "currentState": "q1",
+      "inputSymbols": ["1", "_", "_", "_"],
+      "nextState": "q0",
+      "writeSymbols": ["1", "_", "_", "1"],
+      "directions": ["STAY", "RIGHT", "STAY", "RIGHT"]
+    }
+
+  ]
+}

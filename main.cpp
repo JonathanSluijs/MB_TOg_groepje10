@@ -15,20 +15,22 @@
 #include "Headers/ExpressionCalculator.h"
 
 int main(int argc, char *argv[]) {
-    MultiTapeTuringMachine machine(3, "q0", "q_accept", "q_reject");
+    MultiTapeTuringMachine machine(4, "q0", "q_accept", "q_reject");
 
     // TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
-    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/multiplicationMTM.json");
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/divisionMTM.json");
 
     machine.setTransitionFunction(tf);
 
     // machine.getTape(0).setContent("1111111+111111");
     /**
-     *MULTIPLICATION
+     * DIVISION
      */
-    machine.getTape(0).setContent("_"); // 11-11 accept, 11-1 accept, 11-111 reject
-    machine.getTape(1).setContent("111111");
-    machine.getTape(2).setContent("_");
+    machine.getTape(0).setContent("11111111111"); // A
+    machine.getTape(1).setContent("11");          // B
+    machine.getTape(2).setContent("_");           // Remainder
+    machine.getTape(3).setContent("_");           // Quotient
+
 
      std::cout << "Initial Tapes:\n";
      machine.printTapes();
