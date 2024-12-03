@@ -15,7 +15,7 @@ void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction &tf)
 }
 
 //manual print
-bool print = true;
+bool print = false;
 
 bool MultiTapeTuringMachine::run() {
     while (currentState != acceptState && currentState != rejectState) {

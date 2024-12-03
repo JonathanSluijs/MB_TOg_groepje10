@@ -66,7 +66,6 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 
 - [X] Mathis: addition and substraction
 - [X] Mathis: Implementeren ParserTests met CNFinputTestFiles
-- [ ] Mathis: Implementeren Logger class voor output files (eventueel al HTML)
 
 
 ### Fase 2
