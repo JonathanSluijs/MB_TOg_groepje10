@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     /**
      * DIVISION
      */
-    machine.getTape(0).setContent("11111111111"); // A
+    machine.getTape(0).setContent("_"); // A
     machine.getTape(1).setContent("11111111111");          // B
     machine.getTape(2).setContent("_");           // Remainder
     machine.getTape(3).setContent("_");           // Quotient
