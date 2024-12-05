@@ -52,11 +52,11 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 ## To Do
 
 ### Fase 1 deadline: 07/12/2024
-- [ ] Jonathan, Mathis: modulo operations
+- [x] Jonathan, Mathis: modulo operations
 
 
 - [x] Cain: Brackets and precedence of expressions
-- [ ] Cain: power operations
+- [x] Cain: power operations
 
 
 - [x] Emir: expression valdiation met earley

@@ -18,18 +18,19 @@ int main(int argc, char *argv[]) {
     MultiTapeTuringMachine machine(4, "q0", "q_accept", "q_reject");
 
     // TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
-    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/divisionMTM.json");
+    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/powerMTM.json");
 
     machine.setTransitionFunction(tf);
 
     // machine.getTape(0).setContent("1111111+111111");
     /**
-     * DIVISION
+     * Power
      */
-    machine.getTape(0).setContent("11111111111"); // A
-    machine.getTape(1).setContent("11");          // B
-    machine.getTape(2).setContent("_");           // Remainder
-    machine.getTape(3).setContent("_");           // Quotient
+
+    machine.getTape(0).setContent("111"); // Base, further in program a temporary
+    machine.getTape(1).setContent("11");  // Exponent
+    machine.getTape(2).setContent("_");   // Base-1
+    machine.getTape(3).setContent("_");   // Result (head positie - 1)
 
 
      std::cout << "Initial Tapes:\n";

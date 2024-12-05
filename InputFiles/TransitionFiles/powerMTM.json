@@ -1,0 +1,260 @@
+{
+  "transitions": [
+    {
+      "_comment": "0^0 is undefined in some context, so we will reject it",
+      "currentState": "q0",
+      "inputSymbols": ["_", "_", "_","_"],
+      "nextState": "q_reject",
+      "writeSymbols": ["_", "_", "_","_"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "a^0 is 1",
+      "currentState": "q0",
+      "inputSymbols": ["1", "_", "_","_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "_", "_","1"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "0^a is 0",
+      "currentState": "q0",
+      "inputSymbols": ["_", "1", "_","_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "_", "_","_"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "a^b, copy baseAmount-1 1's to third tape in q1. skip first one",
+      "currentState": "q0",
+      "inputSymbols": ["1", "1", "_","_"],
+      "nextState": "q1",
+      "writeSymbols": ["1", "1", "_","_"],
+      "directions": ["RIGHT", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "for every 1 you encounter, write a 1 to the third tape",
+      "currentState": "q1",
+      "inputSymbols": ["1", "1", "_","_"],
+      "nextState": "q1",
+      "writeSymbols": ["1", "1", "1","_"],
+      "directions": ["RIGHT", "STAY", "RIGHT", "STAY"]
+    },
+    {
+      "_comment": "if you encounter a blank, go to q2",
+      "currentState": "q1",
+      "inputSymbols": ["_", "1", "_","_"],
+      "nextState": "q2",
+      "writeSymbols": ["_", "1", "_","_"],
+      "directions": ["LEFT", "STAY", "LEFT", "STAY"]
+    },
+    {
+      "_comment": "if third track is blank, baseAmount is 1 so write 1 to the third tape",
+      "currentState": "q2",
+      "inputSymbols": ["1", "1", "_","_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["_", "_", "_","1"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "if third track is not blank, baseAmount is greater than 1, go to q3 to move heads of first and third track to the left",
+      "currentState": "q2",
+      "inputSymbols": ["1", "1", "1","_"],
+      "nextState": "q3",
+      "writeSymbols": ["1", "1", "1","_"],
+      "directions": ["LEFT", "STAY", "LEFT", "STAY"]
+    },
+    {
+      "_comment": "move heads of first and third track to the left",
+      "currentState": "q3",
+      "inputSymbols": ["1", "1", "1","_"],
+      "nextState": "q3",
+      "writeSymbols": ["1", "1", "1","_"],
+      "directions": ["LEFT", "STAY", "LEFT", "STAY"]
+    },
+    {
+      "_comment": "third track is blank, go right to read first 1, first track has one more 1",
+      "currentState": "q3",
+      "inputSymbols": ["1", "1", "_","_"],
+      "nextState": "q3",
+      "writeSymbols": ["1", "1", "_","_"],
+      "directions": ["LEFT", "STAY", "RIGHT", "STAY"]
+    },
+    {
+      "_comment": "after this both heads at right place, start powers in q4",
+      "currentState": "q3",
+      "inputSymbols": ["_", "1", "1","_"],
+      "nextState": "q4",
+      "writeSymbols": ["_", "1", "1","_"],
+      "directions": ["RIGHT", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "write base one time to result on first 1 in exponent and clear it",
+      "currentState": "q4",
+      "inputSymbols": ["1", "1", "1","_"],
+      "nextState": "q5",
+      "writeSymbols": ["1", "X", "1","_"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "write base to result",
+      "currentState": "q5",
+      "inputSymbols": ["1", "X", "1","_"],
+      "nextState": "q5",
+      "writeSymbols": ["1", "X", "1","1"],
+      "directions": ["RIGHT", "STAY", "STAY", "RIGHT"]
+    },
+    {
+      "_comment": "Base copied, go to q6",
+      "currentState": "q5",
+      "inputSymbols": ["_", "X", "1","_"],
+      "nextState": "q6",
+      "writeSymbols": ["_", "X", "1","_"],
+      "directions": ["LEFT", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "move head of base to the front",
+      "currentState": "q6",
+      "inputSymbols": ["1", "X", "1","_"],
+      "nextState": "q6",
+      "writeSymbols": ["1", "X", "1","_"],
+      "directions": ["LEFT", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "head is at the beginning",
+      "currentState": "q6",
+      "inputSymbols": ["_", "X", "1","_"],
+      "nextState": "q7",
+      "writeSymbols": ["_", "X", "1","_"],
+      "directions": ["RIGHT", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "go to next 1 in exponent if reading X",
+      "currentState": "q7",
+      "inputSymbols": ["1", "X", "1","_"],
+      "nextState": "q7",
+      "writeSymbols": ["1", "X", "1","_"],
+      "directions": ["STAY", "RIGHT", "STAY", "STAY"]
+    },
+    {
+      "_comment": "no more 1 in exponent, accept",
+      "currentState": "q7",
+      "inputSymbols": ["1", "_", "1","_"],
+      "nextState": "q_accept",
+      "writeSymbols": ["1", "_", "1","_"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "if exponent 1 left, go to p to multiply result by base",
+      "currentState": "q7",
+      "inputSymbols": ["1", "1", "1","_"],
+      "nextState": "p1",
+      "writeSymbols": ["_", "X", "1","_"],
+      "directions": ["LEFT", "STAY", "STAY", "LEFT"]
+    },
+    {
+      "_comment": "copy result to base",
+      "currentState": "p1",
+      "inputSymbols": ["_", "X", "1","1"],
+      "nextState": "p1",
+      "writeSymbols": ["1", "X", "1","1"],
+      "directions": ["LEFT", "STAY", "STAY", "LEFT"]
+    },
+    {
+      "_comment": "copied result to base",
+      "currentState": "p1",
+      "inputSymbols": ["_", "X", "1","_"],
+      "nextState": "p2",
+      "writeSymbols": ["_", "X", "1","_"],
+      "directions": ["RIGHT", "STAY", "STAY", "RIGHT"]
+    },
+    {
+      "_comment": "move head of result to the end",
+      "currentState": "p2",
+      "inputSymbols": ["1", "X", "1","1"],
+      "nextState": "p2",
+      "writeSymbols": ["1", "X", "1","1"],
+      "directions": ["STAY", "STAY", "STAY", "RIGHT"]
+    },
+    {
+      "_comment": "correct position, start multiplication of result and original base using third track",
+      "currentState": "p2",
+      "inputSymbols": ["1", "X", "1","_"],
+      "nextState": "p3",
+      "writeSymbols": ["1", "X", "1","_"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "if third track has an X read next one",
+      "currentState": "p3",
+      "inputSymbols": ["1", "X", "X","_"],
+      "nextState": "p3",
+      "writeSymbols": ["1", "X", "X","_"],
+      "directions": ["STAY", "STAY", "RIGHT", "STAY"]
+    },
+    {
+      "_comment": "if third track has no 1 left, go to p4 to reset first track",
+      "currentState": "p3",
+      "inputSymbols": ["1", "X", "_","_"],
+      "nextState": "p4",
+      "writeSymbols": ["1", "X", "_","_"],
+      "directions": ["STAY", "STAY", "LEFT", "STAY"]
+    },
+    {
+      "_comment": "if third track has a 1, go to p5 to copy base to result",
+      "currentState": "p3",
+      "inputSymbols": ["1", "X", "1","_"],
+      "nextState": "p5",
+      "writeSymbols": ["1", "X", "X","_"],
+      "directions": ["STAY", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "reset third track",
+      "currentState": "p4",
+      "inputSymbols": ["1", "X", "X","_"],
+      "nextState": "p4",
+      "writeSymbols": ["1", "X", "1","_"],
+      "directions": ["STAY", "STAY", "LEFT", "STAY"]
+    },
+    {
+      "_comment": "third track reset, go to q7",
+      "currentState": "p4",
+      "inputSymbols": ["1", "X", "_","_"],
+      "nextState": "q7",
+      "writeSymbols": ["1", "X", "_","_"],
+      "directions": ["STAY", "STAY", "RIGHT", "STAY"]
+    },
+    {
+      "_comment": "copy base to result",
+      "currentState": "p5",
+      "inputSymbols": ["1", "X", "X","_"],
+      "nextState": "p5",
+      "writeSymbols": ["1", "X", "X","1"],
+      "directions": ["RIGHT", "STAY", "STAY", "RIGHT"]
+    },
+    {
+      "_comment": "copied, return head to begin in p6",
+      "currentState": "p5",
+      "inputSymbols": ["_", "X", "X","_"],
+      "nextState": "p6",
+      "writeSymbols": ["_", "X", "X","_"],
+      "directions": ["LEFT", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "return head of base to begin",
+      "currentState": "p6",
+      "inputSymbols": ["1", "X", "X","_"],
+      "nextState": "p6",
+      "writeSymbols": ["1", "X", "X","_"],
+      "directions": ["LEFT", "STAY", "STAY", "STAY"]
+    },
+    {
+      "_comment": "return head of base to begin",
+      "currentState": "p6",
+      "inputSymbols": ["_", "X", "X","_"],
+      "nextState": "p3",
+      "writeSymbols": ["_", "X", "X","_"],
+      "directions": ["RIGHT", "STAY", "STAY", "STAY"]
+    }
+  ]
+}
