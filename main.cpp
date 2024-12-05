@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 
     machine.getTape(0).setContent("111"); // Base, further in program a temporary
     machine.getTape(1).setContent("11");  // Exponent
-    machine.getTape(2).setContent("_");   // Base-1
+    machine.getTape(2).setContent("_");   // Base-1 (gebeurt op TM)
     machine.getTape(3).setContent("_");   // Result (head positie - 1)
 
 
