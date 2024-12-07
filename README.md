@@ -61,7 +61,6 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 
 - [x] Emir: expression valdiation met earley
 - [X] Emir: multiplication
-- [ ] Emir: Aanpassen Implementatie MTM naar 7 tuple en dynamisch inlezen (??)
 
 
 - [X] Mathis: addition and substraction
@@ -69,6 +68,9 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 
 
 ### Fase 2
+- [ ] Emir: Aanpassen Implementatie MTM naar 7 tuple en dynamisch inlezen (??)
+- [ ] Cain: Aanpassen expression calculator naar MTM gebruiken
+- [ ] Everyone: testen schrijven over zijn code
 - [ ] Everyone: logs in HTML
 - [ ] Everyone: finish GUI in Qt
 - [ ] Everyone: MTM to one tape TM
