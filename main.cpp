@@ -15,43 +15,11 @@
 #include "Headers/ExpressionCalculator.h"
 
 int main(int argc, char *argv[]) {
-    MultiTapeTuringMachine machine(4, "q0", "q_accept", "q_reject");
-
-    // TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
-    TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/powerMTM.json");
-
-    machine.setTransitionFunction(tf);
-
-    // machine.getTape(0).setContent("1111111+111111");
-    /**
-     * Power
-     */
-
-    machine.getTape(0).setContent("111"); // Base, further in program a temporary
-    machine.getTape(1).setContent("11");  // Exponent
-    machine.getTape(2).setContent("_");   // Base-1 (gebeurt op TM)
-    machine.getTape(3).setContent("_");   // Result (head positie - 1)
-
-
-     std::cout << "Initial Tapes:\n";
-     machine.printTapes();
-     if (machine.run()) {
-         std::cout << "Machine accepted the input. Result:\n";
-     } else {
-         std::cout << "Machine rejected the input.\n";
-     }
-
-     machine.printTapes();
-
-     // ExpressionCalculator calc("2-5*9^2*(3-1)"); // should be -808
-     // std::cout << calc.calculate() << std::endl;
-
-
     /**
      * Application
      */
-    // QApplication app(argc, argv);
-    // MainWindow turing_tutor;
-    // turing_tutor.show();
-    // return app.exec();
+     QApplication app(argc, argv);
+     MainWindow turing_tutor;
+     turing_tutor.show();
+     return app.exec();
 }
