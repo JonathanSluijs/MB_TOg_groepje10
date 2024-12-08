@@ -67,13 +67,12 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 - [X] Mathis: Implementeren ParserTests met CNFinputTestFiles
 
 
-### Fase 2
-- [ ] Emir: Aanpassen Implementatie MTM naar 7 tuple en dynamisch inlezen (??)
-- [ ] Cain: Aanpassen expression calculator naar MTM gebruiken
-- [ ] Everyone: testen schrijven over zijn code
-- [ ] Everyone: logs in HTML
-- [ ] Everyone: finish GUI in Qt
-- [ ] Everyone: MTM to one tape TM
+### Fase 2 : DEADLINE 17/12/2024
+- [ ] Cain: Aanpassen expression calculator naar MTM gebruiken en naar logs schrijven
+- [ ] Cain: MTM to Logger
+- [ ] Mathis: logs in HTML
+- [ ] Mathis: Link HTML file to GUI
+- [ ] Jonathan: MTM to one tape TM (Everyone: TESTSEN schrijven)
 
 
 
