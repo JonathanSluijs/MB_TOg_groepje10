@@ -9,25 +9,13 @@
 #include <cmath>
 #include <stack>
 
-// TODO: change lamda functions to use TM
-std::unordered_map<char, std::function<double(double, double)>> operations = {{'+', [](double a, double b) {
-    return a + b;
-}},
-                                                                              {'-', [](double a, double b) {
-                                                                                  return a - b;
-                                                                              }},
-                                                                              {'*', [](double a, double b) {
-                                                                                  return a * b;
-                                                                              }},
-                                                                              {'/', [](double a, double b) {
-                                                                                  if (b != 0) return a / b;
-                                                                                  throw std::runtime_error(
-                                                                                          "Division by zero");
-                                                                              }},
-                                                                              {'^', [](double a, double b) {
-                                                                                  return std::pow(a, b);
-                                                                              }}};
-
+std::string ExpressionCalculator::intToOnes(int a) {
+    std::string result;
+    for (int i = 0; i < a; i++) {
+        result += "1";
+    }
+    return result;
+}
 
 /**
  * Convert the expression to infix notation using shunting yard algorithm
@@ -78,6 +66,11 @@ void ExpressionCalculator::toPostfix() {
  * @return the result of the expression
  */
 double ExpressionCalculator::calculate() {
+    // Initialize the MTMs if not initialized
+    if (!MTMInitialized) {
+        initializeMTM();
+    }
+
     // Stack used to calculate expression
     std::stack<double> stack;
 
@@ -111,11 +104,11 @@ double ExpressionCalculator::calculate() {
  * @param expression the expression to tokenize
  * @return the tokens of the expression
  */
-std::vector<std::string> ExpressionCalculator::tokenizeExpression(const std::string &expression) {
+std::vector<std::string> ExpressionCalculator::tokenizeExpression(const std::string &expr) {
     std::vector<std::string> tokens;
     std::string currentToken;
 
-    for (char ch : expression) {
+    for (char ch: expr) {
         if (std::isdigit(ch)) {
             // If the character is a digit, add it to the current token
             currentToken += ch;
@@ -138,7 +131,9 @@ std::vector<std::string> ExpressionCalculator::tokenizeExpression(const std::str
 }
 
 int ExpressionCalculator::precedence(const std::string &s) {
-    if (s == "^")
+    if (s == "(")
+        return 0;
+    else if (s == "^")
         return 3;
     else if (s == "/" || s == "*")
         return 2;
@@ -146,6 +141,117 @@ int ExpressionCalculator::precedence(const std::string &s) {
         return 1;
     else
         return -1; // Return -1 for invalid or unsupported operators
+}
+
+void ExpressionCalculator::initializeMTM() {
+    TransitionFunction plusTF = parseTransitionFile("../InputFiles/TransitionFiles/additionMTM.json");
+    plusMTM.setTransitionFunction(plusTF);
+
+    TransitionFunction minusTF = parseTransitionFile("../InputFiles/TransitionFiles/subtractionMTM.json");
+    minusMTM.setTransitionFunction(minusTF);
+
+    TransitionFunction multiplyTF = parseTransitionFile("../InputFiles/TransitionFiles/multiplicationMTM.json");
+    multiplyMTM.setTransitionFunction(multiplyTF);
+
+    TransitionFunction divideTF = parseTransitionFile("../InputFiles/TransitionFiles/divisionMTM.json");
+    divideMTM.setTransitionFunction(divideTF);
+
+    TransitionFunction powerTF = parseTransitionFile("../InputFiles/TransitionFiles/powerMTM.json");
+    powerMTM.setTransitionFunction(powerTF);
+
+    MTMInitialized = true;
+}
+
+int ExpressionCalculator::plus(int a, int b) {
+    plusMTM.reset();
+    plusMTM.getTape(0).setContent(intToOnes(a) + "+" + intToOnes(b));
+    plusMTM.getTape(1).setContent("_");
+    plusMTM.run();
+    return onesToInt(plusMTM.getTape(1).getContent());
+}
+
+int ExpressionCalculator::onesToInt(const std::string &ones) {
+    int result = 0;
+    for (char c: ones) {
+        if (c == '1') {
+            result++;
+        }
+    }
+    return result;
+}
+
+int ExpressionCalculator::minus(int a, int b) {
+    plusMTM.reset();
+    minusMTM.getTape(0).setContent(intToOnes(a) + "-" + intToOnes(b));
+    minusMTM.getTape(1).setContent("_");
+    bool succes = minusMTM.run();
+    if (!succes) {
+        return -1;
+    }
+    return onesToInt(minusMTM.getTape(1).getContent());
+}
+
+int ExpressionCalculator::multiply(int a, int b) {
+    plusMTM.reset();
+    multiplyMTM.getTape(0).setContent(intToOnes(a));
+    multiplyMTM.getTape(1).setContent(intToOnes(b));
+    multiplyMTM.getTape(2).setContent("_");
+    multiplyMTM.run();
+    return onesToInt(multiplyMTM.getTape(2).getContent());
+}
+
+int ExpressionCalculator::divide(int a, int b) {
+    plusMTM.reset();
+    divideMTM.getTape(0).setContent(intToOnes(a));
+    divideMTM.getTape(1).setContent(intToOnes(b));
+    bool succes = divideMTM.run();
+    if (!succes) {
+        return -1;
+    }
+    return onesToInt(divideMTM.getTape(3).getContent());
+}
+
+int ExpressionCalculator::power(int a, int b) {
+    plusMTM.reset();
+    powerMTM.getTape(0).setContent(intToOnes(a));
+    powerMTM.getTape(1).setContent(intToOnes(b));
+    powerMTM.getTape(2).setContent("_");
+    powerMTM.getTape(3).setContent("_");
+    bool succes = powerMTM.run();
+    if (!succes) {
+        return -1;
+    }
+    return onesToInt(powerMTM.getTape(3).getContent());
+}
+
+ExpressionCalculator::ExpressionCalculator(std::string expression) : expression(std::move(expression)) {
+    operations = {{'+', [this](int a, int b) {
+        return plus(a, b);
+    }},
+                  {'-', [this](int a, int b) {
+                      int result = minus(a, b);
+                      if (result == -1) {
+                          throw std::invalid_argument("Negative result");
+                      }
+                      return result;
+                  }},
+                  {'*', [this](int a, int b) {
+                      return multiply(a, b);
+                  }},
+                  {'/', [this](int a, int b) {
+                      int result = divide(a, b);
+                      if (result == -1) {
+                          throw std::invalid_argument("Division by zero");
+                      }
+                      return result;
+                  }},
+                  {'^', [this](int a, int b) {
+                      int result = power(a, b);
+                      if (result == -1) {
+                          throw std::invalid_argument("Negative exponent");
+                      }
+                      return result;
+                  }}};
 }
 
 

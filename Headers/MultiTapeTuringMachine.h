@@ -32,6 +32,9 @@ private:
     /// Vector of tapes used by the Turing machine.
     std::vector<Tape> tapes;
 
+    /// Start state of the Turing machine.
+    std::string startState;
+
     /// Current state of the Turing machine.
     std::string currentState;
 
@@ -97,16 +100,7 @@ public:
      */
     Tape& getTape(int index);
 
-    /**
-     * @brief Copies the symbol currently under the tape head from one tape to another.
-     *
-     * This method copies the current symbol from the head of a source tape to a target tape.
-     * This can be useful for operations involving multiple tapes where values need to be shared.
-     *
-     * @param from Index of the source tape to read the symbol from.
-     * @param to Index of the target tape to write the symbol to.
-     */
-    void copyTapeSymbol(int from, int to);
+    void reset();
 };
 
 #endif //MB_TOG_GROEPJE10_MULTITAPETURINGMACHINE_H

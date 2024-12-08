@@ -70,6 +70,12 @@ public:
      * @param content A string representing the initial content of the tape.
      */
     void setContent(const std::string& content);
+
+    /**
+     * @brief Returns the current content of the tape.
+     * @return The content of the tape as a string.
+     */
+    std::string getContent() const;
 };
 
 #endif //MB_TOG_GROEPJE10_TAPE_H

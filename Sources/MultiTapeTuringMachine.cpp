@@ -6,6 +6,7 @@
 
 MultiTapeTuringMachine::MultiTapeTuringMachine(int tapesCount, const std::string &startState, const std::string &accept,
                                                const std::string &reject) : numTapes(tapesCount), tapes(tapesCount),
+                                                                            startState(startState),
                                                                             currentState(startState),
                                                                             acceptState(accept), rejectState(reject) {
 };
@@ -36,7 +37,7 @@ bool MultiTapeTuringMachine::run() {
 
         if (!transitionFunction.hasTransition(currentState, readSymbols)) {
             currentState = rejectState; // No valid transition, reject
-            if(print) {
+            if (print) {
                 std::cout << "No valid transition. Rejecting..." << std::endl;
             }
             break;
@@ -64,7 +65,7 @@ bool MultiTapeTuringMachine::run() {
             tapes[i].move(movements[i]);
         }
     }
-    if(print) {
+    if (print) {
         std::cout << "Final State: " << currentState << std::endl;
     }
     return currentState == acceptState; // Accept if reached accept state
@@ -82,5 +83,12 @@ Tape &MultiTapeTuringMachine::getTape(int index) {
         return tapes[index];
     } else {
         throw std::out_of_range("Tape index out of range");
+    }
+}
+
+void MultiTapeTuringMachine::reset() {
+    currentState = startState;
+    for (auto &tape: tapes) {
+        tape.setContent("_");
     }
 }

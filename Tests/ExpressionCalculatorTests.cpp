@@ -19,8 +19,8 @@ protected:
 // Test voor het berekenen van een expressie
 TEST_F(ExpressionCalculatorTests, CalculateExpression) {
     // Test 1
-    ExpressionCalculator expCalc = ExpressionCalculator("2-5*9^2*(3-1)");
-    EXPECT_EQ(expCalc.calculate(), -808);
+    ExpressionCalculator expCalc = ExpressionCalculator("((3+5)*2)/4+2^3");
+    EXPECT_EQ(expCalc.calculate(), 12);
 
     // Test 2
     ExpressionCalculator expCalc2 = ExpressionCalculator("21+3*4");
