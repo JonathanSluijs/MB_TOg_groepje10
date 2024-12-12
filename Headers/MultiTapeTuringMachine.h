@@ -10,6 +10,8 @@
 #include "TransitionFunction.h"
 
 // Dependencies
+#include "Logger.h"
+
 #include <iostream>
 #include <vector>
 #include <deque>

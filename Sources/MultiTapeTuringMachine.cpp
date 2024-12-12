@@ -15,61 +15,54 @@ void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction &tf)
     transitionFunction = tf;
 }
 
-//manual print
-bool print = false;
+
 
 bool MultiTapeTuringMachine::run() {
+    Logger logger("../OutputFiles/MTMOutput.txt", "../OutputFiles/MTMOutput.json", true);
+    logger.setPhase("Initialization");
+    logger.log(Logger::INFO, "Starting Turing Machine...");
+
+    int counter = 0;
+
     while (currentState != acceptState && currentState != rejectState) {
-        if (print) { std::cout << "Current State: " << currentState << std::endl; } //TODO LATER LOGGER INTEGRATIE
+        logger.setPhase("Phase " + std::to_string(counter));
+        logger.log(Logger::DEBUG, "Current State: " + currentState);
 
         std::vector<char> readSymbols;
-        for (auto &tape: tapes) {
+        for (auto &tape : tapes) {
             readSymbols.push_back(tape.read());
+            logger.log(Logger::RUN, "Tape Content: " + tape.getContent());
         }
 
-        if (print) {
-            std::cout << "Read Symbols: ";
-            for (char symbol: readSymbols) {
-                std::cout << symbol << ' ';
-            }
-            std::cout << std::endl;
-        }
+        logger.log(Logger::DEBUG, "Read Symbols: " + std::string(readSymbols.begin(), readSymbols.end()));
 
         if (!transitionFunction.hasTransition(currentState, readSymbols)) {
-            currentState = rejectState; // No valid transition, reject
-            if (print) {
-                std::cout << "No valid transition. Rejecting..." << std::endl;
-            }
+            logger.setPhase("Error Handling");
+            logger.log(Logger::WARN, "No valid transition found. Rejecting input.");
+            currentState = rejectState;
             break;
         }
 
         auto [newState, writeSymbols, movements] = transitionFunction.getTransition(currentState, readSymbols);
-        if (print) {
-            std::cout << "New State: " << newState << std::endl;
-            std::cout << "Write Symbols: ";
-            for (char symbol: writeSymbols) {
-                std::cout << symbol << ' ';
-            }
-            std::cout << std::endl;
-
-            std::cout << "Movements: ";
-            for (auto move: movements) {
-                std::cout << (move == LEFT ? "LEFT" : (move == RIGHT ? "RIGHT" : "STAY")) << ' ';
-            }
-            std::cout << std::endl;
-        }
+        logger.log(Logger::DEBUG, "Transition to state: " + newState);
 
         currentState = newState;
         for (int i = 0; i < numTapes; i++) {
             tapes[i].write(writeSymbols[i]);
             tapes[i].move(movements[i]);
         }
+
+        counter++;
     }
-    if (print) {
-        std::cout << "Final State: " << currentState << std::endl;
-    }
-    return currentState == acceptState; // Accept if reached accept state
+
+    logger.setPhase("Finalization");
+    logger.log(Logger::INFO, "Final State: " + currentState);
+
+    return currentState == acceptState;
 }
+
+
+
 
 
 void MultiTapeTuringMachine::printTapes() const {

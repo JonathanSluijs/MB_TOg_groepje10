@@ -279,29 +279,5 @@ TEST_F(MultiTapeTuringMachineTests, DivisionMultipleTapesExactLargeValues) {
     EXPECT_EQ(machine.getTape(3).readAll(), "1111_");   
 }
 
-// TEST_F(MultiTapeTuringMachineTests, DivisionMultipleTapesEmptyInputReject) {
-//     MultiTapeTuringMachine machine(4, "q0", "q_accept", "q_reject");
-//
-//
-//     TransitionFunction tf = parseTransitionFile("../InputFiles/TransitionFiles/divisionMTM.json");
-//     machine.setTransitionFunction(tf);
-//
-//
-//     machine.getTape(0).setContent("_");
-//     machine.getTape(1).setContent("_");
-//     machine.getTape(2).setContent("_");
-//     machine.getTape(3).setContent("_");
-//
-//
-//     bool result = machine.run();
-//
-//
-//     EXPECT_FALSE(result);
-//
-//
-//     EXPECT_EQ(machine.getTape(2).readAll(), "___");
-//     EXPECT_EQ(machine.getTape(3).readAll(), "___");
-// }
-
 
 
