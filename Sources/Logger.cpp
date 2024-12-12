@@ -19,7 +19,7 @@ Logger::Logger(const std::string &logFileName, const std::string &jsonFileName, 
         throw std::runtime_error("Kan JSON-bestand niet openen: " + jsonFileName);
     }
 
-    phaseLogs = nlohmann::json::object(); // Initialiseer als lege JSON-structuur
+    phaseLogs = nlohmann::json::object();
 }
 
 
@@ -38,31 +38,31 @@ Logger::~Logger() {
 void Logger::log(Level level, const std::string &message) {
     if (level < minLogLevel) return;
 
-    // Stel loggegevens samen
+
     std::string levelStr = getLevelString(level);
     std::string logMessage = "[" + currentPhase + "] [" + levelStr + "] " + message;
     currentPhase = getPhaseNumber(currentPhase);
 
 
-    // Schrijf naar tekstbestand
+
     if (fileStream.is_open()) {
         fileStream << logMessage << std::endl;
     }
 
-    // Voeg log toe aan fase in de JSON-data
+
     nlohmann::json logEntry;
     logEntry["level"] = levelStr;
     logEntry["message"] = message;
     phaseLogs[currentPhase].push_back(logEntry);
 
-    // Schrijf naar console als ingeschakeld
+
     if (logToConsole) {
         std::cout << logMessage << std::endl;
     }
 }
 
 void Logger::finalizeJson() {
-    // Schrijf de volledige fase-logs naar het JSON-bestand
+
     if (jsonFileStream.is_open()) {
         jsonFileStream << phaseLogs.dump(4) << std::endl;
     }
