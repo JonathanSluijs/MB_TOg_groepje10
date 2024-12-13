@@ -13,8 +13,10 @@
 #include "Parsers//EarleyParser.h"
 #include "Headers/CFG.h"
 #include "Headers/ExpressionCalculator.h"
+#include "Headers/Logger.h"
 
 int main(int argc, char *argv[]) {
+
     /**
      * Application
      */

@@ -9,6 +9,7 @@
 #include <utility>
 #include <vector>
 #include <queue>
+#include <stack>
 #include "MultiTapeTuringMachine.h"
 
 /**
@@ -31,6 +32,11 @@ private:
      * The postfix notation of the expression
      */
     std::queue<std::string> postfix;
+
+    /**
+     * The steps in the calculation
+     */
+    std::vector<std::string> steps;
 public:
     /**
      * Constructor
@@ -44,8 +50,17 @@ public:
      * @pre the expression does not contain division by zero
      * @return the result of the expression
      */
-    double calculate();
+    int calculate();
 
+    /**
+     * Writes all steps of the calculation to a file
+     */
+    void writeStepsToFile(const std::string &filename);
+
+    /**
+     * Writes all steps of the calculation to a string
+     */
+    void writeStepsToString(std::string &str);
 
 
 private:
@@ -60,6 +75,11 @@ private:
      * Convert the expression to infix notation using shunting yard algorithm
      */
     void toPostfix();
+
+    /**
+     * Convert the expression to infix notation
+     */
+    void toInfix(std::stack<int> calcStack);
 
     /**
      * Get the precedence of an operator

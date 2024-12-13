@@ -83,6 +83,7 @@ void ArithmeticDialog::submitExpression() {
         ExpressionCalculator calc(expression_input->text().toStdString());
         // Display the result
         QMessageBox::information(this, "Result", QString::number(calc.calculate()));
+        calc.writeStepsToFile("../OutputFiles/calculation.txt");
     } else {
         notValidated();
     }

@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <stdexcept>
 #include <cmath>
-#include <stack>
 
 std::string ExpressionCalculator::intToOnes(int a) {
     std::string result;
@@ -65,17 +64,20 @@ void ExpressionCalculator::toPostfix() {
  * Calculate the result of the expression
  * @return the result of the expression
  */
-double ExpressionCalculator::calculate() {
+int ExpressionCalculator::calculate() {
     // Initialize the MTMs if not initialized
     if (!MTMInitialized) {
         initializeMTM();
     }
 
     // Stack used to calculate expression
-    std::stack<double> stack;
+    std::stack<int> stack;
 
     // Convert infix expression to postfix
     toPostfix();
+
+    // Convert postfix expression to infix, to show precedence in steps
+    toInfix(stack);
 
     // Loop over characters of the postfix expression
     while (!postfix.empty()) {
@@ -86,16 +88,19 @@ double ExpressionCalculator::calculate() {
         } else {
             // The character is an operator
             // Pop two operands from the stack
-            double operand2 = stack.top();
+            int operand2 = stack.top();
             stack.pop();
-            double operand1 = stack.top();
+            int operand1 = stack.top();
             stack.pop();
 
             // Perform the operation and push the result to the stack
             stack.push(operations[postfix.front()[0]](operand1, operand2));
             postfix.pop();
+            // Convert postfix expression to infix, to show steps
+            toInfix(stack);
         }
     }
+    steps.push_back(std::to_string(stack.top()));
     return stack.top();
 }
 
@@ -252,6 +257,59 @@ ExpressionCalculator::ExpressionCalculator(std::string expression) : expression(
                       }
                       return result;
                   }}};
+}
+
+void ExpressionCalculator::toInfix(std::stack<int> calcStack) {
+    std::queue<std::string> postfixCopy = postfix;
+
+    if (postfix.empty()) {
+        return;
+    }
+
+    // Stack used to calculate expression
+    std::stack<std::string> stack;
+
+    while (!calcStack.empty()) {
+        stack.push(std::to_string(calcStack.top()));
+        calcStack.pop();
+    }
+
+    // Loop over characters of the postfix expression
+    while (!postfix.empty()) {
+        // If the character is a digit, push it to the stack
+        if (isdigit(postfix.front()[0])) {
+            stack.push(postfix.front());
+            postfix.pop();
+        } else {
+            // The character is an operator
+            // Pop two operands from the stack
+            std::string operand2 = stack.top();
+            stack.pop();
+            std::string operand1 = stack.top();
+            stack.pop();
+
+            // Perform the operation and push the result to the stack
+            stack.push("(" + operand1 + postfix.front() + operand2 + ")");
+            postfix.pop();
+        }
+    }
+    expression = stack.top();
+    steps.push_back(expression);
+    postfix = postfixCopy;
+}
+
+void ExpressionCalculator::writeStepsToFile(const std::string &filename) {
+    std::ofstream fileStream(filename);
+    for (const std::string &step: steps) {
+        fileStream << step << std::endl;
+    }
+    fileStream.close();
+}
+
+void ExpressionCalculator::writeStepsToString(std::string &str) {
+    for (const std::string &step: steps) {
+        str += step + "\n";
+    }
 }
 
 
