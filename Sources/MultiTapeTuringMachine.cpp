@@ -1,5 +1,7 @@
 #include "../Headers/MultiTapeTuringMachine.h"
 
+
+
 MultiTapeTuringMachine::MultiTapeTuringMachine(int tapesCount, const std::string &startState, const std::string &accept,
                                                const std::string &reject) : numTapes(tapesCount), tapes(tapesCount),
                                                                             startState(startState),
@@ -52,7 +54,23 @@ bool MultiTapeTuringMachine::run() {
     logger.setPhase("Finalization");
     logger.log(Logger::INFO, "Final State: " + currentState);
 
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Wacht kort om I/O af te ronden
+
+
+    logger.finalizeJson();
+
+    toHTML("../OutputFiles/MTMOutput.json", "../OutputFiles/MTMOutput.html");
+
+
+
     return currentState == acceptState;
+}
+
+void MultiTapeTuringMachine::finalizeHtml() {
+    std::string inputFileName = "../OutputFiles/MTMOutput.json";
+    std::string outputFileName = "../OutputFiles/MTMOutput.html";
+    toHTML(inputFileName, outputFileName);
 }
 
 void MultiTapeTuringMachine::printTapes() const {
@@ -75,3 +93,64 @@ void MultiTapeTuringMachine::reset() {
         tape.setContent("_");
     }
 }
+
+void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std::string& outputFileName) {
+    std::ifstream inputFile(inputFileName);
+    if (!inputFile.is_open()) {
+        throw std::runtime_error("Cannot open input file: " + inputFileName);
+    }
+
+    json inputJson;
+    try {
+        inputFile >> inputJson;
+    } catch (const json::parse_error& e) {
+        throw std::runtime_error("JSON parsing error: " + std::string(e.what()));
+    }
+    inputFile.close();
+
+
+    // Open the HTML output file
+    std::ofstream outputFile(outputFileName);
+    if (!outputFile.is_open()) {
+        throw std::runtime_error("Cannot open output file: " + outputFileName);
+    }
+
+    // Write HTML header
+    outputFile << "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<title>Turing Machine Log</title>\n</head>\n<body>\n";
+
+    // Write Initialization phase if it exists
+    if (inputJson.contains("Initialization")) {
+        outputFile << "<h2>Initialization</h2>\n<ul>\n";
+        for (const auto& logEntry : inputJson["Initialization"]) {
+            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] " << logEntry["message"].get<std::string>() << "</li>\n";
+        }
+        outputFile << "</ul>\n";
+    }
+
+    // Write numbered phases in order
+    for (auto it = inputJson.begin(); it != inputJson.end(); ++it) {
+        if (it.key() == "Initialization" || it.key() == "Finalization") {
+            continue;
+        }
+
+        outputFile << "<h2>Phase " << it.key() << "</h2>\n<ul>\n";
+        for (const auto& logEntry : it.value()) {
+            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] " << logEntry["message"].get<std::string>() << "</li>\n";
+        }
+        outputFile << "</ul>\n";
+    }
+
+    // Write Finalization phase if it exists
+    if (inputJson.contains("Finalization")) {
+        outputFile << "<h2>Finalization</h2>\n<ul>\n";
+        for (const auto& logEntry : inputJson["Finalization"]) {
+            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] " << logEntry["message"].get<std::string>() << "</li>\n";
+        }
+        outputFile << "</ul>\n";
+    }
+
+    // Write HTML footer
+    outputFile << "</body>\n</html>\n";
+    outputFile.close();
+}
+

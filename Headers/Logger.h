@@ -27,10 +27,14 @@ public:
     void log(Level level, const std::string &message);
     void setLogLevel(Level level);
     void setPhase(const std::string &phaseName);
-
-private:
+    void closeJson();
     std::ofstream fileStream;
     std::ofstream jsonFileStream;
+    void finalizeJson();
+
+
+private:
+    std::mutex logMutex;
     Level minLogLevel = INFO;
     bool logToConsole;
     std::string currentPhase = "GENERAL";
@@ -38,9 +42,9 @@ private:
     nlohmann::json phaseLogs;
 
     std::string getLevelString(Level level) const;
-    void finalizeJson();
     std::string getPhaseNumber(const std::string &phaseName);
     void writePhaseLogsToFile(const std::string &filename);
+
 
 
 };

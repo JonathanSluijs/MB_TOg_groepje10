@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <thread>
 #include <deque>
 #include <map>
 #include <tuple>
@@ -56,6 +58,8 @@ private:
 
  /// Transition function defining the state transitions for the machine.
  TransitionFunction transitionFunction;
+
+ void toHTML(const std::string& inputFileName, const std::string& outputFileName);
 
 public:
  /**
@@ -111,6 +115,9 @@ public:
  Tape& getTape(int index);
 
  void reset();
+
+  void finalizeHtml();
+
 };
 
 #endif //MB_TOG_GROEPJE10_MULTITAPETURINGMACHINE_H

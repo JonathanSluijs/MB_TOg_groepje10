@@ -28,12 +28,18 @@ Logger::~Logger() {
     }
 
     if (jsonFileStream.is_open()) {
-        finalizeJson();
+        jsonFileStream.close();
+    }
+}
+
+void Logger::closeJson() {
+    if (jsonFileStream.is_open()) {
         jsonFileStream.close();
     }
 }
 
 void Logger::log(Level level, const std::string &message) {
+    std::lock_guard<std::mutex> lock(logMutex);
     if (level < minLogLevel) return;
 
     std::string levelStr = getLevelString(level);
