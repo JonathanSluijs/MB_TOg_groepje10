@@ -6,6 +6,7 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#include <mutex>
 #include <iostream>
 #include <fstream>
 #include <string>
