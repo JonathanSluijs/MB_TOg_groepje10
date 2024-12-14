@@ -32,7 +32,10 @@
 /cmake-build-debug/
 .idea/
 .idea/workspace.xml
-/OutputFiles/
+
 
 #user specific files
 *.a
+
+# output files
+/OutputFiles/
