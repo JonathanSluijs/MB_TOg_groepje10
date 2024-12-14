@@ -55,7 +55,7 @@ bool MultiTapeTuringMachine::run() {
     logger.log(Logger::INFO, "Final State: " + currentState);
 
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Wacht kort om I/O af te ronden
+    std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Wacht kort om I/O af te ronden (Anders had ik bugs)
 
 
     logger.finalizeJson();
@@ -108,48 +108,115 @@ void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std:
     }
     inputFile.close();
 
-    // Open the HTML output file
     std::ofstream outputFile(outputFileName);
     if (!outputFile.is_open()) {
         throw std::runtime_error("Cannot open output file: " + outputFileName);
     }
 
-    // Write HTML header
-    outputFile << "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<title>Turing Machine Log</title>\n</head>\n<body>\n";
 
-    // Write Initialization phase if it exists
+    outputFile << R"(<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turing Machine Log</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+    h2 {
+        color: #444;
+        background-color: #e7e7e7;
+        padding: 10px;
+        border-left: 4px solid #4CAF50;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin: 5px 0;
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        table-layout: fixed; /* Zorg ervoor dat kolommen gelijk verdeeld worden */
+    }
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+    th, td {
+        text-align: center;
+        padding: 8px;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+        width: 200px; /* Standaard breedte instellen voor kolommen */
+    }
+</style>
+</head>
+<body>
+)";
+
+
     if (inputJson.contains("Initialization")) {
         outputFile << "<h2>Initialization</h2>\n<ul>\n";
         for (const auto& logEntry : inputJson["Initialization"]) {
-            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] " << logEntry["message"].get<std::string>() << "</li>\n";
+            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] "
+                       << logEntry["message"].get<std::string>() << "</li>\n";
         }
         outputFile << "</ul>\n";
     }
 
-    // Process numbered phases in order
+
     int phaseIndex = 0;
     while (inputJson.contains(std::to_string(phaseIndex))) {
         const std::string phaseKey = std::to_string(phaseIndex);
-        outputFile << "<h2>" << "Phase: " << phaseKey << "</h2>\n<ul>\n";
+        outputFile << "<h2>Phase: " << phaseKey << "</h2>\n<ul>\n";
 
+        int tapeIndex = 0;
         for (const auto& logEntry : inputJson[phaseKey]) {
-            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] " << logEntry["message"].get<std::string>() << "</li>\n";
+            std::string level = logEntry["level"].get<std::string>();
+            std::string message = logEntry["message"].get<std::string>();
+
+            if (level == "RUN" && message.find("Tape Content") != std::string::npos) {
+                std::string tapeContent = message.substr(message.find(":") + 2);
+                outputFile << "<table>\n<tr><th>Tape " << std::to_string(tapeIndex) << "</th>";
+                for (char ch : tapeContent) {
+                    outputFile << "<td>" << ch << "</td>";
+                }
+                outputFile << "</tr>\n</table>\n";
+            } else {
+                outputFile << "<li>[" << level << "] " << message << "</li>\n";
+            }
+            tapeIndex++;
         }
         outputFile << "</ul>\n";
         phaseIndex++;
     }
 
-    // Write Finalization phase if it exists
+
     if (inputJson.contains("Finalization")) {
         outputFile << "<h2>Finalization</h2>\n<ul>\n";
         for (const auto& logEntry : inputJson["Finalization"]) {
-            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] " << logEntry["message"].get<std::string>() << "</li>\n";
+            outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] "
+                       << logEntry["message"].get<std::string>() << "</li>\n";
         }
         outputFile << "</ul>\n";
     }
 
-    // Write HTML footer
+
     outputFile << "</body>\n</html>\n";
     outputFile.close();
 }
-
