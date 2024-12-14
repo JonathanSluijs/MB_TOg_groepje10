@@ -216,7 +216,6 @@ void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std:
         outputFile << "</ul>\n";
     }
 
-
     outputFile << "</body>\n</html>\n";
     outputFile.close();
 }
