@@ -108,7 +108,6 @@ void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std:
     }
     inputFile.close();
 
-
     // Open the HTML output file
     std::ofstream outputFile(outputFileName);
     if (!outputFile.is_open()) {
@@ -127,17 +126,17 @@ void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std:
         outputFile << "</ul>\n";
     }
 
-    // Write numbered phases in order
-    for (auto it = inputJson.begin(); it != inputJson.end(); ++it) {
-        if (it.key() == "Initialization" || it.key() == "Finalization") {
-            continue;
-        }
+    // Process numbered phases in order
+    int phaseIndex = 0;
+    while (inputJson.contains(std::to_string(phaseIndex))) {
+        const std::string phaseKey = std::to_string(phaseIndex);
+        outputFile << "<h2>" << "Phase: " << phaseKey << "</h2>\n<ul>\n";
 
-        outputFile << "<h2>Phase " << it.key() << "</h2>\n<ul>\n";
-        for (const auto& logEntry : it.value()) {
+        for (const auto& logEntry : inputJson[phaseKey]) {
             outputFile << "<li>[" << logEntry["level"].get<std::string>() << "] " << logEntry["message"].get<std::string>() << "</li>\n";
         }
         outputFile << "</ul>\n";
+        phaseIndex++;
     }
 
     // Write Finalization phase if it exists
