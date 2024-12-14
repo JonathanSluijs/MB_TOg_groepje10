@@ -30,6 +30,7 @@
 *.out
 *.app
 /cmake-build-debug/
+/cmake-build-release/
 .idea/
 .idea/workspace.xml
 
