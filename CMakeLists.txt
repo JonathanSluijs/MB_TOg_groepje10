@@ -6,6 +6,10 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+if(APPLE)
+    set(CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt@5")
+endif()
+
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 include_directories(./libs/gtest/include)

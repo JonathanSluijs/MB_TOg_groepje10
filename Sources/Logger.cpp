@@ -9,19 +9,18 @@
 
 Logger::Logger(const std::string &logFileName, const std::string &jsonFileName, bool logToConsole)
     : logToConsole(logToConsole) {
-    fileStream.open(logFileName, std::ios::out | std::ios::app);
+    fileStream.open(logFileName, std::ios::out | std::ios::trunc);
     if (!fileStream.is_open()) {
         throw std::runtime_error("Kan logbestand niet openen: " + logFileName);
     }
 
-    jsonFileStream.open(jsonFileName, std::ios::out | std::ios::app);
+    jsonFileStream.open(jsonFileName, std::ios::out | std::ios::trunc);
     if (!jsonFileStream.is_open()) {
         throw std::runtime_error("Kan JSON-bestand niet openen: " + jsonFileName);
     }
 
     phaseLogs = nlohmann::json::object();
 }
-
 
 Logger::~Logger() {
     if (fileStream.is_open()) {
@@ -34,27 +33,21 @@ Logger::~Logger() {
     }
 }
 
-
 void Logger::log(Level level, const std::string &message) {
     if (level < minLogLevel) return;
 
-
     std::string levelStr = getLevelString(level);
-    std::string logMessage = "[" + currentPhase + "] [" + levelStr + "] " + message;
     currentPhase = getPhaseNumber(currentPhase);
-
-
+    std::string logMessage = "[" + currentPhase + "] [" + levelStr + "] " + message;
 
     if (fileStream.is_open()) {
         fileStream << logMessage << std::endl;
     }
 
-
     nlohmann::json logEntry;
     logEntry["level"] = levelStr;
     logEntry["message"] = message;
     phaseLogs[currentPhase].push_back(logEntry);
-
 
     if (logToConsole) {
         std::cout << logMessage << std::endl;
@@ -62,7 +55,6 @@ void Logger::log(Level level, const std::string &message) {
 }
 
 void Logger::finalizeJson() {
-
     if (jsonFileStream.is_open()) {
         jsonFileStream << phaseLogs.dump(4) << std::endl;
     }
@@ -76,7 +68,6 @@ std::string Logger::getPhaseNumber(const std::string& phaseName) {
     phaseNumber.erase(std::remove_if(phaseNumber.begin(), phaseNumber.end(), [](char c) { return !std::isdigit(c); }), phaseNumber.end());
     return phaseNumber;
 }
-
 
 void Logger::setLogLevel(Level level) {
     minLogLevel = level;

@@ -40,6 +40,8 @@ private:
     std::string getLevelString(Level level) const;
     void finalizeJson();
     std::string getPhaseNumber(const std::string &phaseName);
+    void writePhaseLogsToFile(const std::string &filename);
+
 
 };
 

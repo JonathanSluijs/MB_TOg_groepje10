@@ -1,7 +1,3 @@
-//
-// Created by Jonat on 01/11/2024.
-//
-
 #include "../Headers/MultiTapeTuringMachine.h"
 
 MultiTapeTuringMachine::MultiTapeTuringMachine(int tapesCount, const std::string &startState, const std::string &accept,
@@ -15,8 +11,6 @@ void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction &tf)
     transitionFunction = tf;
 }
 
-
-
 bool MultiTapeTuringMachine::run() {
     Logger logger("../OutputFiles/MTMOutput.txt", "../OutputFiles/MTMOutput.json", true);
     logger.setPhase("Initialization");
@@ -25,7 +19,7 @@ bool MultiTapeTuringMachine::run() {
     int counter = 0;
 
     while (currentState != acceptState && currentState != rejectState) {
-        logger.setPhase("Phase " + std::to_string(counter));
+        logger.setPhase(std::to_string(counter));
         logger.log(Logger::DEBUG, "Current State: " + currentState);
 
         std::vector<char> readSymbols;
@@ -60,10 +54,6 @@ bool MultiTapeTuringMachine::run() {
 
     return currentState == acceptState;
 }
-
-
-
-
 
 void MultiTapeTuringMachine::printTapes() const {
     for (const auto &tape: tapes) {
