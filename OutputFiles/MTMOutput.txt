@@ -1,140 +1,62 @@
 [Initialization] [INFO] Starting Turing Machine...
 [0] [DEBUG] Current State: q0
-[0] [RUN] Tape Content: 1111
-[0] [RUN] Tape Content: 11111
+[0] [RUN] Tape Content: 11111+11111
 [0] [RUN] Tape Content: _
-[0] [DEBUG] Read Symbols: 11_
-[0] [DEBUG] Transition to state: q1
-[1] [DEBUG] Current State: q1
-[1] [RUN] Tape Content: 1111
-[1] [RUN] Tape Content: X1111
+[0] [DEBUG] Read Symbols: 1_
+[0] [DEBUG] Transition to state: q0
+[1] [DEBUG] Current State: q0
+[1] [RUN] Tape Content: _1111+11111
 [1] [RUN] Tape Content: 1_
-[1] [DEBUG] Read Symbols: 11_
-[1] [DEBUG] Transition to state: q1
-[2] [DEBUG] Current State: q1
-[2] [RUN] Tape Content: 1111
-[2] [RUN] Tape Content: X1111
+[1] [DEBUG] Read Symbols: 1_
+[1] [DEBUG] Transition to state: q0
+[2] [DEBUG] Current State: q0
+[2] [RUN] Tape Content: __111+11111
 [2] [RUN] Tape Content: 11_
-[2] [DEBUG] Read Symbols: 11_
-[2] [DEBUG] Transition to state: q1
-[3] [DEBUG] Current State: q1
-[3] [RUN] Tape Content: 1111
-[3] [RUN] Tape Content: X1111
+[2] [DEBUG] Read Symbols: 1_
+[2] [DEBUG] Transition to state: q0
+[3] [DEBUG] Current State: q0
+[3] [RUN] Tape Content: ___11+11111
 [3] [RUN] Tape Content: 111_
-[3] [DEBUG] Read Symbols: 11_
-[3] [DEBUG] Transition to state: q1
-[4] [DEBUG] Current State: q1
-[4] [RUN] Tape Content: 1111
-[4] [RUN] Tape Content: X1111
+[3] [DEBUG] Read Symbols: 1_
+[3] [DEBUG] Transition to state: q0
+[4] [DEBUG] Current State: q0
+[4] [RUN] Tape Content: ____1+11111
 [4] [RUN] Tape Content: 1111_
-[4] [DEBUG] Read Symbols: 11_
-[4] [DEBUG] Transition to state: q1
-[5] [DEBUG] Current State: q1
-[5] [RUN] Tape Content: 1111
-[5] [RUN] Tape Content: X1111_
+[4] [DEBUG] Read Symbols: 1_
+[4] [DEBUG] Transition to state: q0
+[5] [DEBUG] Current State: q0
+[5] [RUN] Tape Content: _____+11111
 [5] [RUN] Tape Content: 11111_
-[5] [DEBUG] Read Symbols: 1__
-[5] [DEBUG] Transition to state: q2
-[6] [DEBUG] Current State: q2
-[6] [RUN] Tape Content: 1111
-[6] [RUN] Tape Content: X1111_
+[5] [DEBUG] Read Symbols: +_
+[5] [DEBUG] Transition to state: q1
+[6] [DEBUG] Current State: q1
+[6] [RUN] Tape Content: _____+11111
 [6] [RUN] Tape Content: 11111_
-[6] [DEBUG] Read Symbols: 11_
-[6] [DEBUG] Transition to state: q2
-[7] [DEBUG] Current State: q2
-[7] [RUN] Tape Content: 1111
-[7] [RUN] Tape Content: X1111_
+[6] [DEBUG] Read Symbols: 1_
+[6] [DEBUG] Transition to state: q1
+[7] [DEBUG] Current State: q1
+[7] [RUN] Tape Content: _____+_1111
 [7] [RUN] Tape Content: 111111_
-[7] [DEBUG] Read Symbols: 11_
-[7] [DEBUG] Transition to state: q2
-[8] [DEBUG] Current State: q2
-[8] [RUN] Tape Content: 1111
-[8] [RUN] Tape Content: X1111_
+[7] [DEBUG] Read Symbols: 1_
+[7] [DEBUG] Transition to state: q1
+[8] [DEBUG] Current State: q1
+[8] [RUN] Tape Content: _____+__111
 [8] [RUN] Tape Content: 1111111_
-[8] [DEBUG] Read Symbols: 11_
-[8] [DEBUG] Transition to state: q2
-[9] [DEBUG] Current State: q2
-[9] [RUN] Tape Content: 1111
-[9] [RUN] Tape Content: X1111_
+[8] [DEBUG] Read Symbols: 1_
+[8] [DEBUG] Transition to state: q1
+[9] [DEBUG] Current State: q1
+[9] [RUN] Tape Content: _____+___11
 [9] [RUN] Tape Content: 11111111_
-[9] [DEBUG] Read Symbols: 11_
-[9] [DEBUG] Transition to state: q2
-[10] [DEBUG] Current State: q2
-[10] [RUN] Tape Content: 1111
-[10] [RUN] Tape Content: X1111_
+[9] [DEBUG] Read Symbols: 1_
+[9] [DEBUG] Transition to state: q1
+[10] [DEBUG] Current State: q1
+[10] [RUN] Tape Content: _____+____1
 [10] [RUN] Tape Content: 111111111_
-[10] [DEBUG] Read Symbols: 1X_
-[10] [DEBUG] Transition to state: q0
-[11] [DEBUG] Current State: q0
-[11] [RUN] Tape Content: 1111
-[11] [RUN] Tape Content: X1111_
+[10] [DEBUG] Read Symbols: 1_
+[10] [DEBUG] Transition to state: q1
+[11] [DEBUG] Current State: q1
+[11] [RUN] Tape Content: _____+______
 [11] [RUN] Tape Content: 1111111111_
-[11] [DEBUG] Read Symbols: 1X_
-[11] [DEBUG] Transition to state: q1
-[12] [DEBUG] Current State: q1
-[12] [RUN] Tape Content: 1111
-[12] [RUN] Tape Content: X1111_
-[12] [RUN] Tape Content: 11111111111_
-[12] [DEBUG] Read Symbols: 11_
-[12] [DEBUG] Transition to state: q1
-[13] [DEBUG] Current State: q1
-[13] [RUN] Tape Content: 1111
-[13] [RUN] Tape Content: X1111_
-[13] [RUN] Tape Content: 111111111111_
-[13] [DEBUG] Read Symbols: 11_
-[13] [DEBUG] Transition to state: q1
-[14] [DEBUG] Current State: q1
-[14] [RUN] Tape Content: 1111
-[14] [RUN] Tape Content: X1111_
-[14] [RUN] Tape Content: 1111111111111_
-[14] [DEBUG] Read Symbols: 11_
-[14] [DEBUG] Transition to state: q1
-[15] [DEBUG] Current State: q1
-[15] [RUN] Tape Content: 1111
-[15] [RUN] Tape Content: X1111_
-[15] [RUN] Tape Content: 11111111111111_
-[15] [DEBUG] Read Symbols: 11_
-[15] [DEBUG] Transition to state: q1
-[16] [DEBUG] Current State: q1
-[16] [RUN] Tape Content: 1111
-[16] [RUN] Tape Content: X1111_
-[16] [RUN] Tape Content: 111111111111111_
-[16] [DEBUG] Read Symbols: 1__
-[16] [DEBUG] Transition to state: q2
-[17] [DEBUG] Current State: q2
-[17] [RUN] Tape Content: 1111
-[17] [RUN] Tape Content: X1111_
-[17] [RUN] Tape Content: 111111111111111_
-[17] [DEBUG] Read Symbols: 11_
-[17] [DEBUG] Transition to state: q2
-[18] [DEBUG] Current State: q2
-[18] [RUN] Tape Content: 1111
-[18] [RUN] Tape Content: X1111_
-[18] [RUN] Tape Content: 1111111111111111_
-[18] [DEBUG] Read Symbols: 11_
-[18] [DEBUG] Transition to state: q2
-[19] [DEBUG] Current State: q2
-[19] [RUN] Tape Content: 1111
-[19] [RUN] Tape Content: X1111_
-[19] [RUN] Tape Content: 11111111111111111_
-[19] [DEBUG] Read Symbols: 11_
-[19] [DEBUG] Transition to state: q2
-[20] [DEBUG] Current State: q2
-[20] [RUN] Tape Content: 1111
-[20] [RUN] Tape Content: X1111_
-[20] [RUN] Tape Content: 111111111111111111_
-[20] [DEBUG] Read Symbols: 11_
-[20] [DEBUG] Transition to state: q2
-[21] [DEBUG] Current State: q2
-[21] [RUN] Tape Content: 1111
-[21] [RUN] Tape Content: X1111_
-[21] [RUN] Tape Content: 1111111111111111111_
-[21] [DEBUG] Read Symbols: 1X_
-[21] [DEBUG] Transition to state: q0
-[22] [DEBUG] Current State: q0
-[22] [RUN] Tape Content: 1111_
-[22] [RUN] Tape Content: X1111_
-[22] [RUN] Tape Content: 11111111111111111111_
-[22] [DEBUG] Read Symbols: _X_
-[22] [DEBUG] Transition to state: q_accept
+[11] [DEBUG] Read Symbols: __
+[11] [DEBUG] Transition to state: q_accept
 [Finalization] [INFO] Final State: q_accept
