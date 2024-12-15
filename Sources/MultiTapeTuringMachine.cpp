@@ -150,7 +150,6 @@ void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std:
         width: 100%;
         border-collapse: collapse;
         margin: 10px 0;
-        table-layout: fixed; /* Zorg ervoor dat kolommen gelijk verdeeld worden */
     }
     table, th, td {
         border: 1px solid #ddd;
