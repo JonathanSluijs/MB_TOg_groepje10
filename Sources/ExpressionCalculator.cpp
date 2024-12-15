@@ -186,7 +186,7 @@ int ExpressionCalculator::onesToInt(const std::string &ones) {
 }
 
 int ExpressionCalculator::minus(int a, int b) {
-    plusMTM.reset();
+    minusMTM.reset();
     minusMTM.getTape(0).setContent(intToOnes(a) + "-" + intToOnes(b));
     minusMTM.getTape(1).setContent("_");
     bool succes = minusMTM.run();
@@ -197,7 +197,7 @@ int ExpressionCalculator::minus(int a, int b) {
 }
 
 int ExpressionCalculator::multiply(int a, int b) {
-    plusMTM.reset();
+    multiplyMTM.reset();
     multiplyMTM.getTape(0).setContent(intToOnes(a));
     multiplyMTM.getTape(1).setContent(intToOnes(b));
     multiplyMTM.getTape(2).setContent("_");
@@ -206,7 +206,7 @@ int ExpressionCalculator::multiply(int a, int b) {
 }
 
 int ExpressionCalculator::divide(int a, int b) {
-    plusMTM.reset();
+    divideMTM.reset();
     divideMTM.getTape(0).setContent(intToOnes(a));
     divideMTM.getTape(1).setContent(intToOnes(b));
     bool succes = divideMTM.run();
@@ -217,7 +217,7 @@ int ExpressionCalculator::divide(int a, int b) {
 }
 
 int ExpressionCalculator::power(int a, int b) {
-    plusMTM.reset();
+    powerMTM.reset();
     powerMTM.getTape(0).setContent(intToOnes(a));
     powerMTM.getTape(1).setContent(intToOnes(b));
     powerMTM.getTape(2).setContent("_");
