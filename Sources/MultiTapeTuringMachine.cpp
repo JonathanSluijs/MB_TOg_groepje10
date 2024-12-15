@@ -153,6 +153,7 @@ void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std:
     }
     table, th, td {
         border: 1px solid #ddd;
+        table-layout: fixed; /* Zorg ervoor dat kolommen gelijk verdeeld worden */
     }
     th, td {
         text-align: center;
