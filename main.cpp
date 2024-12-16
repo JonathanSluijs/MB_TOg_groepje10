@@ -7,13 +7,8 @@
  * @date 2024-11-17
  **********************************************************************************************/
 
-#include "Headers/MultiTapeTuringMachine.h"
 #include <QApplication>
 #include "Interface/MainWindow.h"
-#include "Parsers//EarleyParser.h"
-#include "Headers/CFG.h"
-#include "Headers/ExpressionCalculator.h"
-#include "Headers/Logger.h"
 
 int main(int argc, char *argv[]) {
 

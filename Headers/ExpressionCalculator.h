@@ -50,7 +50,7 @@ public:
      * @pre the expression does not contain division by zero
      * @return the result of the expression
      */
-    int calculate();
+    void calculate();
 
     /**
      * Writes all steps of the calculation to a file
@@ -60,7 +60,7 @@ public:
     /**
      * Writes all steps of the calculation to a string
      */
-    void writeStepsToString(std::string &str);
+    std::string writeStepsToString() const;
 
 
 private:

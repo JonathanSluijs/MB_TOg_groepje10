@@ -12,6 +12,8 @@
 #include "../Parsers//EarleyParser.h"
 #include <chrono>
 #include <iostream>
+
+#include "OutputViewer.h"
 #include "../Headers/ExpressionCalculator.h"
 
 
@@ -83,42 +85,45 @@ void TuringSimulationDialog::notValidated(){
     QMessageBox::warning(this, "Invalid Expression", "The expression you entered is not valid. Please try again.");
 }
 
-//TODO: Implement the submitExpression function
+
 void TuringSimulationDialog::submitExpression() {
 
     // If there is no input
+    //-------------------------
     if(expression_input->text().isEmpty()) {
         QMessageBox::warning(this, "Empty Expression", "Please enter an expression.");
         return;
     }
 
+    bool runtTM = false;
     // Check which parsing algorithm is selected
+    //-------------------------
     if(cyk_algorithm->isChecked()){
-        auto start = std::chrono::high_resolution_clock::now();
         if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cnf)) {
-            // TODO: Do something
-            auto end = std::chrono::high_resolution_clock::now();
-            auto duur = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-            std::cout << "CYK took: " << duur.count() << " milliseconds" << std::endl;
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
-        }else {
+            runtTM= true;
+        }else
             notValidated();
-        }
     }else if(earley_algorithm->isChecked()){
-        // auto start = std::chrono::high_resolution_clock::now();
-
         if(parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
-            // auto end = std::chrono::high_resolution_clock::now();
-            // auto duur = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-            // std::cout << "Early took: " << duur.count() << " milliseconds" << std::endl;
             QMessageBox::information(this, "Valid expression", "Expression is valid!");
-            // TODO: Do something
-            // Calculate the expression
-            ExpressionCalculator calc(expression_input->text().toStdString());
-            // Display the result
-            QMessageBox::information(this, "Result", QString::number(calc.calculate()));
-        } else {
+            runtTM = true;
+        } else
             notValidated();
-        }
+    }
+
+    // If the expression is valid, run the Turing machine
+    // Save the result to a file and open the OutputViewer
+    //---------------------------------------------------
+    if (runtTM) {
+        // Calculate the expression with TM
+        //---------------------------
+        ExpressionCalculator calc(expression_input->text().toStdString());
+        calc.calculate();
+
+        // Open the OutputViewer
+        //----------------------------
+        OutputViewer viewer("../OutputFiles", {"*.html", "*.txt"}, this);
+        viewer.exec();
     }
 }

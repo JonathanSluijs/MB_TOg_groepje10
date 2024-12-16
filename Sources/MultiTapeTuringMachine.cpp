@@ -14,7 +14,7 @@ void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction &tf)
 }
 
 bool MultiTapeTuringMachine::run() {
-    Logger logger("../OutputFiles/MTMOutput.txt", "../OutputFiles/MTMOutput.json", true);
+    Logger logger("../OutputFiles/MTMOutput.txt", "../OutputFiles/MTMOutput.json", false);
     logger.setPhase("Initialization");
     logger.log(Logger::INFO, "Starting Turing Machine...");
 

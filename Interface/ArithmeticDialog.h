@@ -73,7 +73,7 @@ private:
 
     /**
     * @brief Function that limits the characters
-    * that can be entered in the expression input field.
+    * \n that can be entered in the expression input field.
     */
     void limitCharacters() const;
 

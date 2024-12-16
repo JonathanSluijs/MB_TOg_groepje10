@@ -10,6 +10,7 @@
 #include "../Parsers//CYKParser.h"
 #include "../Headers/CFG.h"
 #include "../Headers/ExpressionCalculator.h"
+#include <QTextEdit>
 
 ArithmeticDialog::ArithmeticDialog(const std::string &grammar_file, QWidget *parent) {
     setMinimumSize(QSize(720, 720));
@@ -68,10 +69,10 @@ void ArithmeticDialog::limitCharacters() const {
     }
 }
 
-// TODO: Implement the submitExpression function
 void ArithmeticDialog::submitExpression() {
 
     // If there is no input
+    //-------------------------
     if (expression_input->text().isEmpty()) {
         QMessageBox::warning(this, "Empty Expression", "Please enter an expression.");
         return;
@@ -79,11 +80,30 @@ void ArithmeticDialog::submitExpression() {
 
     if (parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
         QMessageBox::information(this, "Valid expression", "Expression is valid!");
+
         // Calculate the expression
+        //-------------------------
         ExpressionCalculator calc(expression_input->text().toStdString());
-        // Display the result
-        QMessageBox::information(this, "Result", QString::number(calc.calculate()));
-        calc.writeStepsToFile("../OutputFiles/calculation.txt");
+        calc.calculate();
+
+        //Display the result in a message box
+        //-------------------------
+        QDialog stepsDialog(this);
+        stepsDialog.setWindowTitle("Calculation Steps");
+        QVBoxLayout* dialogLayout = new QVBoxLayout(&stepsDialog);
+
+        // Add a text box to display the steps
+        QTextEdit* stepsDisplay = new QTextEdit(&stepsDialog);
+        stepsDisplay->setReadOnly(true);
+        stepsDisplay->setText(calc.writeStepsToString().c_str());
+        dialogLayout->addWidget(stepsDisplay);
+
+        // Add an OK button to close the dialog
+        QPushButton* okButton = new QPushButton("OK", &stepsDialog);
+        dialogLayout->addWidget(okButton);
+        connect(okButton, &QPushButton::clicked, &stepsDialog, &QDialog::accept);
+        stepsDialog.exec();
+
     } else {
         notValidated();
     }

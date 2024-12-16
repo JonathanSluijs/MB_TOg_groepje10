@@ -70,6 +70,7 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 ### Fase 2 : DEADLINE 17/12/2024
 - [x] Cain: Aanpassen expression calculator naar MTM gebruiken en naar logs schrijven
 - [ ] Cain: MTM to Logger
+- [x] Emir: Calculation steps + file interface in QT
 - [ ] Mathis: logs in HTML
 - [ ] Mathis: Link HTML file to GUI
 - [ ] Jonathan: MTM to one tape TM (Everyone: TESTSEN schrijven)

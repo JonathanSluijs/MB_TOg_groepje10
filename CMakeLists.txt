@@ -35,6 +35,7 @@ SET(SOURCES_GUI
         Interface/MainWindow.cpp
         Interface/TuringSimulationDialog.cpp
         Interface/ArithmeticDialog.cpp
+        Interface/OutputViewer.cpp
 )
 
 # Hoofdprogramma executable

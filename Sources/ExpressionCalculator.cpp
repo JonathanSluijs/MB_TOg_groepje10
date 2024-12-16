@@ -62,9 +62,8 @@ void ExpressionCalculator::toPostfix() {
 
 /**
  * Calculate the result of the expression
- * @return the result of the expression
  */
-int ExpressionCalculator::calculate() {
+void ExpressionCalculator::calculate() {
     // Initialize the MTMs if not initialized
     if (!MTMInitialized) {
         initializeMTM();
@@ -101,7 +100,6 @@ int ExpressionCalculator::calculate() {
         }
     }
     steps.push_back(std::to_string(stack.top()));
-    return stack.top();
 }
 
 /**
@@ -306,10 +304,15 @@ void ExpressionCalculator::writeStepsToFile(const std::string &filename) {
     fileStream.close();
 }
 
-void ExpressionCalculator::writeStepsToString(std::string &str) {
-    for (const std::string &step: steps) {
-        str += step + "\n";
+std::string ExpressionCalculator::writeStepsToString() const {
+    if (steps.empty()) {
+        return "No steps available";
     }
+    std::string str = steps[0] + "\n";
+    for (size_t i = 1; i < steps.size(); i++) {
+        str += "= " + steps[i] + "\n";
+    }
+    return std::move(str);
 }
 
 
