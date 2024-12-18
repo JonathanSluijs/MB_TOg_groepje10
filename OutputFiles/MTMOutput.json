@@ -1,0 +1,612 @@
+{
+    "0": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q0"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: _"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "1": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "10": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 1X_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q0"
+        }
+    ],
+    "11": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q0"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 1X_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "12": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "13": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "14": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "15": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "16": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 111111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 1__"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "17": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 111111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "18": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "19": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "2": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "20": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 111111111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "21": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111111111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 1X_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q0"
+        }
+    ],
+    "22": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q0"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111111111111111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: _X_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q_accept"
+        }
+    ],
+    "3": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "4": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q1"
+        }
+    ],
+    "5": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q1"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 1__"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "6": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "7": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "8": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "9": [
+        {
+            "level": "DEBUG",
+            "message": "Current State: q2"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 1111"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: X1111_"
+        },
+        {
+            "level": "RUN",
+            "message": "Tape Content: 11111111_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Read Symbols: 11_"
+        },
+        {
+            "level": "DEBUG",
+            "message": "Transition to state: q2"
+        }
+    ],
+    "Finalization": [
+        {
+            "level": "INFO",
+            "message": "Final State: q_accept"
+        }
+    ],
+    "Initialization": [
+        {
+            "level": "INFO",
+            "message": "Starting Turing Machine..."
+        }
+    ]
+}
