@@ -267,9 +267,14 @@ void ExpressionCalculator::toInfix(std::stack<int> calcStack) {
     // Stack used to calculate expression
     std::stack<std::string> stack;
 
-    while (!calcStack.empty()) {
-        stack.push(std::to_string(calcStack.top()));
+    std::vector<std::string> calcStackStrs(calcStack.size());
+    for (int i = calcStack.size() - 1; i >= 0; i--) {
+        calcStackStrs[i] = std::to_string(calcStack.top());
         calcStack.pop();
+    }
+
+    for (const std::string &s: calcStackStrs) {
+        stack.push(s);
     }
 
     // Loop over characters of the postfix expression
