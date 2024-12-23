@@ -40,6 +40,10 @@ void Tape::setContent(const std::string& content) {
     headPosition = 0;
 }
 
+int Tape::getHeadPosition() const {
+    return headPosition;
+}
+
 std::string Tape::getContent() const {
     std::string content;
     for (char c : tape) content += c;

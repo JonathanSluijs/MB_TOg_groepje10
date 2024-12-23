@@ -34,6 +34,8 @@ public:
      */
     Tape();
 
+    int getHeadPosition() const;
+
     /**
      * @brief Reads the symbol under the tape head.
      * @return The character at the current head position.

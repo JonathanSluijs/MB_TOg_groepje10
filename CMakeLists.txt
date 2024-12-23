@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.24)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.18)
 PROJECT(MB_TOg_groepje10)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -20,6 +20,7 @@ link_directories(./libs/gtest/lib) #TODO EVERYONE: GENERATE YOUR OWN LIBGTEST.A 
 
 # Hoofdproject bronnen
 SET(SOURCES
+        Sources/SingleTapeTransformer.cpp
         Sources/Tape.cpp
         Sources/MultiTapeTuringMachine.cpp
         Sources/TransitionFunction.cpp
@@ -36,6 +37,7 @@ SET(SOURCES_GUI
         Interface/TuringSimulationDialog.cpp
         Interface/ArithmeticDialog.cpp
         Interface/OutputViewer.cpp
+
 )
 
 # Hoofdprogramma executable
