@@ -71,25 +71,27 @@ public:
      */
     bool run();
 
-    /**
-     * @brief Converts the tapes into a single 2D array representation.
-     *
-     * Each tape is represented as two rows:
-     * - The first row contains the tape's content.
-     * - The second row contains a marker (`^`) indicating the tape head's position.
-     *
-     * @return A 2D array where each tape contributes two rows.
-     */
+ /**
+  * @brief Combines all tapes into a single tape representation.
+  *
+  * This method merges the contents of all tapes into a single string, with each tape separated by a `#`.
+  * Additionally, a second string is generated to show the head pointer positions using the `^` symbol.
+  *
+  * @return A vector containing two strings:
+  *         - The first string represents the combined content of all tapes, separated by `#`.
+  *         - The second string represents the head pointer positions, aligned with the content.
+  */
  std::vector<std::string> toSingleTape();
 
-    /**
-     * @brief Prints the 2D array representation of the tapes.
-     *
-     * Outputs the transformed tapes to the console, showing their content
-     * and the position of the tape head. Useful for debugging and visualizing
-     * the current state of the tapes.
-     */
+ /**
+  * @brief Prints the single-tape representation of the tapes.
+  *
+  * Outputs the merged content and head pointer positions of all tapes to the console in two rows:
+  * - The first row displays the content of all tapes, separated by `#`.
+  * - The second row displays the head pointer positions, aligned with the tape content.
+  */
  void printSingleTape();
+
 };
 
 #endif //MB_TOG_GROEPJE10_SINGLETAPETRANSFORMER_H
