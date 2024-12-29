@@ -1,12 +1,14 @@
 #include "../Headers/MultiTapeTuringMachine.h"
 
+#include "../Headers/SingleTapeTransformer.h"
 
 
 MultiTapeTuringMachine::MultiTapeTuringMachine(int tapesCount, const std::string &startState, const std::string &accept,
                                                const std::string &reject) : numTapes(tapesCount), tapes(tapesCount),
                                                                             startState(startState),
                                                                             currentState(startState),
-                                                                            acceptState(accept), rejectState(reject) {
+                                                                            acceptState(accept),
+                                                                            rejectState(reject){
 };
 
 void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction &tf) {
@@ -23,6 +25,16 @@ bool MultiTapeTuringMachine::run() {
     while (currentState != acceptState && currentState != rejectState) {
         logger.setPhase(std::to_string(counter));
         logger.log(Logger::DEBUG, "Current State: " + currentState);
+
+        std::vector<Tape> currentTapes;
+        for (auto &tape : tapes) {
+            currentTapes.push_back(tape);
+        }
+
+        SingleTapeTransformer transformer(currentTapes, currentState, acceptState, rejectState);
+        transformer.setTransitionFunction(transitionFunction);
+        transformer.printSingleTape();
+
 
         std::vector<char> readSymbols;
         for (auto &tape : tapes) {
