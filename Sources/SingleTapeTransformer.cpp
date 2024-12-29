@@ -80,30 +80,39 @@ bool SingleTapeTransformer::run() {
     return currentState == acceptState;
 }
 
-std::vector<std::vector<char>> SingleTapeTransformer::to2DArray() {
-    std::vector<std::vector<char>> result;
+std::vector<std::string> SingleTapeTransformer::toSingleTape() {
+    std::string contentRow;  // Combined content of all tapes
+    std::string headPointerRow;  // Combined head pointers
 
     for (size_t i = 0; i < tapes.size(); ++i) {
         std::string content = tapes[i].getContent();
-        std::vector<char> contentRow(content.begin(), content.end());
-        result.push_back(contentRow);
+        int headPos = tapes[i].getHeadPosition();
 
-        // Head pointer visualization
-        std::string headPointerContent = headPointerTapes[i].getContent();
-        std::vector<char> headRow(headPointerContent.begin(), headPointerContent.end());
-        result.push_back(headRow);
-    }
+        // Append tape content to the contentRow
+        contentRow += content;
 
-    return result;
-}
-
-
-void SingleTapeTransformer::print2DArray() {
-    auto array = to2DArray();
-    for (const auto& row : array) {
-        for (char cell : row) {
-            std::cout << cell;
+        // Append head pointer markers to the headPointerRow
+        for (size_t j = 0; j < content.size(); ++j) {
+            headPointerRow += (j == static_cast<size_t>(headPos)) ? '^' : ' ';
         }
-        std::cout << std::endl;
+
+        // Add separator between tapes, except for the last one
+        if (i < tapes.size() - 1) {
+            contentRow += '#';
+            headPointerRow += ' ';
+        }
     }
+
+    return {contentRow, headPointerRow};
 }
+
+void SingleTapeTransformer::printSingleTape() {
+    auto singleTape = toSingleTape();
+
+    // Print the combined content row
+    std::cout << singleTape[0] << std::endl;
+
+    // Print the combined head pointer row
+    std::cout << singleTape[1] << std::endl;
+}
+

@@ -80,7 +80,7 @@ public:
      *
      * @return A 2D array where each tape contributes two rows.
      */
-    std::vector<std::vector<char>> to2DArray();
+ std::vector<std::string> toSingleTape();
 
     /**
      * @brief Prints the 2D array representation of the tapes.
@@ -89,7 +89,7 @@ public:
      * and the position of the tape head. Useful for debugging and visualizing
      * the current state of the tapes.
      */
-    void print2DArray();
+ void printSingleTape();
 };
 
 #endif //MB_TOG_GROEPJE10_SINGLETAPETRANSFORMER_H
