@@ -22,6 +22,7 @@ class SingleTapeTransformer {
 private:
     /// A collection of tapes to be transformed and processed.
     std::vector<Tape> tapes;
+   std::vector<Tape> headPointerTapes; // Tapes to track head pointer positions
 
     /// The current state of the Turing machine during execution.
     std::string currentState;

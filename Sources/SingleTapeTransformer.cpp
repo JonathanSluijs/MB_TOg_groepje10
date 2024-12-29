@@ -2,7 +2,25 @@
 
 
 SingleTapeTransformer::SingleTapeTransformer(const std::vector<Tape>& tapes, const std::string& startState, const std::string& acceptState, const std::string& rejectState)
-    : tapes(tapes), currentState(startState), acceptState(acceptState), rejectState(rejectState) {}
+    : tapes(tapes), currentState(startState), acceptState(acceptState), rejectState(rejectState) {
+    // Initialize headPointerTapes with blank tapes
+    for (const auto& tape : tapes) {
+        Tape headPointerTape; // Use default constructor
+        // Fill the headPointerTape with spaces to match the original tape's length
+        for (size_t j = 0; j < tape.getContent().size(); ++j) {
+            headPointerTape.write(' ');
+            if (j < tape.getContent().size() - 1) {
+                headPointerTape.move(RIGHT);
+            }
+        }
+        // Reset head to the start and write the initial head marker
+        while (headPointerTape.getHeadPosition() > 0) {
+            headPointerTape.move(LEFT);
+        }
+        headPointerTape.write('^');
+        headPointerTapes.push_back(headPointerTape);
+    }
+}
 
 void SingleTapeTransformer::setTransitionFunction(const TransitionFunction& tf) {
     transitionFunction = tf;
@@ -41,6 +59,12 @@ bool SingleTapeTransformer::run() {
         for (int i = 0; i < tapes.size(); i++) {
             tapes[i].write(writeSymbols[i]);
             tapes[i].move(movements[i]);
+
+            // Update head pointer tape
+            int currentHead = headPointerTapes[i].getHeadPosition();
+            headPointerTapes[i].write(' '); // Clear previous head position marker
+            headPointerTapes[i].move(movements[i]);
+            headPointerTapes[i].write('^'); // Mark new head position
         }
 
         counter++;
@@ -64,16 +88,15 @@ std::vector<std::vector<char>> SingleTapeTransformer::to2DArray() {
         std::vector<char> contentRow(content.begin(), content.end());
         result.push_back(contentRow);
 
-        std::vector<char> headMarker(contentRow.size(), ' ');
-        int headPos = tapes[i].getHeadPosition();
-        if (headPos >= 0 && headPos < static_cast<int>(headMarker.size())) {
-            headMarker[headPos] = '^';
-        }
-        result.push_back(headMarker);
+        // Head pointer visualization
+        std::string headPointerContent = headPointerTapes[i].getContent();
+        std::vector<char> headRow(headPointerContent.begin(), headPointerContent.end());
+        result.push_back(headRow);
     }
 
     return result;
 }
+
 
 void SingleTapeTransformer::print2DArray() {
     auto array = to2DArray();
