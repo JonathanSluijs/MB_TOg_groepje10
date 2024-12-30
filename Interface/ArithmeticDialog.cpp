@@ -84,7 +84,12 @@ void ArithmeticDialog::submitExpression() {
         // Calculate the expression
         //-------------------------
         ExpressionCalculator calc(expression_input->text().toStdString());
-        calc.calculate();
+        try {
+            calc.calculate();
+        } catch (std::exception &e) {
+            QMessageBox::warning(this, "Error", e.what());
+            return;
+        }
 
         //Display the result in a message box
         //-------------------------

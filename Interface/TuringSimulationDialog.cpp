@@ -119,7 +119,12 @@ void TuringSimulationDialog::submitExpression() {
         // Calculate the expression with TM
         //---------------------------
         ExpressionCalculator calc(expression_input->text().toStdString());
-        calc.calculate();
+        try {
+            calc.calculate();
+        } catch (const std::exception &e) {
+            QMessageBox::warning(this, "Error", e.what());
+            return;
+        }
 
         // Open the OutputViewer
         //----------------------------
