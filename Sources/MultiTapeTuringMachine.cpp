@@ -30,7 +30,6 @@ bool MultiTapeTuringMachine::run() {
         for (auto &tape : tapes) {
             currentTapes.push_back(tape);
         }
-
         SingleTapeTransformer transformer = SingleTapeTransformer(currentTapes, currentState, acceptState, rejectState);
         transformer.setTransitionFunction(transitionFunction);
         transformer.mergeTransitionsToSimulateSingleTape();
