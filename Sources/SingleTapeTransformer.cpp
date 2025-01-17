@@ -178,13 +178,17 @@ std::vector<std::string> SingleTapeTransformer::toSingleTape() {
     return {contentRow, headPointerRow};
 }
 
-void SingleTapeTransformer::printSingleTape() {
+void SingleTapeTransformer::writeSingleTape() {
     auto singleTape = toSingleTape();
-
-    // Print the combined content row
-    std::cout << singleTape[0] << std::endl;
-
-    // Print the combined head pointer row
-    std::cout << singleTape[1] << std::endl;
+    std::ofstream outputFile("../OutputFiles/SingleTapeTransformation.txt", std::ios::app);
+    if (outputFile.is_open()) {
+        outputFile << singleTape[0] << std::endl;
+        outputFile << singleTape[1] << std::endl;
+        outputFile.close();
+    } else {
+        std::cerr << "Kon het bestand niet openen om te schrijven." << std::endl;
+    }
 }
+
+
 

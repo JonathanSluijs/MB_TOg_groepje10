@@ -89,7 +89,7 @@ public:
   * - The first row displays the content of all tapes, separated by `#`.
   * - The second row displays the head pointer positions, aligned with the tape content.
   */
- void printSingleTape();
+ void writeSingleTape();
 
  /**
  * @brief Merges multi-tape transitions into a single-tape representation.

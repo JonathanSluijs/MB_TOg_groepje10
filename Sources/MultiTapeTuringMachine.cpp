@@ -1,5 +1,6 @@
 #include "../Headers/MultiTapeTuringMachine.h"
 
+#include "../Headers/SingleTapeTransformer.h"
 
 
 MultiTapeTuringMachine::MultiTapeTuringMachine(int tapesCount, const std::string &startState, const std::string &accept,
@@ -15,6 +16,7 @@ void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction &tf)
 
 bool MultiTapeTuringMachine::run() {
     Logger logger("../OutputFiles/MTMOutput.txt", "../OutputFiles/MTMOutput.json", false);
+    std::remove("../OutputFiles/SingleTapeTransformation.txt");  //remove the old output file from previous runs
     logger.setPhase("Initialization");
     logger.log(Logger::INFO, "Starting Turing Machine...");
 
@@ -23,6 +25,16 @@ bool MultiTapeTuringMachine::run() {
     while (currentState != acceptState && currentState != rejectState) {
         logger.setPhase(std::to_string(counter));
         logger.log(Logger::DEBUG, "Current State: " + currentState);
+
+        std::vector<Tape> currentTapes;
+        for (auto &tape : tapes) {
+            currentTapes.push_back(tape);
+        }
+
+        SingleTapeTransformer transformer = SingleTapeTransformer(currentTapes, currentState, acceptState, rejectState);
+        transformer.setTransitionFunction(transitionFunction);
+        transformer.mergeTransitionsToSimulateSingleTape();
+        transformer.writeSingleTape();
 
         std::vector<char> readSymbols;
         for (auto &tape : tapes) {
@@ -47,13 +59,11 @@ bool MultiTapeTuringMachine::run() {
             tapes[i].write(writeSymbols[i]);
             tapes[i].move(movements[i]);
         }
-
         counter++;
     }
 
     logger.setPhase("Finalization");
     logger.log(Logger::INFO, "Final State: " + currentState);
-
 
     std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Wacht kort om I/O af te ronden (Anders had ik bugs)
 
@@ -61,7 +71,6 @@ bool MultiTapeTuringMachine::run() {
     logger.finalizeJson();
 
     toHTML("../OutputFiles/MTMOutput.json", "../OutputFiles/MTMOutput.html");
-
 
 
     return currentState == acceptState;
