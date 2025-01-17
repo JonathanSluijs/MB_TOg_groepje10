@@ -79,6 +79,5 @@
       "writeSymbols": ["_", "_", "_", "1"],
       "directions": ["STAY", "RIGHT", "STAY", "RIGHT"]
     }
-
   ]
 }

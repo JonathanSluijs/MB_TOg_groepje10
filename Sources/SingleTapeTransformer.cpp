@@ -26,10 +26,82 @@ void SingleTapeTransformer::setTransitionFunction(const TransitionFunction& tf) 
     transitionFunction = tf;
 }
 
+void SingleTapeTransformer::mergeTransitionsToSimulateSingleTape() {
+    Logger logger("../OutputFiles/MergedTransitionsOutput.txt", "../OutputFiles/MergedTransitionsOutput.json", false);
+    logger.setPhase("Merge Transitions");
+    logger.log(Logger::INFO, "Starting to merge transitions to simulate single tape...");
+
+    // Encode the single tape using '#' delimiters for separating tapes
+    std::string singleTape;
+    std::vector<int> headPositions;
+    for (size_t i = 0; i < tapes.size(); ++i) {
+        singleTape += tapes[i].getContent();
+        headPositions.push_back(tapes[i].getHeadPosition() + singleTape.size() - tapes[i].getContent().size());
+        if (i < tapes.size() - 1) {
+            singleTape += "#";
+        }
+    }
+
+    logger.log(Logger::DEBUG, "Encoded single tape: " + singleTape);
+
+    // Merge transitions for all tapes into a single-tape representation
+    for (const auto& transition : transitionFunction.getAllTransitions()) {
+        const auto& key = transition.first; // {currentState, readSymbols}
+        const auto& value = transition.second; // {nextState, writeSymbols, movements}
+
+        const auto& [currentState, readSymbols] = key;
+        const auto& [nextState, writeSymbols, movements] = value;
+
+        std::string mergedReadSymbols;
+        std::string mergedWriteSymbols;
+
+        // Building merged symbols
+        for (size_t i = 0; i < tapes.size(); ++i) {
+            mergedReadSymbols += readSymbols[i];
+            mergedWriteSymbols += writeSymbols[i];
+            if (i < tapes.size() - 1) {
+                mergedReadSymbols += "#";
+                mergedWriteSymbols += "#";
+            }
+        }
+
+        // Movements for the single tape
+        std::vector<Direction> mergedMovements(singleTape.size(), Direction::STAY);
+        size_t tapeIndex = 0;
+        for (size_t i = 0; i < movements.size(); ++i) {
+            while (tapeIndex < singleTape.size() && singleTape[tapeIndex] != '#') {
+                ++tapeIndex;
+            }
+            if (movements[i] == Direction::LEFT) {
+                if (tapeIndex > 0) mergedMovements[tapeIndex - 1] = Direction::LEFT;
+            } else if (movements[i] == Direction::RIGHT) {
+                if (tapeIndex < singleTape.size() - 1) mergedMovements[tapeIndex + 1] = Direction::RIGHT;
+            }
+        }
+
+        // Add the merged transition to the single tape transition function
+
+        transitionFunction.addTransition(
+            currentState,
+            std::vector<char>(mergedReadSymbols.begin(), mergedReadSymbols.end()),
+            nextState,
+            std::vector<char>(mergedWriteSymbols.begin(), mergedWriteSymbols.end()),
+            mergedMovements
+        );
+
+        logger.log(Logger::DEBUG, "Added merged transition: \"" + currentState + "\" -> \"" + nextState + "\" with read symbols [" + mergedReadSymbols + "] and write symbols [" + mergedWriteSymbols + "].");
+    }
+
+    logger.setPhase("Finalization");
+    logger.log(Logger::INFO, "Transitions successfully merged.");
+}
+
 bool SingleTapeTransformer::run() {
     Logger logger("../OutputFiles/SingleTapeOutput.txt", "../OutputFiles/SingleTapeOutput.json", false);
     logger.setPhase("Initialization");
     logger.log(Logger::INFO, "Starting Single Tape Transformer...");
+
+    mergeTransitionsToSimulateSingleTape(); // Merge them before running
 
     int counter = 0;
 
@@ -73,7 +145,7 @@ bool SingleTapeTransformer::run() {
     logger.setPhase("Finalization");
     logger.log(Logger::INFO, "Final State: " + currentState);
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Pause briefly for I/O completion
+    std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Pause briefly for I/O completion (clion AI recommend)
 
     logger.finalizeJson();
 

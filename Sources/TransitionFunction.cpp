@@ -84,3 +84,8 @@ TransitionFunction parseTransitionFile(const std::string &filename) {
 
     return tf;
 }
+
+
+const std::map<std::pair<std::string, std::vector<char>>, std::tuple<std::string, std::vector<char>, std::vector<Direction>>>& TransitionFunction::getAllTransitions() const{
+    return transitions;
+}

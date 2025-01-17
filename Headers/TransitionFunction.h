@@ -58,6 +58,10 @@ public:
      * @return True if a transition exists, otherwise false.
      */
     bool hasTransition(const std::string& currentState, const std::vector<char>& readSymbols);
+
+
+    const std::map<std::pair<std::string, std::vector<char>>, std::tuple<std::string, std::vector<char>, std::vector<Direction>>>& getAllTransitions() const;
+
 };
 
 /**

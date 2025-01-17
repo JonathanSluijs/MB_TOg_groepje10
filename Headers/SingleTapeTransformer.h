@@ -60,15 +60,14 @@ public:
      */
     void setTransitionFunction(const TransitionFunction& tf);
 
-    /**
-     * @brief Runs the transformer on the tapes using the transition function.
-     *
-     * Simulates the execution of the Turing machine using the provided
-     * transition function. The machine transitions between states and processes
-     * the tapes until it reaches the accept or reject state.
-     *
-     * @return True if the machine reaches the accept state; otherwise, false.
-     */
+ /**
+  * @brief Executes the single-tape Turing machine simulation.
+  *
+  * Simulates the execution of the Turing machine using the merged single-tape transitions.
+  * The machine processes states and symbols on the single tape until it reaches an accept or reject state.
+  *
+  * @return True if the machine reaches the accept state; otherwise, false.
+  */
     bool run();
 
  /**
@@ -91,6 +90,15 @@ public:
   * - The second row displays the head pointer positions, aligned with the tape content.
   */
  void printSingleTape();
+
+ /**
+ * @brief Merges multi-tape transitions into a single-tape representation.
+ *
+ * Combines the contents of all tapes into a single tape, separated by delimiters (`#`).
+ * Transitions for all tapes are merged into equivalent single-tape transitions, with head movements
+ * adjusted to reflect the single-tape structure. The merged transitions are stored in the transition function.
+ */
+ void mergeTransitionsToSimulateSingleTape();
 
 };
 
