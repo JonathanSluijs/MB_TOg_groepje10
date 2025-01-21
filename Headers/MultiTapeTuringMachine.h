@@ -21,7 +21,7 @@
 #include <unordered_map>
 #include "../libs/nlohmann/json.hpp"
 
-using json = nlohmann::json;
+using jsoan = nlohmann::json;
 
 struct Phase {
  std::string name;
