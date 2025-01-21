@@ -77,4 +77,17 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 - [X] Jonathan: MTM to one tape TM 
 
 
+### Last Fase: 23/12/2024 om 20:00
+- PRESENTATION:
+- [ ] Cain: General explanation
+- [ ] Emir: Earley parser, CYK (CNF, CFG)
+- [ ] Cain: Expression Calculator
+- [ ] Mathis: MTM in general
+- [ ] Jonathan: Single tape transformer
+- [ ] Emir: Tests vermelden voor consistentie
+- [ ] Mathis: DEMO: Output explenation (DEMO)
+- [ ] Cain: Benefits to society
+- [ ] Janathan: Project Planning and Motivation
+
+
 

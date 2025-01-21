@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include "../Headers/ExpressionCalculator.h"
 
+
 // Fixture klasse voor TransitionFunction Tests
 class ExpressionCalculatorTests : public ::testing::Test {
 protected:
