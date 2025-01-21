@@ -50,7 +50,7 @@ public:
      * @pre the expression does not contain division by zero
      * @return the result of the expression
      */
-    void calculate();
+    int calculate();
 
     /**
      * Writes all steps of the calculation to a file

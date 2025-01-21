@@ -63,7 +63,7 @@ void ExpressionCalculator::toPostfix() {
 /**
  * Calculate the result of the expression
  */
-void ExpressionCalculator::calculate() {
+int ExpressionCalculator::calculate() {
     // Initialize the MTMs if not initialized
     if (!MTMInitialized) {
         initializeMTM();
@@ -100,6 +100,7 @@ void ExpressionCalculator::calculate() {
         }
     }
     steps.push_back(std::to_string(stack.top()));
+    return stack.top();
 }
 
 /**
