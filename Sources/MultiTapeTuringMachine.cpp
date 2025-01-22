@@ -40,8 +40,13 @@ bool MultiTapeTuringMachine::run() {
             readSymbols.push_back(tape.read());
             logger.log(Logger::RUN, "Tape Content: " + tape.getContent());
         }
-
-        logger.log(Logger::DEBUG, "Read Symbols: " + std::string(readSymbols.begin(), readSymbols.end()));
+        //split the seperate each readsymbol with " | "
+        std::string readSymbolsString;
+        for (char c : readSymbols) {
+            readSymbolsString += c;
+            readSymbolsString += " | ";
+        }
+        logger.log(Logger::DEBUG, "Read Symbols: " + std::string(readSymbolsString.begin(), readSymbolsString.end()));
 
         if (!transitionFunction.hasTransition(currentState, readSymbols)) {
             logger.setPhase("Error Handling");
