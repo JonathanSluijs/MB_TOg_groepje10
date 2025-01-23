@@ -52,8 +52,8 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 ## To Do
 
 ### Fase 1 deadline: 07/12/2024
-- [x] Jonathan, Mathis: modulo operations
-
+- [x] Jonathan: modulo operations
+- [x] Jonathan: Implent MTM
 
 - [x] Cain: Brackets and precedence of expressions
 - [x] Cain: power operations
@@ -73,7 +73,7 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 - [x] Emir: Calculation steps + file interface in QT
 - [X] Mathis: Logs in HTML
 - [X] Mathis: MTM to Logger
-- [ ] Mathis: STM to Logger
+- [X] Mathis & Jonathan: STM to Logger
 - [X] Jonathan: MTM to one tape TM 
 
 
@@ -83,11 +83,11 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 - [ ] Emir: Earley parser, CYK (CNF, CFG)
 - [X] Cain: Expression Calculator
 - [ ] Mathis: MTM in general
-- [ ] Jonathan: Single tape transformer
+- [X] Jonathan: Single tape transformer
 - [ ] Emir: Tests vermelden voor consistentie
 - [ ] Mathis: DEMO: Output explenation (DEMO)
 - [X] Cain: Benefits to society
-- [ ] Janathan: Project Planning and Motivation
+- [X] Janathan: Project Planning and Motivation
 
 
 
