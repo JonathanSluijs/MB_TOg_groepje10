@@ -75,7 +75,7 @@ bool MultiTapeTuringMachine::run() {
     logger.finalizeJson();
 
     toHTML("../OutputFiles/MTMOutput.json", "../OutputFiles/MTMOutput.html");
-
+    toHTML("../OutputFiles/MergedTransitionsOutput.json", "../OutputFiles/SingleTapeTransformation.html");
 
     return currentState == acceptState;
 }
@@ -181,7 +181,6 @@ void MultiTapeTuringMachine::toHTML(const std::string& inputFileName, const std:
 </head>
 <body>
 )";
-
 
     if (inputJson.contains("Initialization")) {
         outputFile << "<h2>Initialization</h2>\n<ul>\n";

@@ -28,8 +28,16 @@ void SingleTapeTransformer::setTransitionFunction(const TransitionFunction& tf) 
 
 void SingleTapeTransformer::mergeTransitionsToSimulateSingleTape() {
     Logger logger("../OutputFiles/MergedTransitionsOutput.txt", "../OutputFiles/MergedTransitionsOutput.json", false);
-    logger.setPhase("Merge Transitions");
+    int phaseCounter = -1; // Initialize phase counter
+
+    // Phase: Initialization
+    logger.setPhase("Initialization");
     logger.log(Logger::INFO, "Starting to merge transitions to simulate single tape...");
+    phaseCounter++;
+
+    // Phase: Encoding Single Tape
+    logger.setPhase("Phase " + std::to_string(phaseCounter));
+    logger.log(Logger::DEBUG, "Encoding the single tape with '#' delimiters.");
 
     // Encode the single tape using '#' delimiters for separating tapes
     std::string singleTape;
@@ -43,6 +51,11 @@ void SingleTapeTransformer::mergeTransitionsToSimulateSingleTape() {
     }
 
     logger.log(Logger::DEBUG, "Encoded single tape: " + singleTape);
+    phaseCounter++;
+
+    // Phase: Merging Transitions
+    logger.setPhase("Phase " + std::to_string(phaseCounter));
+    logger.log(Logger::INFO, "Merging transitions for single tape simulation...");
 
     // Merge transitions for all tapes into a single-tape representation
     for (const auto& transition : transitionFunction.getAllTransitions()) {
@@ -80,7 +93,6 @@ void SingleTapeTransformer::mergeTransitionsToSimulateSingleTape() {
         }
 
         // Add the merged transition to the single tape transition function
-
         transitionFunction.addTransition(
             currentState,
             std::vector<char>(mergedReadSymbols.begin(), mergedReadSymbols.end()),
@@ -91,10 +103,16 @@ void SingleTapeTransformer::mergeTransitionsToSimulateSingleTape() {
 
         logger.log(Logger::DEBUG, "Added merged transition: \"" + currentState + "\" -> \"" + nextState + "\" with read symbols [" + mergedReadSymbols + "] and write symbols [" + mergedWriteSymbols + "].");
     }
+    phaseCounter++;
 
+    // Phase: Finalization
     logger.setPhase("Finalization");
     logger.log(Logger::INFO, "Transitions successfully merged.");
+    phaseCounter++;
+
+    logger.finalizeJson();
 }
+
 
 bool SingleTapeTransformer::run() {
     Logger logger("../OutputFiles/SingleTapeOutput.txt", "../OutputFiles/SingleTapeOutput.json", false);
