@@ -2,6 +2,10 @@
 
 #include "../Headers/SingleTapeTransformer.h"
 
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 
 MultiTapeTuringMachine::MultiTapeTuringMachine(int tapesCount, const std::string &startState, const std::string &accept,
                                                const std::string &reject) : numTapes(tapesCount), tapes(tapesCount),
@@ -15,6 +19,15 @@ void MultiTapeTuringMachine::setTransitionFunction(const TransitionFunction &tf)
 }
 
 bool MultiTapeTuringMachine::run() {
+    if (!fs::exists("../OutputFiles")) {
+        try {
+            if (!fs::create_directory("../OutputFiles")) {
+                std::cerr << "Failed to create directory OutputFiles" << std::endl;
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to create directory OutputFiles: " << e.what() << std::endl;
+        }
+    }
     Logger logger("../OutputFiles/MTMOutput.txt", "../OutputFiles/MTMOutput.json", false);
     std::remove("../OutputFiles/SingleTapeTransformation.txt");  //remove the old output file from previous runs
     logger.setPhase("Initialization");
