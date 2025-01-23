@@ -50,7 +50,7 @@ void SingleTapeTransformer::mergeTransitionsToSimulateSingleTape() {
         }
     }
 
-    logger.log(Logger::DEBUG, "Encoded single tape: " + singleTape);
+    logger.log(Logger::RUN, "Tape Content: " + singleTape);
     phaseCounter++;
 
     // Phase: Merging Transitions
