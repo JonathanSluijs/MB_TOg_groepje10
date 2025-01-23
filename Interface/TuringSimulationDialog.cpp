@@ -96,20 +96,33 @@ void TuringSimulationDialog::submitExpression() {
     }
 
     bool runtTM = false;
+    int parsing_time = 0;  // Time in ms
+
     // Check which parsing algorithm is selected
     //-------------------------
     if(cyk_algorithm->isChecked()){
-        if(parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cnf)) {
-            QMessageBox::information(this, "Valid expression", "Expression is valid!");
+        auto start = std::chrono::high_resolution_clock::now();
+        const bool valid= parser::CYKParser::getInstance().parse(expression_input->text().toStdString(), *cnf);
+        auto end = std::chrono::high_resolution_clock::now();
+        parsing_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+
+        if(valid) {
+            QMessageBox::information(this, "Valid expression", "Expression is valid! Parsing took " + QString::number(parsing_time) + " ms.");
             runtTM= true;
         }else
-            notValidated();
+            QMessageBox::warning(this, "Invalid Expression", "The expression you entered is not valid. Please try again. Parsing took " + QString::number(parsing_time) + " ms.");
+
     }else if(earley_algorithm->isChecked()){
-        if(parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg)) {
-            QMessageBox::information(this, "Valid expression", "Expression is valid!");
+        auto start = std::chrono::high_resolution_clock::now();
+        const bool valid = parser::EarleyParser::getInstance().parse(expression_input->text().toStdString(), *cfg);
+        auto end = std::chrono::high_resolution_clock::now();
+        parsing_time= std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+        if(valid) {
+            QMessageBox::information(this, "Valid expression", "Expression is valid! Parsing took " + QString::number(parsing_time) + " ms.");
             runtTM = true;
         } else
-            notValidated();
+            QMessageBox::warning(this, "Invalid Expression", "The expression you entered is not valid. Please try again. Parsing took " + QString::number(parsing_time) + " ms.");
+
     }
 
     // If the expression is valid, run the Turing machine
