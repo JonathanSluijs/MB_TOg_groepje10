@@ -80,12 +80,12 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 ### Last Fase: 23/12/2024 om 20:00
 - PRESENTATION:
 - [X] Cain: General explanation
-- [ ] Emir: Earley parser, CYK (CNF, CFG)
+- [X] Emir: Earley parser, CYK (CNF, CFG)
 - [X] Cain: Expression Calculator
-- [ ] Mathis: MTM in general
+- [X] Mathis: MTM in general
 - [X] Jonathan: Single tape transformer
-- [ ] Emir: Tests vermelden voor consistentie
-- [ ] Mathis: DEMO: Output explenation (DEMO)
+- [X] Emir: Tests vermelden voor consistentie
+- [X] Mathis: DEMO: Output explenation (DEMO)
 - [X] Cain: Benefits to society
 - [X] Janathan: Project Planning and Motivation
 
