@@ -87,7 +87,7 @@ Om dit project te draaien, moet Qt 5 geïnstalleerd zijn. Volg de instructies hi
 - [X] Emir: Tests vermelden voor consistentie
 - [X] Mathis: DEMO: Output explenation (DEMO)
 - [X] Cain: Benefits to society
-- [X] Janathan: Project Planning and Motivation
+- [X] Jonathan: Project Planning and Motivation
 
 
 
